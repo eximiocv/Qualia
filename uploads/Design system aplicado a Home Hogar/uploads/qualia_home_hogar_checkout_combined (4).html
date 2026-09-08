@@ -1,0 +1,2237 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<title>Home Hogar Qualia — Multiplicá tu protección / Esencial · Recomendada · Máxima</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&family=DM+Sans:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#FCAB50; --orange-btn:#FFB74D; --orange-dark:#F09A38; --orange-light:#FFF3E2;
+    --teal:#00C1C6; --teal-dark:#0095A8; --teal-light:#E0F7F8;
+    --text:#303030; --text-para:#585858; --text-mute:#8A8A8A;
+    --border:#EEEEEE; --bg:#F7F7F7; --white:#FFFFFF; --navy:#1A1A2E;
+    --radius:14px; --radius-pill:100px;
+    --font:'Roboto',-apple-system,sans-serif;
+    --font-display:'Moderat Extended','Arial Black',-apple-system,sans-serif;
+    --font-num:'DM Sans',-apple-system,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:var(--font);}
+  body{line-height:1.5;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 32px;}
+  button{font-family:var(--font);}
+
+  /* nota flotante */
+  .note-toggle{position:fixed;right:22px;bottom:22px;z-index:80;background:var(--navy);color:#fff;border:none;border-radius:var(--radius-pill);padding:13px 20px;font-family:var(--font-num);font-weight:700;font-size:13px;cursor:pointer;box-shadow:0 14px 34px -12px rgba(20,20,30,.5);display:flex;align-items:center;gap:8px;}
+  .note-toggle .dot{width:7px;height:7px;border-radius:50%;background:var(--teal);}
+  .note-panel{position:fixed;right:22px;bottom:76px;z-index:80;width:360px;max-width:calc(100vw - 44px);background:#fff;border:1px solid var(--border);border-radius:12px;box-shadow:0 24px 60px -20px rgba(20,20,30,.4);padding:20px 22px;display:none;max-height:72vh;overflow-y:auto;}
+  .note-panel.open{display:block;}
+  .note-panel h4{margin:0 0 4px;font-size:14px;font-weight:700;}
+  .note-panel .sub{font-size:11.5px;color:var(--text-mute);margin:0 0 14px;}
+  .note-panel .jitem{padding:11px 0;border-top:1px solid var(--border);}
+  .note-panel .jitem:first-of-type{border-top:none;padding-top:0;}
+  .note-panel .src{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--teal-dark);background:var(--teal-light);padding:2px 8px;border-radius:8px;margin-bottom:6px;}
+  .note-panel p{font-size:12.5px;color:var(--text-para);margin:0;line-height:1.5;}
+
+  /* toggle de propuesta */
+  .proposal-bar{background:var(--navy);padding:16px 0;}
+  .cta-style-bar{background:#22314A;padding:12px 0;border-top:1px solid rgba(255,255,255,.08);}
+  .cta-style-bar .row{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+  .cta-style-bar .seg-toggle button{padding:8px 16px;font-size:12px;}
+  .cta-style-bar .lbl{color:#9C9CB0;font-size:11.5px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;}
+  .cta-style-bar .caption{color:#7C7C94;font-size:11.5px;max-width:640px;text-align:center;margin:0;}
+
+  .preview-bar{background:var(--orange-dark);padding:12px 0;}
+  .preview-bar .row{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;}
+  .preview-bar .seg-toggle{background:rgba(0,0,0,.15);}
+  .preview-bar .seg-toggle button{padding:8px 18px;font-size:12px;color:#FFE8CC;}
+  .preview-bar .seg-toggle button.sel{background:#fff;color:var(--orange-dark);}
+  .preview-bar .lbl{color:#FFE8CC;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
+  .preview-bar .caption{color:#FFDDB0;font-size:11.5px;max-width:640px;text-align:center;margin:0;}
+
+  #homePreviewWrap{display:none;justify-content:center;align-items:flex-start;padding:18px 20px 24px;background:#EDEDED;}
+  .phone-frame{width:390px;max-width:100%;background:#111;border-radius:34px;padding:12px;box-shadow:0 24px 60px -20px rgba(0,0,0,.4);}
+  .phone-frame iframe{width:100%;height:min(760px, calc(100vh - 400px));min-height:480px;border:none;border-radius:24px;background:#fff;display:block;}
+  .proposal-bar .row{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;}
+  .proposal-bar .lbl{color:#9C9CB0;font-size:11.5px;font-weight:500;text-transform:uppercase;letter-spacing:.04em;}
+  .seg-toggle{display:flex;gap:4px;background:rgba(255,255,255,.08);border-radius:20px;padding:3px;}
+  .seg-toggle button{border:none;background:none;color:#C9C9D4;font-size:13px;font-weight:700;padding:10px 20px;border-radius:16px;cursor:pointer;font-family:var(--font);}
+  .seg-toggle button.sel{background:var(--orange-btn);color:#3A2100;}
+  .proposal-bar .caption{color:#7C7C94;font-size:11.5px;max-width:640px;text-align:center;margin:0;}
+
+  /* nav real */
+  .sitenav{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:40;}
+  .sitenav .row{display:flex;align-items:center;justify-content:space-between;padding:16px 0;gap:24px;}
+  .qlogo{font-family:var(--font-num);font-weight:900;font-size:19px;color:var(--text);display:flex;align-items:center;gap:7px;flex-shrink:0;}
+  .qlogo .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);}
+  .qnav{display:flex;gap:26px;font-size:13.5px;color:var(--text-para);flex-wrap:wrap;}
+  .qright{display:flex;align-items:center;gap:18px;flex-shrink:0;}
+  .qaccess{font-size:13.5px;font-weight:700;color:var(--text);display:flex;align-items:center;gap:6px;white-space:nowrap;}
+  .qaccess svg{width:15px;height:15px;color:var(--text-para);}
+  .qcta{background:var(--orange-btn);color:#3A2100;font-family:var(--font-num);font-weight:700;font-size:13px;padding:11px 22px;border-radius:var(--radius-pill);white-space:nowrap;}
+
+  /* nav de categorías de seguros */
+  .catnav{background:#fff;border-bottom:1px solid var(--border);}
+  .catnav-row{display:flex;gap:6px;padding:12px 0;overflow-x:auto;}
+  .cat-pill{flex-shrink:0;padding:8px 18px;border-radius:var(--radius-pill);font-size:13px;font-weight:700;color:var(--text-para);white-space:nowrap;}
+  .cat-pill:hover{background:#F5F5F5;}
+  .cat-pill.active{background:var(--orange-btn);color:#3A2100;}
+  .cat-pill.active:hover{background:var(--orange-btn);}
+
+  /* hero */
+  .hero{padding:52px 0 40px;border-bottom:1px solid var(--border);}
+
+  /* ===== CTA flotante ===== */
+  .floating-cta{position:fixed;z-index:70;background:#fff;border:2px solid var(--orange);box-shadow:0 16px 40px -14px rgba(20,20,30,.32);}
+  .fc-eyebrow{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--text-mute);}
+  .fc-name-row{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
+  .fc-name{font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--text);}
+  .fc-semantic{font-size:11.5px;color:var(--teal-dark);}
+  .fc-price{font-family:var(--font-num);}
+  .fc-price b{font-weight:900;font-size:16px;color:var(--orange-dark);}
+  .fc-price span{font-size:11px;color:var(--text-mute);}
+  .fc-cov{display:none;font-size:11px;color:var(--text-mute);}
+  .fc-icon{display:none;}
+  .fc-cta{background:var(--orange-btn);color:#3A2100;white-space:nowrap;}
+
+  @media(min-width:861px){
+    .floating-cta{right:22px;top:230px;width:230px;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px;}
+    .fc-cta{width:100%;padding:12px 16px;font-size:13.5px;}
+
+    body.cta-footer .floating-cta{left:50%;right:auto;top:auto;bottom:20px;transform:translateX(-50%);width:calc(100% - 64px);max-width:1120px;min-width:0;border:1px solid var(--border);border-radius:18px;padding:14px 32px;display:grid;grid-template-columns:auto auto 1fr auto auto;grid-template-rows:auto auto;align-items:center;column-gap:14px;box-shadow:0 20px 50px -18px rgba(20,20,30,.3);}
+    body.cta-footer .fc-icon{display:flex;grid-column:1;grid-row:1/3;align-self:center;width:34px;height:34px;border-radius:9px;background:var(--orange-light);color:var(--orange-dark);align-items:center;justify-content:center;flex-shrink:0;}
+    body.cta-footer .fc-icon svg{width:18px;height:18px;}
+    body.cta-footer .fc-content{display:contents;}
+    body.cta-footer .fc-eyebrow{display:none;}
+    body.cta-footer .fc-name-row{grid-column:2;grid-row:1/3;align-self:center;flex-direction:column;align-items:flex-start;gap:1px;}
+    body.cta-footer .fc-name{font-size:15px;}
+    body.cta-footer .fc-semantic{font-size:11px;}
+    body.cta-footer .fc-price{grid-column:4;grid-row:1;justify-self:end;text-align:right;}
+    body.cta-footer .fc-price b{font-size:19px;}
+    body.cta-footer .fc-cov{grid-column:4;grid-row:2;justify-self:end;text-align:right;display:block;}
+    body.cta-footer .fc-cta{grid-column:5;grid-row:1/3;align-self:center;width:auto;padding:14px 30px;margin-left:8px;}
+    body.cta-footer #homeView{padding-bottom:100px;}
+    body.cta-footer .note-toggle{bottom:96px;}
+    body.cta-footer .note-panel{bottom:150px;}
+  }
+  @media(max-width:860px){
+    .floating-cta{left:0;right:0;bottom:0;border-width:2px 0 0 0;border-radius:14px 14px 0 0;padding:8px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;}
+    .fc-eyebrow{font-size:9px;}
+    .fc-name{font-size:15px;}
+    .fc-name-row{gap:6px;}
+    .fc-semantic{display:none;}
+    .fc-price b{font-size:14px;}
+    .fc-cta{padding:9px 16px;font-size:12.5px;flex-shrink:0;}
+    #homeView{padding-bottom:68px;}
+    .note-toggle{bottom:78px;}
+    .note-panel{bottom:132px;}
+  }
+
+  /* ===== Modal genérico Home ===== */
+  .home-modal-overlay{position:fixed;inset:0;background:rgba(20,20,20,.5);z-index:200;display:none;align-items:flex-end;justify-content:center;}
+  .home-modal-overlay.open{display:flex;}
+  .home-modal-card{background:#fff;width:100%;max-width:560px;max-height:82vh;overflow-y:auto;border-radius:20px 20px 0 0;padding:26px 24px 28px;position:relative;box-shadow:0 -10px 40px rgba(20,20,30,.25);}
+  .home-modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:#F2F2F2;border:none;font-size:15px;color:var(--text-para);cursor:pointer;}
+  .home-modal-title{font-family:var(--font-display);font-weight:700;font-size:19px;margin:0 34px 16px 0;}
+  .home-modal-body{font-size:13px;color:var(--text-para);}
+  .hm-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;}
+  .hm-list li b{display:block;font-family:var(--font-display);font-size:13.5px;color:var(--text);margin-bottom:3px;}
+  .hm-list li span{display:block;font-size:12.5px;color:var(--text-para);line-height:1.45;}
+  .hm-amt-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;}
+  .hm-amt-list li{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-top:1px solid var(--border);font-size:13px;color:var(--text-para);}
+  .hm-amt-list li:first-child{border-top:none;}
+  .hm-amt-list li b{font-family:var(--font-num);font-weight:700;color:var(--text);white-space:nowrap;}
+  .hm-amt-list li b.muted{font-family:var(--font);font-weight:500;color:var(--text-mute);}
+  .hm-sub{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text-mute);margin:14px 0 2px;}
+
+  .pdm-price{font-family:var(--font-num);margin-bottom:2px;}
+  .pdm-price b{font-size:24px;font-weight:900;color:var(--orange-dark);}
+  .pdm-price span{font-size:12.5px;color:var(--text-mute);margin-left:3px;}
+  .pdm-sub{font-size:12.5px;color:var(--teal-dark);margin:0 0 4px;}
+  .pdm-cov-link{display:flex;align-items:center;justify-content:space-between;width:100%;background:var(--teal-light);border:1px solid var(--teal);border-radius:10px;padding:11px 14px;margin:14px 0 4px;font-size:12.5px;font-weight:700;color:var(--teal-dark);cursor:pointer;text-align:left;}
+  .pdm-cov-link:hover{background:var(--teal);color:#fff;}
+  .pdm-cov-link-arrow{font-size:13px;}
+  .pdm-assist-list{list-style:disc;padding-left:18px;margin:0;}
+  .pdm-assist-list li{font-size:12.5px;color:var(--text-para);margin-bottom:7px;}
+  .pdm-cta{width:100%;margin-top:20px;}
+  .pdm-cta[disabled]{opacity:.7;cursor:default;}
+  .hm-sub:first-child{margin-top:0;}
+
+  @media(min-width:701px){
+    .home-modal-overlay{align-items:center;padding:20px;}
+    .home-modal-card{border-radius:20px;}
+  }
+
+  /* ===== affordances clicables en cards ===== */
+  .pc-assist-link{display:block;margin-top:10px;font-size:11px;font-weight:700;color:var(--teal-dark);}
+  .pc-coverage-mobile{display:none;}
+  .pc-view-detail{display:inline-flex;align-items:center;gap:2px;margin-top:8px;background:none;border:none;padding:0;font-size:11px;font-weight:700;color:var(--teal-dark);cursor:pointer;}
+  .pc-view-detail:hover{text-decoration:underline;}
+  .pc-view-detail-chevron{font-size:12px;line-height:1;}
+  .pc-assist-link:hover{text-decoration:underline;}
+  .cat-card{cursor:pointer;display:flex;flex-direction:column;}
+  .cat-card:hover{border-color:var(--orange);box-shadow:0 8px 20px -12px rgba(20,20,30,.2);}
+  .cat-card .desc{flex-grow:1;}
+  .cat-detail-btn{display:inline-flex;align-items:center;gap:2px;margin-top:12px;background:var(--teal-light);color:var(--teal-dark);border-radius:8px;padding:7px 11px;font-size:11.5px;font-weight:700;align-self:flex-start;}
+  .cat-detail-arrow{font-size:13px;}
+  .cat-card:hover .cat-detail-btn{background:var(--teal);color:#fff;}
+  .ed-cat{cursor:pointer;}
+  .ed-cat:hover{background:#F5F5F5;}
+  @media(max-width:860px){
+    .cat-detail-btn{font-size:10.5px;padding:6px 9px;margin-top:10px;}
+  }
+  .hero h1{font-family:var(--font-display);font-size:38px;font-weight:700;line-height:1.16;margin:0 0 14px;max-width:680px;text-wrap:balance;}
+  .hero p.lede{font-size:16px;color:var(--text-para);max-width:580px;margin:0;}
+
+  .section{padding:44px 0;border-bottom:1px solid var(--border);}
+  .section h2{font-family:var(--font-display);font-size:24px;font-weight:700;margin:0 0 6px;max-width:640px;text-wrap:balance;}
+  .section .h2sub{font-size:14px;color:var(--text-para);margin:0 0 26px;max-width:560px;}
+
+  .btn{display:inline-block;background:var(--orange-btn);color:#3A2100;font-family:var(--font-num);font-weight:700;font-size:14.5px;border:none;border-radius:var(--radius-pill);padding:14px 30px;cursor:pointer;text-align:center;}
+  .btn.ghost{background:none;border:1.5px solid var(--border);color:var(--text-para);}
+  .btn.ghost:hover{border-color:var(--teal);color:var(--teal-dark);}
+  .btn.small{padding:10px 20px;font-size:13px;}
+
+  [data-proposal]{display:none;}
+  body.o1 [data-proposal="1"]{display:block;}
+  body.o2 [data-proposal="2"]{display:block;}
+
+  /* ===================== OPCIÓN 1: multiplicador ===================== */
+  .level-picker{display:flex;gap:20px;margin:20px 0 10px;align-items:stretch;}
+  .plan-card{flex:1;background:#fff;border:1.5px solid var(--border);border-radius:20px;cursor:pointer;position:relative;text-align:center;transition:box-shadow .18s,transform .18s,border-color .18s;}
+  .pc-inner{border-radius:18.5px;overflow:hidden;}
+  .plan-card:hover{border-color:var(--orange);box-shadow:0 16px 32px -20px rgba(20,20,30,.28);transform:translateY(-2px);}
+  .plan-card.sel{border-color:var(--orange);border-width:2.5px;box-shadow:0 18px 36px -18px rgba(240,154,56,.4);}
+  .pc-reco-pill{position:absolute;top:-15px;left:50%;transform:translateX(-50%);background:var(--teal);color:#fff;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;padding:6px 16px;border-radius:12px;white-space:nowrap;box-shadow:0 4px 10px -3px rgba(0,0,0,.28);z-index:5;}
+  .pc-head{padding:24px 18px 16px;}
+  .plan-card.reco .pc-head{background:var(--orange-light);}
+  .pc-name-row{display:flex;align-items:center;justify-content:center;gap:8px;}
+  .pc-name{font-family:var(--font-display);font-weight:700;font-size:18px;color:var(--text);text-transform:uppercase;letter-spacing:.01em;}
+  .pc-check{width:22px;height:22px;border-radius:50%;border:1.6px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:transparent;background:#fff;transition:.15s;}
+  .plan-card.sel .pc-check{background:var(--orange);border-color:var(--orange);color:#fff;}
+  .pc-check svg{width:12px;height:12px;}
+  .pc-body{padding:4px 20px 24px;}
+  .pc-pay-lbl{font-size:12px;color:var(--text-mute);margin-bottom:2px;}
+  .pc-price b{font-family:var(--font-num);font-size:25px;font-weight:900;color:var(--orange-dark);}
+  .pc-price span{font-size:12.5px;color:var(--text-mute);margin-left:3px;}
+  .plan-icon{width:58px;height:58px;margin:16px auto 12px;position:relative;color:var(--orange);}
+  .plan-icon .house-ic{display:block;width:100%;height:100%;}
+  .plan-icon .house-ic svg{width:100%;height:100%;}
+  .plan-icon .shield-badge{position:absolute;left:-5px;bottom:-4px;width:24px;height:24px;background:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px -2px rgba(20,20,30,.28);color:var(--orange-dark);}
+  .plan-icon .shield-badge svg{width:13px;height:13px;}
+  .pc-coverage{font-size:12px;color:var(--text-para);line-height:1.45;}
+  .pc-hint{font-size:10.5px;color:var(--text-mute);margin-top:14px;opacity:.8;}
+  .plan-card.sel .pc-hint{opacity:0;}
+
+  .growth-note{font-size:12.5px;color:var(--text-mute);text-align:center;margin:14px 0 30px;}
+
+  .cats-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:8px;}
+  .cat-card{border:1px solid var(--border);border-radius:12px;background:#fff;padding:16px 14px;text-align:left;transition:.2s;}
+  .cat-card.empty{background:#FAFAFA;color:var(--text-mute);}
+  .ic-box{width:34px;height:34px;border-radius:9px;background:var(--orange-light);display:flex;align-items:center;justify-content:center;color:var(--orange-dark);margin-bottom:9px;flex-shrink:0;}
+  .ic-box svg{width:18px;height:18px;}
+  .cat-card.empty .ic-box{background:#EFEFEF;color:var(--text-mute);}
+  .ic-inline{width:26px;height:26px;border-radius:7px;background:var(--orange-light);color:var(--orange-dark);display:inline-flex;align-items:center;justify-content:center;vertical-align:middle;margin-right:8px;flex-shrink:0;}
+  .ic-inline svg{width:14px;height:14px;}
+  .ed-cat.empty .ic-inline{background:#EFEFEF;color:var(--text-mute);}
+  .cat-card .nm{font-size:12px;font-weight:700;color:var(--text-para);margin-bottom:4px;}
+  .cat-card .amt{font-family:var(--font-num);font-weight:900;font-size:15px;color:var(--text);}
+  .cat-card.empty .amt{font-family:var(--font);font-weight:500;font-size:11.5px;color:var(--text-mute);}
+  .cat-card .desc{font-size:11px;color:var(--text-mute);margin-top:6px;line-height:1.4;}
+
+  .delta-box{border:1.5px solid var(--border);background:#FAFAFA;border-radius:var(--radius);padding:22px 24px;margin-top:0;}
+  .delta-box.maxed{border-color:var(--border);background:#FAFAFA;}
+  .delta-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-top:1px solid rgba(0,0,0,.06);font-size:13px;}
+  .delta-row:first-of-type{border-top:none;}
+  .delta-row .n{color:var(--text-para);}
+  .delta-row .v{font-family:var(--font-num);font-weight:700;color:var(--teal-dark);}
+  .delta-row .v.new{color:var(--orange-dark);}
+  .delta-highlight{font-size:12.5px;background:var(--orange-light);color:var(--orange-dark);border-radius:8px;padding:9px 12px;margin-top:12px;font-weight:700;}
+  .delta-cta-row{display:flex;justify-content:space-between;align-items:center;margin-top:18px;flex-wrap:wrap;gap:12px;}
+  .delta-cta-row .pricejump{font-size:12.5px;color:var(--text-para);}
+  .delta-cta-row .pricejump b{font-family:var(--font-num);color:var(--text);font-size:15px;}
+
+  .selection-summary{display:flex;justify-content:space-between;align-items:center;gap:28px;flex-wrap:wrap;margin:28px 0 40px;background:#fff;border:2px solid var(--orange);border-radius:20px;padding:30px 36px;box-shadow:0 18px 40px -22px rgba(240,154,56,.4);}
+  .ss-main{display:flex;flex-direction:column;gap:6px;}
+  .ss-eyebrow{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--text-mute);}
+  .ss-name-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  .ss-name{font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--text);line-height:1;}
+  .ss-semantic{font-size:14px;font-weight:500;color:var(--teal-dark);}
+  .ss-price{margin-top:2px;}
+  .ss-price b{font-family:var(--font-num);font-weight:900;font-size:26px;color:var(--orange-dark);}
+  .ss-price span{font-size:14px;color:var(--text-mute);}
+  .ss-cta{background:var(--orange-btn);color:#3A2100;font-size:16px;padding:18px 40px;flex-shrink:0;box-shadow:0 10px 24px -8px rgba(240,154,56,.5);}
+  @media(max-width:700px){
+    .selection-summary{flex-direction:column;align-items:stretch;text-align:left;padding:24px 22px;}
+    .ss-cta{width:100%;text-align:center;padding:16px 24px;}
+    .ss-name{font-size:24px;}
+  }
+
+  .opt-label{font-family:var(--font-display);font-size:18px;font-weight:700;margin:0 0 4px;color:var(--text-para);}
+  .opt-label-sub{font-size:12.5px;color:var(--text-mute);margin:0 0 16px;}
+
+  @media(max-width:860px){
+    .cats-grid{grid-template-columns:repeat(2,1fr);}
+    .level-picker{flex-direction:column;gap:10px;}
+    .plan-card{border-radius:12px;text-align:left;}
+    .plan-card.reco .pc-inner{background:var(--orange-light);}
+
+    .pc-inner{display:grid;grid-template-columns:auto 1fr;column-gap:8px;row-gap:5px;align-items:baseline;padding:12px 16px 10px;}
+    .pc-head,.pc-body{display:contents;}
+
+    .pc-name-row{grid-column:1;grid-row:1;justify-content:flex-start;gap:6px;}
+    .pc-name{font-size:13.5px;}
+    .pc-check{width:17px;height:17px;flex-shrink:0;}
+
+    .pc-price-row{grid-column:2;grid-row:1;justify-self:end;align-items:baseline;gap:3px;margin:0;white-space:nowrap;}
+    .pc-pay-lbl{display:inline;font-size:11px;font-weight:400;color:var(--text-mute);}
+    .pc-price{display:inline-flex;align-items:baseline;gap:2px;}
+    .pc-price b{font-size:15.5px;}
+    .pc-price span{font-size:10px;}
+
+    .pc-cov-row,.pc-hint,.pc-assist-link{display:none;}
+    .pc-coverage-mobile{grid-column:1/-1;grid-row:2;display:block;font-size:11.5px;line-height:1.35;color:var(--text-para);margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+    .pc-coverage-mobile b{font-family:var(--font-num);font-weight:700;color:var(--text);}
+
+    .pc-view-detail{grid-column:1/-1;grid-row:3;display:flex;align-items:center;justify-content:space-between;width:100%;background:none;border:none;border-top:1px solid var(--border);margin-top:6px;padding:8px 0 0;font-size:11.5px;font-weight:700;color:var(--text-para);cursor:pointer;text-align:left;}
+    .pc-view-detail-chevron{color:var(--text-mute);font-size:14px;line-height:1;}
+
+    .pc-reco-pill{font-size:9px;padding:4px 10px;top:-10px;}
+  }
+  @media(max-width:340px){
+    .pc-coverage-mobile{white-space:normal;}
+  }
+
+  /* ===================== OPCIÓN 2: editorial ===================== */
+  .editorial-card{border:2px solid var(--border);background:#fff;border-radius:18px;padding:32px 34px;}
+  .editorial-card .eyebrow{display:inline-block;background:#EFEFEF;color:var(--text-para);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;padding:4px 12px;border-radius:10px;margin-bottom:14px;}
+  .editorial-card h3{font-family:var(--font-display);font-size:26px;margin:0 0 4px;}
+  .editorial-card .plan-alias{font-size:12px;color:var(--text-mute);margin:0 0 4px;}
+  .editorial-card .tagline{font-size:14.5px;color:var(--text-para);margin:0 0 22px;max-width:440px;}
+  .ed-cats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin-bottom:24px;}
+  .ed-cat{background:#FAFAFA;border-radius:10px;padding:14px 16px;display:flex;align-items:flex-start;}
+  .ed-cat .txt{display:flex;flex-direction:column;}
+  .ed-cat .nm{font-size:12px;color:var(--text-para);font-weight:500;}
+  .ed-cat .amt{display:block;font-family:var(--font-num);font-weight:900;font-size:16px;margin-top:2px;}
+  .ed-cat.empty .amt{font-family:var(--font);font-weight:500;font-size:11.5px;color:var(--text-mute);}
+  .ed-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+  .ed-price{font-family:var(--font-num);font-weight:900;font-size:26px;color:var(--orange-dark);}
+  .ed-price small{font-family:var(--font);font-weight:400;font-size:13px;color:var(--text-para);}
+  .editorial-card.recommended{border-color:var(--teal);background:var(--teal-light);}
+  .editorial-card.recommended .eyebrow{background:var(--teal);color:#fff;}
+  .editorial-card.recommended .ed-cat{background:#fff;}
+
+  .find-other{text-align:center;margin-top:28px;}
+  .find-other p{font-size:12.5px;color:var(--text-mute);margin:0 0 12px;}
+  .switch3{display:inline-flex;gap:8px;background:#fff;border:1px solid var(--border);border-radius:var(--radius-pill);padding:5px;}
+  .switch3 button{border:none;background:none;padding:9px 20px;border-radius:var(--radius-pill);font-size:12.5px;font-weight:700;color:var(--text-para);cursor:pointer;}
+  .switch3 button.sel{background:var(--orange-btn);color:#3A2100;}
+
+  @media(max-width:860px){
+    .editorial-card{padding:24px 20px;}
+    .ed-bottom{flex-direction:column;align-items:flex-start;}
+  }
+
+  /* ===================== compartido: asistencias ===================== */
+  .assist-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  details.assist{border:1px solid var(--border);border-radius:12px;background:#fff;overflow:hidden;}
+  details.assist summary{padding:16px 18px;cursor:pointer;list-style:none;}
+  details.assist summary::-webkit-details-marker{display:none;}
+  details.assist summary b{display:block;font-size:13.5px;font-family:var(--font-display);font-weight:700;margin-bottom:6px;}
+  details.assist summary .desc{font-size:12px;color:var(--text-para);}
+  details.assist summary .desc:before{content:"✓ ";color:var(--teal-dark);font-weight:700;}
+  details.assist summary .more{display:block;margin-top:8px;font-size:11px;font-weight:700;color:var(--teal-dark);}
+  details.assist[open] summary .more{display:none;}
+  details.assist .abody{padding:0 18px 16px;font-size:11.5px;color:var(--text-para);}
+  details.assist .abody ul{margin:0;padding-left:16px;}
+  details.assist .abody li{margin-bottom:5px;}
+  details.assist .abody .less{display:block;margin-top:8px;font-size:11px;font-weight:700;color:var(--teal-dark);cursor:pointer;}
+  @media(max-width:860px){.assist-grid{grid-template-columns:1fr;}}
+
+  /* ===================== compartido: coberturas completas (a pedido) ===================== */
+  .compare-toggle-row{text-align:center;margin-bottom:22px;}
+  .compare-cols{display:grid;gap:10px;margin-bottom:16px;}
+  .cc-col{background:#fff;border:1px solid var(--border);border-radius:12px;padding:12px 14px;text-align:center;}
+  .cc-col.cc-reco-col{border-color:var(--teal);background:var(--teal-light);}
+  .cc-col select{width:100%;border:1.5px solid var(--border);border-radius:8px;padding:9px 10px;font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--text);background:#fff;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23585858' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;background-size:16px;}
+  .cc-col .cc-name{font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--text);}
+  .cc-col .cc-reco-tag{display:block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--teal-dark);margin-top:2px;}
+  .cc-col .cc-price{font-size:12.5px;color:var(--text-mute);margin-top:5px;font-family:var(--font-num);}
+  @media(min-width:701px){
+    .compare-cols{grid-template-columns:1fr 1fr 1fr;}
+  }
+  @media(max-width:700px){
+    .compare-cols{grid-template-columns:1fr 1fr;}
+  }
+  .cov-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;}
+
+  .cmp-list{background:#fff;border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+  .cmp-row{display:flex;align-items:center;gap:6px;padding:15px 16px;border-top:1px solid var(--border);cursor:pointer;transition:background .12s;}
+  .cmp-row:first-child{border-top:none;}
+  .cmp-row:hover{background:#FAFAFA;}
+  .cmp-row.cmp-head{cursor:default;background:#FAFAFA;padding:10px 16px;}
+  .cmp-row.cmp-head:hover{background:#FAFAFA;}
+  .cmp-lbl{flex:1.3;display:flex;flex-direction:column;font-size:13px;font-weight:700;color:var(--text);font-family:var(--font-display);}
+  .cmp-hint{font-size:10.5px;font-weight:400;font-family:var(--font);color:var(--text-mute);margin-top:2px;}
+  .cmp-val{flex:1;text-align:center;font-family:var(--font-num);font-size:13px;}
+  .cmp-colhead{font-size:11px;font-weight:700;color:var(--text-mute);text-transform:uppercase;letter-spacing:.03em;font-family:var(--font);}
+  .cmp-colhead.reco{color:var(--teal-dark);}
+  .cmp-yes{font-weight:800;color:var(--teal-dark);}
+  .cmp-no{color:var(--text-mute);font-family:var(--font);font-weight:500;font-size:11.5px;}
+  .cmp-chevron{color:var(--text-mute);font-size:16px;flex:0 0 12px;text-align:right;}
+  .cmp-head .cmp-chevron{visibility:hidden;}
+  .cmp-foot{font-size:11.5px;color:var(--text-mute);margin-top:12px;text-align:center;}
+  @media(max-width:700px){
+    .cmp-row{padding:13px 12px;gap:4px;}
+    .cmp-lbl{font-size:12px;}
+    .cmp-val{font-size:12px;}
+    .cmp-hint{display:none;}
+  }
+  details.acc{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;}
+  details.acc summary{padding:16px 20px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;background:#FAFAFA;}
+  details.acc summary::-webkit-details-marker{display:none;}
+  details.acc summary .stitle{font-weight:700;font-size:14px;font-family:var(--font-display);display:block;}
+  details.acc summary .shint{display:block;font-size:11px;font-weight:400;font-family:var(--font);color:var(--text-mute);margin-top:3px;}
+  details.acc summary:after{content:"+";font-size:18px;color:var(--text-mute);font-family:var(--font);font-weight:400;flex-shrink:0;}
+  details.acc[open] summary:after{content:"–";}
+  details.acc[open] summary{border-bottom:1px solid var(--border);}
+  details.acc .acc-body{padding:8px 20px 18px;overflow-x:auto;}
+  @media(max-width:700px){.cov-grid{grid-template-columns:1fr;}}
+  .cov-table{width:100%;border-collapse:collapse;font-size:12.5px;table-layout:fixed;}
+  .cov-table th{font-size:11px;color:var(--text-mute);font-weight:500;text-align:center;padding:12px 6px 8px;}
+  .cov-table th:first-child{text-align:left;width:38%;}
+  .cov-table td{text-align:center;padding:7px 6px;border-top:1px solid var(--border);white-space:nowrap;}
+  .cov-table tr:first-child td{border-top:none;}
+  .cov-table td.lbl{text-align:left;color:var(--text-para);white-space:normal;}
+  .cov-table .yes{color:var(--teal-dark);font-weight:700;font-family:var(--font-num);}
+  .cov-table .no{color:var(--text-mute);font-family:var(--font-num);}
+  .cov-subhead td{padding-top:16px;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--text-mute);border-top:none;}
+
+  footer.close{padding:56px 0 90px;text-align:center;}
+  footer.close p{color:var(--text-mute);font-size:12.5px;max-width:560px;margin:0 auto;}
+
+  @media(max-width:860px){
+    .wrap{padding:0 20px;}
+    .hero h1{font-size:29px;}
+    .qnav{display:none;}
+    .qaccess span{display:none;}
+    .note-panel{width:calc(100vw - 44px);}
+    .cov-table{font-size:11px;}
+  }
+</style>
+</head>
+<body class="o1">
+
+<div class="proposal-bar">
+  <div class="wrap row">
+    <span class="lbl">Home / Hogar — dos hipótesis de experiencia</span>
+    <div class="seg-toggle" id="propToggle">
+      <button class="sel" data-p="1">Opción 1 · Multiplicá tu protección</button>
+      <button data-p="2">Opción 2 · Esencial / Recomendada / Máxima</button>
+    </div>
+    <p class="caption" id="propCaption">Un mismo nivel de protección que crece de Plan 1 a Plan 3 — la interfaz hace visible cómo aumenta.</p>
+  </div>
+</div>
+
+<div class="cta-style-bar">
+  <div class="wrap row">
+    <span class="lbl">CTA flotante (desktop) — a testear</span>
+    <div class="seg-toggle" id="ctaStyleToggle">
+      <button class="sel" data-cta="right">Sticky a la derecha</button>
+      <button data-cta="footer">Sticky como footer</button>
+    </div>
+    <p class="caption">En mobile siempre queda como barra inferior — acá elegís cómo se ve en desktop.</p>
+  </div>
+</div>
+
+<div class="preview-bar">
+  <div class="wrap row">
+    <span class="lbl">Vista previa</span>
+    <div class="seg-toggle" id="homePreviewToggle">
+      <button class="sel" data-preview="desktop">Desktop</button>
+      <button data-preview="mobile">Mobile</button>
+    </div>
+    <p class="caption">Previsualizá el layout mobile real, sin achicar la ventana.</p>
+  </div>
+</div>
+
+<div id="homeView">
+
+<div class="sitenav">
+  <div class="wrap row">
+    <div class="qlogo"><span class="dot"></span>QUALIA</div>
+    <div class="qnav"><a>Seguros</a><a>Preguntas Frecuentes</a><a>Contacto</a><a>Blog</a><a>Club Qualia</a></div>
+    <div class="qright">
+      <a class="qaccess"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"/><path d="M4.5 20c1.4-3.6 4.4-5.5 7.5-5.5s6.1 1.9 7.5 5.5"/></svg><span>Mi Qualia</span></a>
+      <a class="qcta">Cotizar ahora</a>
+    </div>
+  </div>
+</div>
+
+<div class="catnav">
+  <div class="wrap catnav-row">
+    <a class="cat-pill active">Hogar</a>
+    <a class="cat-pill">Auto</a>
+    <a class="cat-pill">Bicicleta</a>
+    <a class="cat-pill">Notebook</a>
+    <a class="cat-pill">Mascotas</a>
+    <a class="cat-pill">Vida</a>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="wrap">
+    <h1 data-proposal="1">Protegé tu casa, tus cosas y los imprevistos del día a día.</h1>
+    <h1 data-proposal="2">Elegí el nivel de protección que tu hogar necesita.</h1>
+    <p class="lede" data-proposal="1">No son tres seguros distintos: es una misma protección que podés multiplicar según cuánto quieras cubrir tu vivienda, tus cosas y tu tranquilidad.</p>
+    <p class="lede" data-proposal="2">Tres niveles pensados para distintos momentos: lo esencial, lo recomendado como punto de partida, o la cobertura más alta.</p>
+  </div>
+</div>
+
+<!-- ===== CTA flotante — siempre visible, sigue el scroll ===== -->
+<div class="floating-cta" id="floatingCta">
+  <span class="fc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg></span>
+  <div class="fc-content">
+    <span class="fc-eyebrow">Tu protección elegida</span>
+    <div class="fc-name-row">
+      <span class="fc-name" id="fcName">Plan 2</span>
+      <span class="fc-semantic" id="fcSemantic">Protección Recomendada</span>
+    </div>
+    <div class="fc-price"><b id="fcPrice">$35.400</b><span>/mes</span></div>
+    <div class="fc-cov" id="fcCov">Hasta $102.960.000 de cobertura máxima</div>
+  </div>
+  <button type="button" class="btn fc-cta" id="fcCta" onclick="openCheckout(getActiveLevel())">Contratá Plan 2</button>
+</div>
+
+<!-- ===== Modal genérico Home (asistencias / detalle de categoría) ===== -->
+<div class="home-modal-overlay" id="homeModal" onclick="if(event.target===this) closeHomeModal()">
+  <div class="home-modal-card">
+    <button type="button" class="home-modal-close" onclick="closeHomeModal()" aria-label="Cerrar">✕</button>
+    <div class="home-modal-title" id="homeModalTitle"></div>
+    <div class="home-modal-body" id="homeModalBody"></div>
+  </div>
+</div>
+
+<!-- ===== OPCIÓN 1: multiplicador ===== -->
+<div class="section" data-proposal="1">
+  <div class="wrap">
+    <h2>Elegí tu nivel de protección</h2>
+    <p class="h2sub">Los tres niveles cubren exactamente lo mismo — cambia cuánto. Podés subir o bajar y ver el efecto al instante.</p>
+
+    <div class="level-picker" id="o1-picker"></div>
+    <p class="growth-note" id="o1-reco-note">Recomendamos Plan 2: duplica la cobertura de vivienda y contenido, y es el primer nivel que suma protección para tus aparatos electrónicos — sin duplicar el precio de más.</p>
+
+    <h2 style="margin-top:36px;" id="o1-cats-h2">Tu protección con Plan 2</h2>
+    <div class="cats-grid" id="o1-cats"></div>
+  </div>
+</div>
+
+<!-- ===== OPCIÓN 2: editorial esencial/recomendada/máxima ===== -->
+<div class="section" data-proposal="2">
+  <div class="wrap">
+    <h2 id="o2-h2">Protección Recomendada</h2>
+    <p class="h2sub" id="o2-h2sub">La sugerimos como punto de partida — abajo podés ver las otras dos.</p>
+
+    <div class="editorial-card" id="o2-card">
+      <span class="eyebrow" id="o2-eyebrow">Recomendada</span>
+      <h3 id="o2-title">Protección Recomendada</h3>
+      <p class="plan-alias" id="o2-alias">Plan 2</p>
+      <p class="tagline" id="o2-tagline">Un nivel más completo de protección para tu hogar y tus cosas — duplica la cobertura de Plan 1 sin duplicar el precio.</p>
+      <div class="ed-cats" id="o2-cats"></div>
+      <div class="ed-bottom">
+        <div class="ed-price" id="o2-price">$35.400<small> /mes</small></div>
+        <button type="button" class="btn" id="o2-cta" onclick="openCheckout(o2Level)">Elegir esta protección</button>
+      </div>
+      <button type="button" class="pc-assist-link" style="margin-top:14px;" onclick="openAssistModal()">Ver asistencias incluidas</button>
+    </div>
+
+    <div class="find-other">
+      <p>¿Buscás algo diferente?</p>
+      <div class="switch3" id="o2-switch">
+        <button data-level="1">Esencial</button>
+        <button class="sel" data-level="2">Recomendada</button>
+        <button data-level="3">Máxima</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== compartido: comparar planes (accordion + selector de columnas, patrón Apple) ===== -->
+<div class="section" style="border-bottom:none;">
+  <div class="wrap">
+    <h2>Comparar planes</h2>
+    <p class="h2sub" id="compareH2sub">Elegí qué planes comparar — el detalle de cada categoría se ve acá abajo, sin tener que abrir nada.</p>
+
+    <div class="compare-cols" id="compareCols"></div>
+
+    <div class="cmp-list-wrap" id="compareAccordion"></div>
+  </div>
+</div>
+
+<!-- ===== OPCIÓN 1 (cont.): qué cambia si subís de nivel — OCULTO A PEDIDO, no borrar ===== -->
+<div class="section" data-proposal="1" style="display:none;">
+  <div class="wrap">
+    <h2 class="opt-label" id="o1-delta-title">¿Qué cambia si elegís Plan 3?</h2>
+    <p class="opt-label-sub">Herramienta de comparación — no hace falta verla para contratar.</p>
+    <div class="delta-box" id="o1-delta">
+      <div id="o1-delta-rows"></div>
+      <div class="delta-highlight" id="o1-delta-highlight" style="display:none;"></div>
+      <div class="delta-cta-row">
+        <span class="pricejump" id="o1-delta-price"></span>
+        <button class="btn ghost small" id="o1-upgrade-btn">Ver Plan 3</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== compartido: asistencias — OCULTO A PEDIDO, no borrar ===== -->
+<div class="section" style="display:none;">
+  <div class="wrap">
+    <h2>Conocé lo que ofrece tu seguro de hogar</h2>
+    <p class="h2sub">Estas asistencias están incluidas en los tres niveles, más allá de cuál elijas.</p>
+    <div class="assist-grid">
+      <details class="assist">
+        <summary><b>Emergencias en el hogar</b><span class="desc">Cerrajería, plomería, destapaciones, electricidad y gas.</span><span class="more">Ver más ⌄</span></summary>
+        <div class="abody"><ul>
+          <li>Apertura por destrabe de cerradura, por pérdida de llaves.</li>
+          <li>Emergencia ante rotura de caños expuestos.</li>
+          <li>Asistencia en cortes de luz por cortocircuito.</li>
+          <li>Detección de pérdidas de gas.</li>
+        </ul><span class="less">Ver menos ⌃</span></div>
+      </details>
+      <details class="assist">
+        <summary><b>Instalaciones en el hogar</b><span class="desc">Cerrajería, plomería, electricidad, gas, aires acondicionados, pequeños arreglos e instalaciones.</span><span class="more">Ver más ⌄</span></summary>
+        <div class="abody"><ul>
+          <li>Cerrojos, instalación o cambio de cerradura.</li>
+          <li>Artefactos de plomería o eléctricos.</li>
+          <li>Luminarias.</li>
+          <li>Cocina y hornos, calefones y termotanques.</li>
+          <li>Aires acondicionados.</li>
+          <li>Pequeñas tareas: cortinas con barrales, cuadros, estantes con ménsula, soportes de TV.</li>
+        </ul><span class="less">Ver menos ⌃</span></div>
+      </details>
+      <details class="assist">
+        <summary><b>Mantenimiento/reparaciones en el hogar</b><span class="desc">Cerrajería, plomería, electricidad, gas, aires acondicionados, servicio de desinfección, reparación y mantenimiento preventivo línea blanca y electro.</span><span class="more">Ver más ⌄</span></summary>
+        <div class="abody"><ul>
+          <li>Copias de llaves, cambio de combinación, reparación de cerraduras.</li>
+          <li>Reparaciones por pérdidas de agua, arreglos básicos de plomería como flexibles, cueritos y grifos.</li>
+          <li>Puesta a punto de tomas y llaves de luz.</li>
+          <li>Mantenimiento de calefones y termotanques, service de calefactores, cocina, hornos.</li>
+          <li>Reparaciones por pérdidas de gas.</li>
+          <li>Servicios de desinfección ante plagas.</li>
+          <li>Mantenimiento en línea blanca: heladeras, microondas, lavarropas, lavavajillas y horno eléctrico. Equipos de audio y TV Led.</li>
+        </ul><span class="less">Ver menos ⌃</span></div>
+      </details>
+      <details class="assist">
+        <summary><b>Dispositivos de seguridad</b><span class="more">Ver más ⌄</span></summary>
+        <div class="abody"><ul><li>Instalación de cámaras de seguridad, alarmas, detectores, sensores, y estabilizadores de tensión.</li></ul><span class="less">Ver menos ⌃</span></div>
+      </details>
+      <details class="assist">
+        <summary><b>Asistencia para mudanzas</b><span class="more">Ver más ⌄</span></summary>
+        <div class="abody"><ul><li>Asistencia para gastos de mudanzas nacionales que se efectúen en concepto de traslados en vehículos de carga.</li></ul><span class="less">Ver menos ⌃</span></div>
+      </details>
+      <details class="assist">
+        <summary><b>Pintura</b><span class="more">Ver más ⌄</span></summary>
+        <div class="abody"><ul>
+          <li>Asistencia para gastos de mano de obra de pintura en el domicilio.</li>
+          <li>Solo incluye paredes interiores y exteriores al domicilio asegurado.</li>
+        </ul><span class="less">Ver menos ⌃</span></div>
+      </details>
+    </div>
+  </div>
+</div>
+
+<footer class="close">
+  <div class="wrap"><p>Home / Hogar — dos hipótesis de experiencia sobre el mismo contenido y montos reales de qualiaseguros.com.ar/seguro-hogar. Coberturas completas por nivel cargadas con los datos provistos.</p></div>
+</footer>
+
+<button class="note-toggle" id="noteToggle"><span class="dot"></span>Por qué así</button>
+<div class="note-panel" id="notePanel">
+  <h4 id="noteTitle">Por qué así — Opción 1</h4>
+  <p class="sub">Fundamentos ligados al benchmark y a la Evidencia de Fuentes.</p>
+  <div id="noteBody"></div>
+</div>
+
+<script>
+  // ===== iconografía provisional — línea, monocromática, en naranja (a reemplazar por los iconos de marca) =====
+  const ICONS = {
+    home: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v9a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-9"/><path d="M9.5 20v-6h5v6"/></svg>',
+    sofa: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12V8a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4"/><path d="M3 12h18v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-5Z"/><path d="M5 18v2M19 18v2"/></svg>',
+    lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="1.5"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="15.5" r="1.3" fill="currentColor" stroke="none"/></svg>',
+    laptop: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="10.5" rx="1.2"/><path d="M2.5 19.5h19"/><path d="M9.5 19.5 10.3 16.5h3.4l.8 3"/></svg>',
+    shield: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 5 6v6c0 4.2 3 7.4 7 8.5 4-1.1 7-4.3 7-8.5V6l-7-2.5Z"/><path d="M9 12.2l2 2 4-4.2"/></svg>'
+  };
+  function icBox(key){ return `<span class="ic-box">${ICONS[key]}</span>`; }
+  function icInline(key){ return `<span class="ic-inline">${ICONS[key]}</span>`; }
+
+  // ===== datos reales por nivel =====
+  const levels = {
+    1: {
+      price:17700, priceLabel:"$17.700", name:"Protección Esencial", alias:"Plan 1",
+      tagline:"Para cubrir lo fundamental de tu hogar.",
+      cats:[
+        {ic:"home", nm:"Vivienda", amt:51480000, amtLabel:"$51.480.000", desc:"Reconstrucción ante incendio o fenómenos climáticos"},
+        {ic:"sofa", nm:"Contenido", amt:9820000, amtLabel:"$9.820.000", desc:"Tus muebles y objetos dentro de la casa"},
+        {ic:"lock", nm:"Robo", amt:2250000, amtLabel:"$2.250.000", desc:"Tus pertenencias si te roban"},
+        {ic:"laptop", nm:"Electrónica", amt:null, amtLabel:"No incluido en este nivel", desc:"Se suma a partir de Plan 2"},
+        {ic:"shield", nm:"Resp. civil", amt:5790000, amtLabel:"$5.790.000", desc:"Si alguien resulta dañado en tu casa"}
+      ]
+    },
+    2: {
+      price:35400, priceLabel:"$35.400", name:"Protección Recomendada", alias:"Plan 2",
+      tagline:"Un nivel más completo de protección para tu hogar y tus cosas — duplica la cobertura de Plan 1 sin duplicar el precio.",
+      cats:[
+        {ic:"home", nm:"Vivienda", amt:102960000, amtLabel:"$102.960.000", desc:"Reconstrucción ante incendio o fenómenos climáticos"},
+        {ic:"sofa", nm:"Contenido", amt:19640000, amtLabel:"$19.640.000", desc:"Tus muebles y objetos dentro de la casa"},
+        {ic:"lock", nm:"Robo", amt:4500000, amtLabel:"$4.500.000", desc:"Tus pertenencias si te roban"},
+        {ic:"laptop", nm:"Electrónica", amt:1600000, amtLabel:"$1.600.000", desc:"Reparación o reposición de tus equipos"},
+        {ic:"shield", nm:"Resp. civil", amt:11580000, amtLabel:"$11.580.000", desc:"Si alguien resulta dañado en tu casa"}
+      ]
+    },
+    3: {
+      price:53100, priceLabel:"$53.100", name:"Protección Máxima", alias:"Plan 3",
+      tagline:"Para quienes buscan los montos de cobertura más altos.",
+      cats:[
+        {ic:"home", nm:"Vivienda", amt:154440000, amtLabel:"$154.440.000", desc:"Reconstrucción ante incendio o fenómenos climáticos"},
+        {ic:"sofa", nm:"Contenido", amt:29460000, amtLabel:"$29.460.000", desc:"Tus muebles y objetos dentro de la casa"},
+        {ic:"lock", nm:"Robo", amt:6700000, amtLabel:"$6.700.000", desc:"Tus pertenencias si te roban"},
+        {ic:"laptop", nm:"Electrónica", amt:2400000, amtLabel:"$2.400.000", desc:"Reparación o reposición de tus equipos"},
+        {ic:"shield", nm:"Resp. civil", amt:17370000, amtLabel:"$17.370.000", desc:"Si alguien resulta dañado en tu casa"}
+      ]
+    }
+  };
+  const RECO_LEVEL = 2;
+  let o1Level = RECO_LEVEL;
+  let o2Level = RECO_LEVEL;
+  const CHECK_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l5 5L20 6"/></svg>';
+
+  function renderO1Picker(){
+    const picker = document.getElementById('o1-picker');
+    picker.innerHTML = [1,2,3].map(n=>{
+      const d = levels[n];
+      const isReco = n === RECO_LEVEL;
+      const vivienda = d.cats[0];
+      return `<div class="plan-card${isReco ? ' reco' : ''}" data-level="${n}">
+        ${isReco ? '<span class="pc-reco-pill">Recomendado</span>' : ''}
+        <div class="pc-inner">
+          <div class="pc-head">
+            <div class="pc-name-row">
+              <span class="pc-name">${d.alias}</span>
+              <span class="pc-check">${CHECK_SVG}</span>
+            </div>
+          </div>
+          <div class="pc-body">
+            <div class="pc-price-row">
+              <span class="pc-pay-lbl">Pagá</span>
+              <div class="pc-price"><b>${d.priceLabel}</b><span>/mes</span></div>
+            </div>
+            <div class="pc-cov-row">
+              <div class="plan-icon"><span class="house-ic">${ICONS.home}</span><span class="shield-badge">${ICONS.shield}</span></div>
+              <div class="pc-coverage">${vivienda.amtLabel} de cobertura <br>máxima de daños</div>
+            </div>
+            <div class="pc-coverage-mobile">Hasta <b>${vivienda.amtLabel}</b> de cobertura máxima</div>
+            <div class="pc-hint">Tocá para elegir</div>
+            <button type="button" class="pc-view-detail" onclick="event.stopPropagation(); openPlanDetailModal(${n});">
+              <span>Ver detalle</span><span class="pc-view-detail-chevron">›</span>
+            </button>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+    picker.querySelectorAll('.plan-card').forEach(card=>{
+      card.addEventListener('click', ()=> selectO1Level(parseInt(card.dataset.level)));
+    });
+  }
+
+  // ===================== OPCIÓN 1 =====================
+  const CAT_KEYS = ['vivienda','contenido','robo','electronica','civil'];
+  function renderO1Cats(level){
+    const d = levels[level];
+    document.getElementById('o1-cats-h2').textContent = `Tu protección con ${d.alias}`;
+    document.getElementById('o1-cats').innerHTML = d.cats.map((c,i)=>{
+      const cls = c.amt===null ? 'cat-card empty' : 'cat-card';
+      return `<div class="${cls}" onclick="openCategoryModal('${CAT_KEYS[i]}', ${level})">${icBox(c.ic)}<div class="nm">${c.nm}</div><div class="amt">${c.amtLabel}</div><div class="desc">${c.desc}</div><span class="cat-detail-btn">Ver detalle <span class="cat-detail-arrow">›</span></span></div>`;
+    }).join('');
+  }
+
+  function renderO1Delta(level){
+    const box = document.getElementById('o1-delta');
+    const label = document.getElementById('o1-delta-title');
+    const nextLevel = level < 3 ? level+1 : null;
+    if(!nextLevel){
+      box.classList.add('maxed');
+      label.textContent = 'Ya estás en el nivel máximo de protección';
+      document.getElementById('o1-delta-rows').innerHTML = '<div class="delta-row"><span class="n">Plan 3 cubre el monto más alto disponible en cada categoría.</span></div>';
+      document.getElementById('o1-delta-highlight').style.display = 'none';
+      document.getElementById('o1-delta-price').textContent = '';
+      document.getElementById('o1-upgrade-btn').style.display = 'none';
+      return;
+    }
+    box.classList.remove('maxed');
+    document.getElementById('o1-upgrade-btn').style.display = 'inline-block';
+    const cur = levels[level], next = levels[nextLevel];
+    label.textContent = `¿Qué cambia si elegís ${next.alias}?`;
+    let rowsHtml = '';
+    let newCoverage = null;
+    cur.cats.forEach((c,i)=>{
+      const nc = next.cats[i];
+      if(c.amt===null && nc.amt!==null){
+        newCoverage = nc.nm;
+        rowsHtml += `<div class="delta-row"><span class="n">${icInline(nc.ic)}${nc.nm}</span><span class="v new">Nuevo: ${nc.amtLabel}</span></div>`;
+      } else if(c.amt!==null){
+        rowsHtml += `<div class="delta-row"><span class="n">${icInline(c.ic)}${c.nm}</span><span class="v">${c.amtLabel} → ${nc.amtLabel}</span></div>`;
+      }
+    });
+    document.getElementById('o1-delta-rows').innerHTML = rowsHtml;
+    const hl = document.getElementById('o1-delta-highlight');
+    if(newCoverage){
+      hl.style.display = 'block';
+      hl.textContent = `Además sumás protección para ${newCoverage.toLowerCase()}.`;
+    } else {
+      hl.style.display = 'none';
+    }
+    document.getElementById('o1-delta-price').innerHTML = `De <b>${cur.priceLabel}</b> a <b>${next.priceLabel}</b>/mes`;
+    document.getElementById('o1-upgrade-btn').textContent = `Ver ${next.alias}`;
+    document.getElementById('o1-upgrade-btn').onclick = ()=> selectO1Level(nextLevel);
+  }
+
+  function selectO1Level(level){
+    document.querySelectorAll('#o1-picker .plan-card').forEach(b=>{
+      b.classList.toggle('sel', parseInt(b.dataset.level)===level);
+    });
+    renderO1Cats(level);
+    renderO1Delta(level);
+    const d = levels[level];
+    o1Level = level;
+    document.getElementById('o1-reco-note').style.display = level===RECO_LEVEL ? 'block' : 'none';
+    updateFloatingCta();
+  }
+
+  function getActiveLevel(){
+    return document.body.classList.contains('o2') ? o2Level : o1Level;
+  }
+
+  function updateFloatingCta(){
+    const d = levels[getActiveLevel()];
+    const vivienda = d.cats[0];
+    document.getElementById('fcName').textContent = d.alias;
+    document.getElementById('fcSemantic').textContent = d.name;
+    document.getElementById('fcPrice').textContent = d.priceLabel;
+    document.getElementById('fcCov').textContent = 'Hasta ' + vivienda.amtLabel + ' de cobertura máxima';
+    document.getElementById('fcCta').textContent = 'Contratá ' + d.alias;
+  }
+
+  // ===================== Modal genérico Home (asistencias / detalle de categoría) =====================
+  const CATEGORY_DETAIL = {
+    vivienda: { title:"Daños a la vivienda — Edificio", rows:[
+      {label:"Incendio edificio", vals:{1:"$51.480.000",2:"$102.960.000",3:"$154.440.000"}},
+      {label:"Huracán · Ciclón · Tornado · Granizo edificio", vals:{1:"$51.480.000",2:"$102.960.000",3:"$154.440.000"}},
+      {label:"Acumulación de nieve edificio", vals:{1:"$51.480.000",2:"$102.960.000",3:"$154.440.000"}},
+      {label:"Remoción de escombros / limpieza", vals:{1:"$10.820.000",2:"$21.640.000",3:"$32.460.000"}},
+      {label:"Estadía en hotel", vals:{1:"$1.029.800",2:"$2.059.600",3:"$3.089.400"}},
+      {label:"Gastos de mudanza", vals:{1:"$1.029.800",2:"$2.059.600",3:"$3.089.400"}}
+    ]},
+    contenido: { title:"Daños al contenido", rows:[
+      {label:"Incendio contenido", vals:{1:"$9.820.000",2:"$19.640.000",3:"$29.460.000"}},
+      {label:"Huracán · Ciclón · Tornado · Granizo contenido", vals:{1:"$9.820.000",2:"$19.640.000",3:"$29.460.000"}},
+      {label:"Acumulación de nieve contenido", vals:{1:"$9.820.000",2:"$19.640.000",3:"$29.460.000"}},
+      {label:"Rotura de cristales", vals:{1:"$1.275.900",2:"$2.551.800",3:"$3.827.700"}},
+      {label:"Pérdida de alimentos refrigerados", vals:{1:"$1.275.900",2:"$2.551.800",3:"$3.827.700"}},
+      {label:"Gastos extraordinarios", vals:{1:"$1.029.800",2:"$2.059.600",3:"$3.089.400"}}
+    ]},
+    robo: { title:"Robo", rows:[
+      {label:"Robo", vals:{1:"$2.250.000",2:"$4.500.000",3:"$6.700.000"}}
+    ]},
+    electronica: { title:"Daños a aparatos electrónicos y electrodomésticos", rows:[
+      {label:"Aparatos electrónicos y electrodomésticos", vals:{1:null,2:"$1.600.000",3:"$2.400.000"}}
+    ]},
+    civil: { title:"Reclamos a terceros", rows:[
+      {label:"Resp. civil por incendio y/o explosión", vals:{1:"$5.790.000",2:"$11.580.000",3:"$17.370.000"}},
+      {label:"Resp. civil hechos privados", vals:{1:"$2.895.000",2:"$5.790.000",3:"$8.685.000"}}
+    ]}
+  };
+
+  function openCategoryModal(catKey, level){
+    const cat = CATEGORY_DETAIL[catKey];
+    const d = levels[level];
+    const rowsHtml = cat.rows.map(r=>{
+      const v = r.vals[level];
+      const cls = v===null ? 'muted' : '';
+      const amt = v===null ? 'No incluido en ' + d.alias : v;
+      return `<li><span>${r.label}</span><b class="${cls}">${amt}</b></li>`;
+    }).join('');
+    openHomeModal(cat.title, `<p style="margin:0 0 12px;font-size:12px;color:var(--text-mute);">Detalle para ${d.alias} — ${d.name}</p><ul class="hm-amt-list">${rowsHtml}</ul>`);
+  }
+
+  function openAssistModal(){
+    const html = `<ul class="hm-list">
+      <li><b>Emergencias en el hogar</b><span>Cerrajería, plomería, destapaciones, electricidad y gas.</span></li>
+      <li><b>Instalaciones en el hogar</b><span>Cerrajería, plomería, electricidad, gas, aires acondicionados, pequeños arreglos e instalaciones.</span></li>
+      <li><b>Mantenimiento/reparaciones en el hogar</b><span>Cerrajería, plomería, electricidad, gas, aires acondicionados, servicio de desinfección, reparación y mantenimiento preventivo línea blanca y electro.</span></li>
+      <li><b>Dispositivos de seguridad</b><span>Instalación de cámaras de seguridad, alarmas, detectores, sensores y estabilizadores de tensión.</span></li>
+      <li><b>Asistencia para mudanzas</b><span>Gastos de mudanzas nacionales en vehículos de carga.</span></li>
+      <li><b>Pintura</b><span>Mano de obra de pintura en paredes interiores y exteriores del domicilio.</span></li>
+    </ul>`;
+    openHomeModal('Asistencias incluidas en los 3 niveles', html);
+  }
+
+  const ASSIST_NAMES = ['Emergencias en el hogar','Instalaciones en el hogar','Mantenimiento/reparaciones en el hogar','Dispositivos de seguridad','Asistencia para mudanzas','Pintura'];
+
+  function goToPlanCoverage(level){
+    selectO1Level(level);
+    closeHomeModal();
+    const target = document.getElementById('o1-cats-h2');
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function openPlanDetailModal(level){
+    const d = levels[level];
+    const assistRows = ASSIST_NAMES.map(a=>`<li>${a}</li>`).join('');
+    const isSelected = level === o1Level;
+    const ctaHtml = isSelected
+      ? `<button type="button" class="btn ghost pdm-cta" disabled>✓ Plan seleccionado</button>`
+      : `<button type="button" class="btn pdm-cta" onclick="selectO1Level(${level}); closeHomeModal();">Elegir ${d.alias}</button>`;
+    const html = `
+      <div class="pdm-price"><b>${d.priceLabel}</b><span>/mes</span></div>
+      <p class="pdm-sub">${d.name}</p>
+      <button type="button" class="pdm-cov-link" onclick="goToPlanCoverage(${level});">
+        <span>Ver el detalle completo de coberturas</span><span class="pdm-cov-link-arrow">↓</span>
+      </button>
+      <div class="hm-sub">Asistencias incluidas</div>
+      <ul class="pdm-assist-list">${assistRows}</ul>
+      ${ctaHtml}
+    `;
+    openHomeModal(d.alias, html);
+  }
+
+  function openHomeModal(title, bodyHtml){
+    document.getElementById('homeModalTitle').textContent = title;
+    document.getElementById('homeModalBody').innerHTML = bodyHtml;
+    document.getElementById('homeModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeHomeModal(){
+    document.getElementById('homeModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeHomeModal(); });
+
+  // ===================== OPCIÓN 2 =====================
+  const o2Meta = {
+    1:{eyebrow:"Esencial", cardClass:"", h2:"Protección Esencial", h2sub:"Lo fundamental para empezar a proteger tu hogar."},
+    2:{eyebrow:"Recomendada", cardClass:"recommended", h2:"Protección Recomendada", h2sub:"La sugerimos como punto de partida — abajo podés ver las otras dos."},
+    3:{eyebrow:"Máxima", cardClass:"", h2:"Protección Máxima", h2sub:"Para quienes priorizan los montos de cobertura más altos."}
+  };
+
+  function renderO2(level){
+    const d = levels[level];
+    const meta = o2Meta[level];
+    document.getElementById('o2-h2').textContent = meta.h2;
+    document.getElementById('o2-h2sub').textContent = meta.h2sub;
+    const card = document.getElementById('o2-card');
+    card.className = 'editorial-card ' + meta.cardClass;
+    document.getElementById('o2-eyebrow').textContent = meta.eyebrow;
+    document.getElementById('o2-title').textContent = d.name;
+    document.getElementById('o2-alias').textContent = d.alias;
+    document.getElementById('o2-tagline').textContent = d.tagline;
+    document.getElementById('o2-cats').innerHTML = d.cats.map((c,i)=>{
+      const cls = c.amt===null ? 'ed-cat empty' : 'ed-cat';
+      return `<div class="${cls}" onclick="openCategoryModal('${CAT_KEYS[i]}', ${level})">${icInline(c.ic)}<span class="txt"><span class="nm">${c.nm}</span><span class="amt">${c.amtLabel}</span></span></div>`;
+    }).join('');
+    document.getElementById('o2-price').innerHTML = d.priceLabel + '<small> /mes</small>';
+    document.getElementById('o2-cta').textContent = 'Elegir esta protección';
+    o2Level = level;
+    document.querySelectorAll('#o2-switch button').forEach(b=>{
+      b.classList.toggle('sel', parseInt(b.dataset.level)===level);
+    });
+    updateFloatingCta();
+  }
+
+  document.querySelectorAll('#o2-switch button').forEach(btn=>{
+    btn.addEventListener('click', ()=> renderO2(parseInt(btn.dataset.level)));
+  });
+
+  // ===================== Comparar planes (accordion + selector de columnas, patrón Apple) =====================
+  const COMPARE_DATA = [
+    { title:"Robo", hint:"Tocá para comparar", rows:[
+      { label:"Robo", vals:{1:"$2.250.000",2:"$4.500.000",3:"$6.700.000"} }
+    ]},
+    { title:"Daños a la vivienda", hint:"Edificio y contenido · 12 ítems", rows:[
+      { sub:"Edificio" },
+      { label:"Incendio edificio", vals:{1:"$51.480.000",2:"$102.960.000",3:"$154.440.000"} },
+      { label:"Huracán · Ciclón · Tornado · Granizo edificio", vals:{1:"$51.480.000",2:"$102.960.000",3:"$154.440.000"} },
+      { label:"Acumulación de nieve edificio", vals:{1:"$51.480.000",2:"$102.960.000",3:"$154.440.000"} },
+      { label:"Remoción de escombros / limpieza", vals:{1:"$10.820.000",2:"$21.640.000",3:"$32.460.000"} },
+      { label:"Estadía en hotel", vals:{1:"$1.029.800",2:"$2.059.600",3:"$3.089.400"} },
+      { label:"Gastos de mudanza", vals:{1:"$1.029.800",2:"$2.059.600",3:"$3.089.400"} },
+      { sub:"Contenido" },
+      { label:"Incendio contenido", vals:{1:"$9.820.000",2:"$19.640.000",3:"$29.460.000"} },
+      { label:"Huracán · Ciclón · Tornado · Granizo contenido", vals:{1:"$9.820.000",2:"$19.640.000",3:"$29.460.000"} },
+      { label:"Acumulación de nieve contenido", vals:{1:"$9.820.000",2:"$19.640.000",3:"$29.460.000"} },
+      { label:"Rotura de cristales", vals:{1:"$1.275.900",2:"$2.551.800",3:"$3.827.700"} },
+      { label:"Pérdida de alimentos refrigerados", vals:{1:"$1.275.900",2:"$2.551.800",3:"$3.827.700"} },
+      { label:"Gastos extraordinarios", vals:{1:"$1.029.800",2:"$2.059.600",3:"$3.089.400"} }
+    ]},
+    { title:"Daños a aparatos electrónicos y electrodomésticos", hint:"No incluido en Plan 1", rows:[
+      { label:"Daños a aparatos electrónicos y electrodomésticos", vals:{1:null,2:"$1.600.000",3:"$2.400.000"} }
+    ]},
+    { title:"Reclamos a terceros", hint:"Tocá para comparar", rows:[
+      { label:"Resp. civil por incendio y/o explosión", vals:{1:"$5.790.000",2:"$11.580.000",3:"$17.370.000"} },
+      { label:"Resp. civil hechos privados", vals:{1:"$2.895.000",2:"$5.790.000",3:"$8.685.000"} }
+    ]}
+  ];
+
+  let compareCols = [1, 2]; // columnas activas en mobile (2 a la vez, como el selector de modelos de Apple)
+
+  function isMobileHome(){ return window.matchMedia('(max-width: 860px)').matches; }
+  function currentCompareCols(){ return isMobileHome() ? compareCols : [1,2,3]; }
+
+  function setCompareCol(idx, value){
+    compareCols[idx] = parseInt(value, 10);
+    renderCompareCols();
+    renderCompareAccordion();
+  }
+
+  function renderCompareCols(){
+    const cols = currentCompareCols();
+    const mobile = isMobileHome();
+    document.getElementById('compareH2sub').textContent = mobile
+      ? "Elegí qué dos planes comparar — el detalle de cada categoría se ve acá abajo."
+      : "El detalle de cada categoría para los 3 planes, siempre a la vista.";
+    document.getElementById('compareCols').innerHTML = cols.map((lvl, idx)=>{
+      const d = levels[lvl];
+      const isReco = lvl === RECO_LEVEL;
+      if(mobile){
+        const opts = [1,2,3].map(n=>`<option value="${n}" ${n===lvl?'selected':''}>${levels[n].alias}</option>`).join('');
+        return `<div class="cc-col${isReco?' cc-reco-col':''}">
+          <select onchange="setCompareCol(${idx}, this.value)" aria-label="Columna ${idx+1}">${opts}</select>
+          <div class="cc-price">${d.priceLabel}/mes</div>
+        </div>`;
+      }
+      return `<div class="cc-col${isReco?' cc-reco-col':''}">
+        <div class="cc-name">${d.alias}</div>
+        ${isReco ? '<span class="cc-reco-tag">Recomendado</span>' : ''}
+        <div class="cc-price">${d.priceLabel}/mes</div>
+      </div>`;
+    }).join('');
+  }
+
+  function compareCell(val){
+    if(val === undefined) return '';
+    if(val === null) return '<td class="no">No incluido</td>';
+    return `<td class="yes">${val}</td>`;
+  }
+
+  function renderCompareAccordion(){
+    const cols = currentCompareCols();
+    const catMeta = [
+      {key:'vivienda', label:'Daños a la vivienda', hint:'Edificio · 6 ítems'},
+      {key:'contenido', label:'Daños al contenido', hint:'6 ítems'},
+      {key:'robo', label:'Robo'},
+      {key:'electronica', label:'Aparatos electrónicos'},
+      {key:'civil', label:'Reclamos a terceros', hint:'2 ítems'}
+    ];
+    const headRow = `<div class="cmp-row cmp-head"><span class="cmp-lbl"></span>${cols.map(c=>{
+      const isReco = c===RECO_LEVEL;
+      return `<span class="cmp-val cmp-colhead${isReco?' reco':''}">${levels[c].alias}</span>`;
+    }).join('')}</div>`;
+    const rows = catMeta.map((m,i)=>{
+      const d0 = levels[cols[0]].cats[i];
+      const valsHtml = cols.map(c=>{
+        const cat = levels[c].cats[i];
+        if(cat.amt===null) return `<span class="cmp-val cmp-no">No incluido</span>`;
+        return `<span class="cmp-val cmp-yes">${cat.amtLabel}</span>`;
+      }).join('');
+      return `<div class="cmp-row" onclick="openCategoryModal('${m.key}', ${cols[cols.length-1]})">
+        <span class="cmp-lbl">${m.label}${m.hint?`<span class="cmp-hint">${m.hint}</span>`:''}</span>
+        ${valsHtml}
+        <span class="cmp-chevron">›</span>
+      </div>`;
+    }).join('');
+    document.getElementById('compareAccordion').innerHTML = `<div class="cmp-list">${headRow}${rows}</div>
+      <p class="cmp-foot">Tocá cualquier fila para ver el detalle completo de esa categoría.</p>`;
+  }
+
+  function renderCompare(){
+    renderCompareCols();
+    renderCompareAccordion();
+  }
+
+  let _compareWasMobile = null;
+  window.addEventListener('resize', ()=>{
+    const mobileNow = isMobileHome();
+    if(mobileNow !== _compareWasMobile){
+      _compareWasMobile = mobileNow;
+      renderCompare();
+    }
+  });
+
+  // ===================== init =====================
+  renderO1Picker();
+  selectO1Level(RECO_LEVEL);
+  renderO2(RECO_LEVEL);
+  _compareWasMobile = isMobileHome();
+  renderCompare();
+
+  // ===================== toggle propuesta + panel "por qué así" =====================
+  const notes = {
+    1: [
+      {src:"Dato propio · Evidencia de Fuentes", txt:"Plan 2 y Plan 3 duplican y triplican exactamente a Plan 1 en casi cada cobertura (confirmado navegando el sitio real). En vez de ocultar ese patrón detrás de 3 listas repetidas, se lo hace el eje central de la interfaz."},
+      {src:"Patrón: Singlife", txt:"La comparación no se arma como 3 columnas paralelas ni tabla: se recorre subiendo o bajando de nivel, viendo cómo crece cada categoría — igual que Singlife resuelve la comparación de planes apilando, no comprimiendo."},
+      {src:"CTA como resumen de compra", txt:"El bloque de contratación va inmediatamente después de ver las coberturas del plan elegido — antes de la herramienta de comparación 'Qué cambia si subís'. Quien ya decidió no tiene que atravesar contenido comparativo para encontrar el botón."},
+      {src:"Patrón: Sancor", txt:"Plan 2 viene preseleccionado como recomendado desde que carga la pantalla, sin exigir interacción previa — mismo criterio que el badge 'Recomendado' de Sancor, pero acá con una razón explícita (electrónica se suma recién en Plan 2)."},
+      {src:"Patrón: Kin / Getsafe", txt:"Cada categoría se traduce a qué protege (\"reconstrucción ante incendio\", \"tus pertenencias si te roban\") en vez de mostrar solo el monto técnico — mismo principio de traducir cobertura a valor concreto."},
+      {src:"Patrón: Dropbox / Zendesk / Asana", txt:"La tabla completa queda en 'Comparar planes', abierta a pedido — nunca se fuerza una tabla ancha de entrada, siguiendo el patrón de comparación bajo demanda de las tres referencias de pricing."}
+    ],
+    2: [
+      {src:"Idea rectora del usuario", txt:"El eje es semántico, no matemático: Esencial / Recomendada / Máxima en vez de Plan 1/2/3 — 'Plan N' queda como denominación secundaria."},
+      {src:"Formato editorial, no 3 cards simultáneas", txt:"Se muestra una sola protección a la vez, empezando por la Recomendada — nunca 3 tarjetas idénticas compitiendo, que era el problema central del archivo anterior."},
+      {src:"Patrón: Zendesk", txt:"Cada plan se presenta como una pieza completa de ancho total con su propia explicación, y un mecanismo explícito ('¿Buscás algo diferente?') para ver las otras opciones — no una columna de tabla."},
+      {src:"Patrón: Kin / Getsafe", txt:"Mismo principio de traducción a valor concreto que en la Opción 1, aplicado acá con tagline editorial por nivel en vez de solo montos."},
+      {src:"Corrige algo real de Qualia", txt:"El acordeón 'Comparar planes' (15 ítems) sigue disponible para quien lo busca, atacando el punto débil de Qualia en el benchmark (2/5 en comparación de planes) sin competir con la decisión principal. En mobile, siguiendo el patrón de selectores de Apple en su comparador de iPhone, se elige de a 2 planes por vez en vez de forzar 3 columnas angostas."}
+    ]
+  };
+
+  function renderNotes(p){
+    document.getElementById('noteTitle').textContent = 'Por qué así — Opción ' + p;
+    document.getElementById('noteBody').innerHTML = notes[p].map(n=>
+      `<div class="jitem"><span class="src">${n.src}</span><p>${n.txt}</p></div>`
+    ).join('');
+  }
+  renderNotes(1);
+
+  const captions = {
+    1: "Un mismo nivel de protección que crece de Plan 1 a Plan 3 — la interfaz hace visible cómo aumenta.",
+    2: "Tres alternativas con nombre y sentido propio — se presentan una a la vez, no como tabla ni cards paralelas."
+  };
+
+  document.querySelectorAll('#propToggle button').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.querySelectorAll('#propToggle button').forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel');
+      const p = b.dataset.p;
+      document.body.classList.toggle('o1', p==='1');
+      document.body.classList.toggle('o2', p==='2');
+      document.getElementById('propCaption').textContent = captions[p];
+      renderNotes(p);
+      updateFloatingCta();
+      window.scrollTo({top:0,behavior:'smooth'});
+    });
+  });
+
+  document.querySelectorAll('#ctaStyleToggle button').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.querySelectorAll('#ctaStyleToggle button').forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel');
+      document.body.classList.toggle('cta-footer', b.dataset.cta==='footer');
+    });
+  });
+
+  function setHomePreviewMode(mode){
+    document.querySelectorAll('#homePreviewToggle button').forEach(b=>{
+      b.classList.toggle('sel', b.dataset.preview===mode);
+    });
+    if(mode === 'mobile'){
+      const html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      const blob = new Blob([html], {type:'text/html'});
+      const url = URL.createObjectURL(blob);
+      document.getElementById('homeView').style.display = 'none';
+      document.getElementById('homePreviewWrap').style.display = 'flex';
+      const frame = document.getElementById('homePreviewFrame');
+      if(frame.src && frame.src.indexOf('blob:') === 0) URL.revokeObjectURL(frame.src);
+      frame.src = url;
+      window.scrollTo({top:0, behavior:'smooth'});
+    } else {
+      document.getElementById('homePreviewWrap').style.display = 'none';
+      document.getElementById('homeView').style.display = 'block';
+      const frame = document.getElementById('homePreviewFrame');
+      if(frame.src && frame.src.indexOf('blob:') === 0) URL.revokeObjectURL(frame.src);
+      frame.src = 'about:blank';
+    }
+  }
+  document.querySelectorAll('#homePreviewToggle button').forEach(b=>{
+    b.addEventListener('click', ()=> setHomePreviewMode(b.dataset.preview));
+  });
+
+  const noteToggle = document.getElementById('noteToggle');
+  const notePanel = document.getElementById('notePanel');
+  noteToggle.addEventListener('click', ()=> notePanel.classList.toggle('open'));
+</script>
+</div><!-- /#homeView -->
+
+<div id="homePreviewWrap">
+  <div class="phone-frame">
+    <iframe id="homePreviewFrame" title="Vista previa mobile"></iframe>
+  </div>
+</div>
+
+<!-- ===== Vista de checkout (embebida) ===== -->
+<div id="checkoutView" style="display:none;">
+  <div class="checkout-topbar">
+    <button type="button" class="checkout-back-btn" onclick="closeCheckout()">&larr; Volver a Home Hogar</button>
+  </div>
+  <iframe id="checkoutFrame" title="Checkout Qualia" style="width:100%;height:calc(100vh - 53px);border:none;display:block;"></iframe>
+</div>
+
+<script id="checkoutSource" type="text/plain"><!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Qualia · Prototipo de checkout rediseñado</title>
+<style>
+:root{--teal:#00C1C6;--teal-dark:#0095A8;--teal-soft:#DFF7F8;--teal-line:#8FE3E6;--coral:#FCAB50;--coral-dark:#E0912F;--coral-soft:#FFF1DE;--coral-ink:#4A2F0A;--cream:#FAF8F4;--paper:#FFFFFF;--ink:#16213A;--muted:#6B7A78;--line:#E4E0D6;--error:#B3261E;--error-soft:#FBEAE9;--radius:14px;--font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--cream);color:var(--ink);font-family:var(--font);}
+body{line-height:1.5;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{margin:0;font-weight:700;letter-spacing:-0.01em;}
+p{margin:0;}
+button{font-family:inherit;cursor:pointer;}
+:focus-visible{outline:2.5px solid var(--teal);outline-offset:2px;}
+@media (prefers-reduced-motion: reduce){*{transition:none !important;animation:none !important;}}
+
+/* ===== Barra de revisión (herramienta interna, no es parte del producto) ===== */
+.reviewbar{background:var(--ink);color:#DCE7E4;padding:14px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:14px;border-bottom:3px dashed #3A4A64;}
+.reviewbar .tag{font-family:"Courier New",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:#3A4A64;color:#CFE3DD;padding:4px 10px;border-radius:20px;white-space:nowrap;}
+.reviewbar .grp{display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+.reviewbar .lbl{font-size:11px;color:#9FB3C8;margin-right:2px;}
+.rbtn{background:#22314A;color:#DCE7E4;border:1px solid #3A4A64;border-radius:8px;padding:7px 12px;font-size:12.5px;font-weight:600;transition:background .15s;}
+.rbtn:hover{background:#2E4162;}
+.rbtn.active{background:var(--teal);border-color:var(--teal);color:#fff;}
+.rbtn.mode{background:#0000;border:1px solid #3A4A64;}
+.rbtn.mode.active{background:var(--coral);border-color:var(--coral);color:#fff;}
+
+/* ===== Header de sitio (ancho completo) ===== */
+.sitehead{width:100%;background:var(--paper);border-bottom:1px solid var(--line);}
+.sitehead-inner{max-width:980px;margin:0 auto;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;gap:12px;transition:max-width .25s ease,padding .25s ease;}
+.sitehead-inner.is-mobile{max-width:400px;padding:14px 18px;}
+.wordmark{display:flex;align-items:center;}
+.wordmark img{height:26px;width:auto;display:block;}
+.sitehead-inner.is-mobile .wordmark img{height:22px;}
+.sitehead .sub{font-size:12.5px;color:var(--muted);margin-top:1px;}
+.helpbtn{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--muted);flex:none;}
+
+/* ===== Escenario / marco del prototipo ===== */
+.stage-wrap{padding:36px 20px 80px;display:flex;justify-content:center;}
+.stage{width:100%;max-width:980px;transition:max-width .25s ease;}
+.stage.is-mobile{max-width:400px;}
+
+.appcard{background:var(--paper);border-radius:20px;border:1px solid var(--line);box-shadow:0 1px 3px rgba(20,30,40,.04),0 12px 32px rgba(20,30,40,.06);}
+
+/* ===== Stepper ===== */
+.stepper{display:flex;align-items:flex-start;padding:22px 28px 6px;gap:0;}
+.stage.is-mobile .stepper{padding:16px 18px 4px;}
+.step{display:flex;flex-direction:column;align-items:center;flex:1;position:relative;}
+.step .dot{width:30px;height:30px;border-radius:50%;border:2px solid var(--line);background:var(--paper);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:var(--muted);z-index:1;transition:.2s;}
+.step .lbl{font-size:11.5px;color:var(--muted);margin-top:7px;text-align:center;font-weight:600;max-width:80px;}
+.stage.is-mobile .step .lbl{font-size:9.5px;max-width:56px;}
+.step .bar{position:absolute;top:14px;left:-50%;width:100%;height:2px;background:var(--line);z-index:0;}
+.step:first-child .bar{display:none;}
+.step.done .dot{background:var(--teal);border-color:var(--teal);color:#fff;}
+.step.done .bar{background:var(--teal);}
+.step.now .dot{border-color:var(--teal);color:var(--teal);box-shadow:0 0 0 4px var(--teal-soft);}
+.step.now .lbl{color:var(--ink);}
+
+/* ===== Layout de contenido ===== */
+.body-grid{display:grid;grid-template-columns:1fr 320px;gap:0;}
+.stage.is-mobile .body-grid{grid-template-columns:1fr;}
+.maincol{padding:26px 28px 32px;min-height:420px;border-radius:0 0 0 20px;}
+.stage.is-mobile .maincol{padding:18px 18px 24px;border-radius:0 0 20px 20px;}
+
+.view{display:none;}
+.view.is-active{display:block;animation:fade .25s ease;}
+@keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+
+.view h2{font-size:21px;margin-bottom:6px;}
+.view .lede{font-size:13.5px;color:var(--muted);margin-bottom:20px;max-width:440px;}
+
+.backlink{display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:600;color:var(--muted);background:none;border:none;padding:0;margin-bottom:14px;}
+.backlink:hover{color:var(--ink);}
+
+.sectiontitle{font-size:15.5px;font-weight:800;margin:22px 0 14px;}
+
+/* ===== Tarjeta de plan ===== */
+.plancard{border:1.5px solid var(--teal-line);background:var(--teal-soft);border-radius:var(--radius);padding:20px;margin-bottom:18px;}
+.plancard .row1{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+.plancard .name{font-size:16.5px;font-weight:800;color:var(--teal-dark);}
+.plancard .price{font-size:22px;font-weight:800;color:var(--teal-dark);white-space:nowrap;}
+.plancard .price small{font-size:12px;font-weight:600;}
+.plancard .planpicked{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:12px;font-weight:700;color:#00767F;}
+.plancard .planpicked .checkdot{width:16px;height:16px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;flex:none;}
+.covlist{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:7px;}
+.covlist li{display:flex;gap:8px;font-size:13px;color:#00545C;align-items:flex-start;}
+.covlist li:before{content:"✓";font-weight:800;color:var(--teal);}
+.editplan{margin-top:14px;background:none;border:1px solid var(--teal-line);color:var(--teal-dark);font-size:12.5px;font-weight:700;padding:8px 14px;border-radius:9px;}
+
+/* ===== Botones ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:11px;padding:13px 22px;font-size:14.5px;font-weight:700;border:none;width:100%;transition:filter .15s,transform .05s;}
+.btn:active{transform:scale(.99);}
+.btn-primary{background:var(--teal);color:#fff;}
+.btn-primary:hover{filter:brightness(1.06);}
+.btn-primary:disabled{background:#CBD3D1;color:#8B968F;cursor:not-allowed;}
+.btn-ghost{background:var(--paper);color:var(--ink);border:1.5px solid var(--line);}
+.btn-ghost:hover{border-color:var(--muted);}
+.btn-coral{background:var(--coral);color:var(--coral-ink);}
+.btn-coral:hover{background:var(--coral-dark);}
+.btn-row{display:flex;gap:10px;margin-top:18px;}
+.btn-row .btn{width:auto;flex:1;}
+
+/* ===== Formularios ===== */
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:12.5px;font-weight:700;color:var(--ink);margin-bottom:6px;}
+.field .hint{font-size:11.5px;color:var(--muted);margin-top:5px;}
+.field input,.field select{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px 13px;font-size:14px;font-family:inherit;color:var(--ink);background:var(--paper);}
+.field input:focus,.field select:focus{border-color:var(--teal);}
+.field-row{display:flex;gap:12px;}
+.field-row .field{flex:1;}
+
+.consent{display:flex;align-items:flex-start;gap:9px;margin:14px 0;font-size:12.5px;color:var(--muted);line-height:1.45;}
+.consent input{margin-top:2px;flex:none;}
+.consent b{color:var(--ink);}
+.consent a{color:var(--teal-dark);font-weight:700;}
+.legalblock{display:flex;flex-direction:column;gap:4px;margin:18px 0 4px;}
+
+/* ===== Validación de identidad ===== */
+.pips{display:flex;align-items:center;gap:9px;margin-bottom:18px;}
+.pips-dots{display:flex;gap:5px;}
+.pip{width:9px;height:9px;border-radius:50%;background:var(--teal);transition:background .2s;}
+.pip.used{background:var(--line);}
+.pips-label{font-size:12px;font-weight:700;color:var(--muted);}
+
+.valgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-bottom:8px;}
+.stage.is-mobile .valgrid{grid-template-columns:1fr;gap:20px;}
+.valgroup h4{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin-bottom:9px;}
+.radiopick{display:flex;align-items:flex-start;gap:9px;border:1.5px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s;}
+.radiopick:hover{border-color:var(--teal-line);}
+.radiopick input{accent-color:var(--teal);flex:none;margin-top:2px;}
+.radiopick.picked{border-color:var(--teal);background:var(--teal-soft);}
+
+.valfeedback{display:none;border-radius:10px;padding:12px 14px;font-size:13px;font-weight:700;margin:6px 0 18px;}
+.valfeedback.show{display:block;}
+.valfeedback.err{background:var(--error-soft);color:#7A1D16;border:1.5px solid #F2C1BC;}
+.valfeedback.ok{background:var(--teal-soft);color:var(--teal-dark);border:1.5px solid var(--teal-line);}
+
+/* ===== Confirmación de dirección a asegurar ===== */
+.foundbox{margin-top:4px;border:1.5px solid var(--teal-line);border-radius:var(--radius);overflow:hidden;}
+.foundbox .fb-head{background:var(--teal-soft);padding:14px 18px;display:flex;align-items:center;gap:10px;}
+.fb-check{width:26px;height:26px;border-radius:50%;background:var(--teal);color:#fff;flex:none;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;}
+.fb-head .fb-title{font-size:14px;font-weight:800;color:var(--teal-dark);}
+.fb-head .fb-sub{font-size:12px;color:#007986;margin-top:1px;}
+.fb-body{padding:16px 18px;display:flex;flex-direction:column;gap:11px;}
+.fb-row{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;}
+.fb-row .k{color:var(--muted);}
+.fb-row .v{font-weight:700;text-align:right;}
+.fb-question{border-top:1px solid var(--line);padding:15px 18px;background:var(--cream);}
+.fb-question p{font-size:13.5px;font-weight:700;margin-bottom:10px;}
+.yn{display:flex;gap:10px;}
+.yn button{flex:1;padding:9px;border-radius:9px;border:1.5px solid var(--line);background:var(--paper);font-size:13px;font-weight:700;color:var(--ink);}
+.yn button.picked{background:var(--teal);border-color:var(--teal);color:#fff;}
+.manual-addr{display:none;padding:14px 18px 4px;}
+.manual-addr.show{display:block;}
+
+/* ===== Bloque "vamos a asegurar" (Pago) ===== */
+.assureblock{background:var(--teal-soft);border:1.5px solid var(--teal-line);border-radius:var(--radius);padding:14px 18px;margin-bottom:20px;}
+.assureblock .ab-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:var(--teal-dark);margin-bottom:3px;}
+.assureblock .ab-address{font-size:14.5px;font-weight:700;color:var(--ink);}
+
+/* ===== Estado de error ===== */
+.errorblock{border:1.5px solid #F2C1BC;background:var(--error-soft);border-radius:var(--radius);padding:22px;text-align:left;}
+.errorblock .eicon{width:44px;height:44px;border-radius:50%;background:#F6D8D4;color:var(--error);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:800;margin-bottom:12px;}
+.errorblock h3{font-size:16.5px;color:#7A1D16;margin-bottom:6px;}
+.errorblock p{font-size:13.5px;color:#8A2A22;margin-bottom:6px;}
+.errorblock .fine{font-size:12.5px;color:#9A4A40;margin-top:10px;}
+
+/* ===== Pago ===== */
+.paycard{border:1.5px solid var(--line);border-radius:var(--radius);padding:18px;margin-bottom:16px;}
+
+/* ===== Card visual (paso 3) ===== */
+.cc-visual{
+  position:relative;width:100%;max-width:380px;margin:0 auto 18px;aspect-ratio:1.68/1;
+  border-radius:16px;padding:22px 22px 18px;color:#fff;overflow:hidden;
+  background:linear-gradient(135deg,#1B3144 0%,#2A4A5C 55%,#0095A8 140%);
+  box-shadow:0 12px 28px rgba(22,33,58,.22);
+  transition:background .35s ease;
+}
+.cc-visual.visa{background:linear-gradient(135deg,#1A237E 0%,#1565C0 60%,#00C1C6 140%);}
+.cc-visual.mastercard{background:linear-gradient(135deg,#1A1A1A 0%,#3D1F1F 50%,#C0392B 140%);}
+.cc-visual.amex{background:linear-gradient(135deg,#002663 0%,#006FCF 70%,#67C8FF 140%);}
+.cc-visual.naranja{background:linear-gradient(135deg,#C2410C 0%,#EA580C 60%,#FDBA74 140%);}
+.cc-visual.cabal{background:linear-gradient(135deg,#14532D 0%,#15803D 70%,#86EFAC 140%);}
+.cc-shine{position:absolute;inset:0;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.12) 50%,transparent 60%);pointer-events:none;}
+.cc-top{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:1;}
+.cc-chip{width:38px;height:28px;border-radius:6px;background:linear-gradient(135deg,#E8D48B,#C4A35A 45%,#F3E6B3);box-shadow:inset 0 0 0 1px rgba(0,0,0,.12);}
+.cc-brand{min-height:28px;display:flex;align-items:center;justify-content:flex-end;}
+.cc-brand svg{height:26px;width:auto;display:block;}
+.cc-brand-label{font-size:13px;font-weight:800;letter-spacing:.08em;opacity:.7;text-transform:uppercase;}
+.cc-number{
+  position:relative;z-index:1;margin-top:28px;font-size:20px;font-weight:700;letter-spacing:.12em;
+  font-variant-numeric:tabular-nums;text-shadow:0 1px 0 rgba(0,0,0,.2);
+}
+.stage.is-mobile .cc-number{font-size:16px;letter-spacing:.08em;margin-top:22px;}
+.cc-bottom{position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-end;margin-top:22px;gap:12px;}
+.cc-label{font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.7;margin-bottom:3px;}
+.cc-name{font-size:13.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;}
+.cc-exp{font-size:13.5px;font-weight:700;letter-spacing:.06em;}
+.card-input-wrap{position:relative;}
+.card-input-wrap .brand-pill{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  font-size:11px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;
+  color:var(--teal-dark);background:var(--teal-soft);border-radius:999px;padding:4px 8px;
+  pointer-events:none;opacity:0;transition:opacity .2s;
+}
+.card-input-wrap.has-brand .brand-pill{opacity:1;}
+.card-input-wrap input{padding-right:88px;}
+
+/* ===== Comprobante ===== */
+.receipt-hero{text-align:center;padding:8px 0 20px;}
+.receipt-hero .ric{width:56px;height:56px;border-radius:50%;background:var(--teal);color:#fff;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;}
+.receipt-hero h2{font-size:20px;}
+.receipt-hero .lede{margin:6px auto 0;}
+.receipt-card{border:1.5px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:16px;}
+.rc-head{background:var(--cream);padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;}
+.rc-head .rc-plan{font-weight:800;font-size:14.5px;}
+.rc-head .rc-price{font-weight:800;color:var(--teal-dark);font-size:14.5px;}
+.rc-body{padding:16px 18px;display:flex;flex-direction:column;gap:10px;}
+.rc-row{display:flex;justify-content:space-between;font-size:13px;gap:10px;}
+.rc-row .k{color:var(--muted);}
+.rc-row .v{font-weight:700;text-align:right;}
+.rc-covs{border-top:1px solid var(--line);padding:14px 18px;}
+.rc-covs .t{font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px;}
+
+.modal-card .sp-block{margin-bottom:6px;}
+.modal-card .sp-h{font-size:11.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin:16px 0 8px;}
+.modal-card .sp-block ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;}
+.modal-card .sp-block ul li{font-size:12.5px;color:#37494B;display:flex;gap:6px;}
+.modal-card .sp-block ul li:before{content:"·";color:var(--teal);font-weight:800;}
+
+/* ===== Panel resumen (desktop) ===== */
+.summary{background:var(--cream);border-left:1px solid var(--line);padding:26px 24px;position:sticky;top:20px;align-self:start;border-radius:0 0 20px 0;}
+.stage.is-mobile .summary{display:none;}
+.summary .st-title{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:12px;}
+.summary .sp-plan{font-size:15px;font-weight:800;margin-bottom:2px;}
+.summary .sp-price{font-size:20px;font-weight:800;color:var(--teal-dark);margin-bottom:14px;}
+.summary .sp-block{margin-bottom:16px;}
+.summary .sp-h{font-size:11.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:7px;}
+.summary ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;}
+.summary ul li{font-size:12.5px;color:#37494B;display:flex;gap:6px;}
+.summary ul li:before{content:"·";color:var(--teal);font-weight:800;}
+.covamounts{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px;}
+.covamounts li{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;color:#37494B;}
+.covamounts li:before{content:none !important;}
+.covamounts li .amt{font-weight:700;color:var(--ink);white-space:nowrap;}
+.progresslist{display:flex;flex-direction:column;gap:9px;margin-top:6px;}
+.pl-item{display:flex;align-items:center;gap:9px;font-size:12.5px;color:var(--muted);}
+.pl-dot{width:16px;height:16px;border-radius:50%;border:2px solid var(--line);flex:none;}
+.pl-item.done .pl-dot{background:var(--teal);border-color:var(--teal);}
+.pl-item.done{color:var(--ink);font-weight:600;}
+.pl-item.now .pl-dot{border-color:var(--teal);box-shadow:0 0 0 3px var(--teal-soft);}
+.pl-item.now{color:var(--ink);font-weight:700;}
+
+/* ===== Resumen mobile compacto — fijo arriba ===== */
+.m-summary{display:none;position:sticky;top:0;z-index:40;background:var(--paper);border:1px solid var(--line);border-radius:14px;margin-bottom:12px;box-shadow:0 6px 18px rgba(20,30,40,.08);}
+.stage.is-mobile .m-summary{display:block;}
+.m-summary-bar{padding:12px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+.m-summary-bar .msb-left{font-size:12.5px;}
+.m-summary-bar .msb-left b{font-size:14px;color:var(--teal-dark);}
+.m-summary-bar button{background:var(--teal);border:none;border-radius:8px;padding:7px 13px;font-size:11.5px;font-weight:700;color:#fff;}
+
+.footnote{font-size:11px;color:var(--muted);text-align:center;margin-top:22px;}
+
+/* ===== Modal comprobante ===== */
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(15,25,30,.52);z-index:50;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(2px);}
+.modal-backdrop.open{display:flex;}
+.modal-card{background:var(--paper);border-radius:20px;max-width:440px;width:100%;max-height:88vh;overflow-y:auto;padding:26px 26px 22px;position:relative;box-shadow:0 24px 60px rgba(10,20,25,.3);animation:pop .22s ease;}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.98);}to{opacity:1;transform:none;}}
+.modal-close{position:absolute;top:16px;right:16px;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);background:var(--cream);color:var(--muted);font-size:15px;display:flex;align-items:center;justify-content:center;}
+</style>
+</head>
+<body>
+
+<div class="reviewbar">
+  <span class="tag">Modo revisión — no forma parte del producto</span>
+  <div class="grp">
+    <span class="lbl">Vista:</span>
+    <button class="rbtn mode active" id="modeDesktop" onclick="setMode('desktop')">Desktop</button>
+    <button class="rbtn mode" id="modeMobile" onclick="setMode('mobile')">Mobile</button>
+  </div>
+  <div class="grp">
+    <span class="lbl">Ir al estado:</span>
+    <button class="rbtn" data-jump="datos">1 · Datos</button>
+    <button class="rbtn" data-jump="validacion">2 · Validación</button>
+    <button class="rbtn" data-jump="validacion-bloqueada">2 · Validación bloqueada</button>
+    <button class="rbtn" data-jump="pago">3 · Pago</button>
+    <button class="rbtn" onclick="openReceipt()" style="background:var(--coral);border-color:var(--coral);color:var(--coral-ink);">Ver comprobante (popup)</button>
+  </div>
+</div>
+
+<!-- ===== Header de sitio: ancho completo ===== -->
+<header class="sitehead">
+  <div class="sitehead-inner" id="siteheadInner">
+    <div>
+      <div class="wordmark"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAARgAAAA7CAYAAACgwZWgAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAOdEVYdFNvZnR3YXJlAEZpZ21hnrGWYwAAC9JJREFUeAHtnV1y28gRx/9kXKny0/oGgU+w8uNmK1nwBLFPYPgElk9g+gSyTiDoBJZPQKwTW5Unc08g5ARWnlKVKkk7TQ4lCCKmewYzIOjtX9WYMmdI4mPQ0/2frwkicnBw8IRebPrRvtJ7WaPYpU21SUuTfqNXAoqifFdM0BNrVJ6b9BJ3BiWE2qTKpOOhjU3DMHZRm0OqkfYYMtw3xG3oslxiAMyxuO5j8muxDeaY6OJUGBncMWMH15Kr67Gv4yMEYg/0tUmHCDcqTTKTCkrmuyvzempOtsQwkIE8ceS/M2mOtMyxNtJdPMXa8xuCD+g2dpVJMwyP65hqrK/P2HAdM/HKpBLD4qzr5tmbxTQyU3hChsWkt+bPC6wfihjGpU1u0on5nQvbCigDYS53AfdDkdvGRdlP3jL5zxERLwNjKlZuXr4inWFpk9Hvmd89sSGEkp6XgjKHUPYO+/xmTLGXMRsQsYGxXssC/AGmoKDfViOTFnt9c0HR11D2EUnjQcalQCRYA2NDIool59gtmUkUMmnrmQ7Ofd7wxLaGyp5gG49CWPwfiITTwFhXibyWqHFZT46sN6XEJ/coq/dgv8h9ysZqQDoNTMO4hIis1NtRmvTGpBdYK/ybNLPvUc9MhTDm6snERSDutlGxd7/wbRCiOBWubmrqyvIxLmRUTk06Y7q5avt6Rv80xtHQBcgghzwZGkdwBiUGkvi8DRn5OZRRIxR325DYO+879mracUD0sPtYsGOTnpqDOfTtQ6cToPEuJpF3Q+MCao+Pa+9SBDzE3TbRYnUlKSGNRxSx94GBsdZuDhm1STNrWHoPAmsYmnfCj9BF+AClLy73eYnuAX4HKvaOG4G46xo137sBmbYOhh7YE+FnK5OepRiibb5zjrVWIzFaVMnnUPqQO/LIO3VVQu2yHje5I6/GWg/t/GzfBqTtwVBlycBDw/hnKefGWMP1DLKQ6bWGSmEw4i7dX9K4XB6lir3jxuWdVnYuVOUo00vsvTUw9gGdCz5DB1VgAOzJk4XlDBlVcO02DcMVn59ZjaxC9z2ga689eiNEIO5uGo6PjjK9RvY2PRjJA1pjLcQOhp1Z/UZQtFAvxg+BuHva+PvYUU7F3nHiajyqxkzuEu4GpEAgKwPT6CrmmO1iqr6dVS3pji6g+OBqVOqWvlY5yqrYOzIE4u5t42GlDpcXE9yAbDwYMi6cG1Tuwrg0IM+JC5Veqx7gRe7Iu6e7WGNTOcqr2DsuckdevWUplNL1XaENyMbASPrJpV3HSbBW9pgpxi0cpVgEI3erLe+5WjkVe8eFU9xtv8HobESQ2Du1lSJnyu3ae9nwHrwX00v1/gPhalS67ncJFXtHj0DcPfZ8nwgSe8mDkbT4pxgB1oupmGIqODJ4iru32OvvGhPzC5Qx4Go8XOtfv3d8LkjsJQOTM2Xq5bjWO/3I5GfqqrP4iLttuDExOZSdIRB3O70UQQPu3XiTgfmRKfMbxoWkN0l1GDe5I8+pc6WK1ZVo5Ex+xeRzOlsOD8jAZOh3QINirWzNFMugbEUg7koMePRYXYmGyzuVaKklIjYgEgNTY3zUTH4GpQtXfP5RKOa7jFCvgVlKOAJxl9VSbQPuKufVgJCB4QpzvTa74D9QvBGIuxLvZTO6unIUUaF9N7gaDx8tlWtAcgjx3rZkT/gLlG1w4m4JOVFjdaUfAnFXPI5NoLOJB1V+rwZGPZzt5I68Cn6UULF3TORMfgU/XDpbLt2vjAyMZKby2FAPxROBuOs1UlvQpali77C4vFOpttbkPZMvakAkBibD+NhH3WjXSGfW+uBq5VTsHQiBuFvCE0EDIpr3RwZmyZTJMCIEG9UT3Dn9oQgducshiNVV7B0GTtwVifdbcOlsIrGXDAynV4ytkkhivxpKk5jibhsuVs+hJEMg7lYIp0RPsVfkwYxsISdu5nc9komZYyJ35FXoB9c6qtiblpzJD14FQTAmhhV7aV8kqiDcQt8FxrP/Tc7kj21qw04RiLuFLZOKKPvrKJ1wK1FeCDt8QqEGpNNJmQpnKI9iIacD2e6DofHm90rInjgxUbE3EYEbqsXGaRs242B+hZth1/pYfO064Aw8FeIzhHGN3vXeY0O12KjYm4ZdNx6Es9NlY2C4Pm9imK1B/vXvl5j+7xs+nZ9gcZ41s+x+SbSVSZdLFrowVs3k/4D9ZCw7LajYGxmBuDsknfVsZWCEYZLPpmxh/PP8La6uytXfNzcFpjcX+PTlqGlolmvIyGzbZjZ0YSxOH0gaxEp+I9Bw5hgPKvbGJcd46Fwutbn5PanNOfgvOjKVXbKNiJzF5wP8aXKE65v8Qd6NCc2mN8+N8Snxt59uFXHbtVpaXYYsaJ+FsWomP0NC7M1xhWE1/L+zwLBLcXDjk1TsjQvnndaIO1yD7q2rjpKEMm+/eWtg6OE0FYAEUq6lOTTlLk35OIuAf/rywRiR5ya5yIzxmePXLwUmN+/w95/LTUbD0ATrJFTpzedrdD+QT8jFT7iyX87k1/CHi88pnIy2x5W9/t8cRTZiryQcVxwIxd0XjqUxQ36T7ptr3Avlzdtvtic7kmciaWHm5gcjxfcTH8OQ4WZyYgyNCZ0+F82MCC0jdzNypIMTQTkR/h5CcTfqOsu6XvKgSMaCRTMuFq539sk2ne2egbFxvtQzISPzob/wex1S0a2h+fzVhE454sA9xEm66oViXQU/WPc5kTfG1R0Ve3sirC9xoosGgn2xiAf1brrli95DXqEpnFr0Gqh19X9jGW8CvY/JgQmdFtt6nAIomXwyLil6ZTjh3MsYCHfpTLJLhGBuEqFibz9yQZkKaeAW3H8g9natB0MbzteQkZl0Yr74IsjQzGaXmEz7uXO3PU7hhkbo4h/GCw1XxuAIfIXhNptrQw8w52mVSAd3vLqMQz+4+pdyD7MSfANy2PzPVgNjH7YZ/MTFDGtD882GTjQE/WBbZSI3735odR2nRe3o2vZA4lpSaHjSJzS0578AP3ixhv/IZG4C2sdl2rlanIirI3sDEYq7SbxTQjA3ibhX/yaukvYhogchQ39q+5rZV1qDZLb6a7F4gumfLzwFX44lrh/PMHvmFX4J1PImJdYXfMmJzI0dNEmgk4YJb2zIKsJOPPvKFHvRY/q+9DiozuSOInf3Xv6dpn501kO69r6eXh8qSdjKHDPxymcmOzVscBtnCqefIiHWyC2YYrPN9XnkKkUtnfnCGeIYmaz1/1W8tnowKUz6dL40HkiOWFybB9/TuFjmWPd2ZIKyhU104SnMu2ykDVkj+XDmY1wsnGGsUxsXCzemKo/c7Z9KH3NRYUB2Je62scNZKrjvL90LKsOvyWvd6RnSXNDi7s9IYdLqq0xrNvur78O5IjA8JMh7yLH2TopGovcy+EHGymuMilDcrTAAKvYmIReUqTAMYrFXtOg3GRnr0sa2kHfjInr1Jt1jaYwLp224v+DOqNYYngprF9P3WkjE3eQtXAMVe+OyS3H3wW9BKPZ67SpgJxtSjBfLzb7r1orRm0QG4XryAhGwRpXOdaiHkm4YaS4hxoXgwqNqOexCXCr2RmLX4m4bH7HXe9sS++DRQxwrbCru/uwVJpFxMaLuTzUi0jCqqW4g3SwyYk8DNJcVVtw9YIoNVgEJHdkbFcnI3QrDIhrZG7wvEp2QDZs2D1+NMGKESUmMywZrVAusz5W0kQr9di6gz9INoqkZZFjmy35THSTibonh0ZG9PRmLuNtGOrL3Efr/UI27npQcazHqF/A9J/RA1WgappDepIk5yavHLwJ7jLyw51ratPEcMtzNNP0B989506P0X6zPc9WqJwhVTuH2UJJfm23YHgeuO1oaFnuJ3ompheW4Y5ac+6bToe/3pIDOL3MVmCAx1gJnjbdq+qfzIaNJjDTPSML1zTvMfp5DUZRRktzAeCMbdEch0SsTElVQFGW0jG9vaq43ica4XD9+psZFUcZPbw0mDdSbNMnvvbXSWlZeSw1FUfaC8YVIxG2YZJhMz3BFw/7VY1EUJRaL88KxfYmiKHvA73C8lpkWl+E3AAAAAElFTkSuQmCC" alt="Qualia"></div>
+      <div class="sub">Seguro de Hogar</div>
+    </div>
+    <div class="helpbtn" title="Ayuda">?</div>
+  </div>
+</header>
+
+<div class="stage-wrap">
+<div class="stage" id="stage">
+
+  <!-- ===== Resumen compacto (mobile) — fijo arriba ===== -->
+  <div class="m-summary">
+    <div class="m-summary-bar">
+      <div class="msb-left" id="msbLeft">Plan 2 · <b>$35.400/mes</b></div>
+      <button onclick="openDetailModal()">Ver detalle</button>
+    </div>
+  </div>
+
+  <div class="appcard">
+
+    <div class="stepper" id="stepper">
+      <div class="step" data-step="1"><div class="bar"></div><div class="dot">1</div><div class="lbl">Tus datos</div></div>
+      <div class="step" data-step="2"><div class="bar"></div><div class="dot">2</div><div class="lbl">Validación</div></div>
+      <div class="step" data-step="3"><div class="bar"></div><div class="dot">3</div><div class="lbl">Pago</div></div>
+    </div>
+
+    <div class="body-grid">
+      <div class="maincol">
+
+        <!-- ===== PASO 1: PLAN SELECCIONADO + TUS DATOS ===== -->
+        <section class="view" data-view="datos">
+          <h2>Tu Seguro de Hogar</h2>
+          <p class="lede">Revisá el plan que elegiste y completá tus datos para avanzar.</p>
+
+          <div class="plancard">
+            <div class="row1">
+              <div>
+                <div class="name" id="pcPlanName">Plan 2</div>
+                <div class="planpicked"><span class="checkdot">✓</span> Plan seleccionado</div>
+              </div>
+              <div class="price" id="pcPlanPrice">$35.400<small>/mes</small></div>
+            </div>
+            <button class="editplan" onclick="volverAlPlan()">Cambiar plan</button>
+          </div>
+
+          <h3 class="sectiontitle">Tus datos</h3>
+          <div class="field">
+            <label for="f-dni">DNI</label>
+            <input type="text" id="f-dni" placeholder="Ej: 34.556.789" value="34.556.789">
+          </div>
+          <div class="field">
+            <label for="f-nombre">Nombre y apellido</label>
+            <input type="text" id="f-nombre" placeholder="Como figura en tu documento" value="Martina Gómez Fernández">
+          </div>
+          <div class="field">
+            <label for="f-mail">Email</label>
+            <input type="email" id="f-mail" placeholder="tu@email.com" value="martina.gomez@ejemplo.com">
+            <div class="hint">A este correo te vamos a enviar tu póliza.</div>
+          </div>
+          <div class="field">
+            <label for="f-telefono">Teléfono</label>
+            <input type="tel" id="f-telefono" placeholder="Ej: 11 2345 6789" value="11 2345 6789">
+          </div>
+
+          <label class="consent">
+            <input type="checkbox" checked>
+            Acepto los Términos y Condiciones y la Política de Privacidad de Qualia.
+          </label>
+
+          <button class="btn btn-primary" onclick="continuarDesdeDatos()">Continuar</button>
+        </section>
+
+        <!-- ===== PASO 2: VALIDACIÓN DE IDENTIDAD ===== -->
+        <section class="view" data-view="validacion">
+          <button class="backlink" onclick="showView('datos')">← Volver atrás</button>
+          <h2>Verificá tu identidad</h2>
+          <p class="lede">Para poder verificar tu identidad, seleccioná tu nombre y tu dirección.</p>
+
+          <div id="valStepSelect">
+            <div class="pips">
+              <div class="pips-dots" id="valPips"><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
+              <span class="pips-label" id="valPipsLabel">Tenés 3 intentos</span>
+            </div>
+
+            <div class="valgrid">
+              <div class="valgroup">
+                <h4>Nombre</h4>
+                <label class="radiopick"><input type="radio" name="valNombre" value="Valeria Delarosa Pichardo"> Valeria Delarosa Pichardo</label>
+                <label class="radiopick"><input type="radio" name="valNombre" value="Jacobo Gálvez Mayorga"> Jacobo Gálvez Mayorga</label>
+                <label class="radiopick"><input type="radio" name="valNombre" value="Martina Gómez Fernández" data-correct="true"> Martina Gómez Fernández</label>
+                <label class="radiopick"><input type="radio" name="valNombre" value="Brandon Kortajarena De Cavazos"> Brandon Kortajarena De Cavazos</label>
+                <label class="radiopick"><input type="radio" name="valNombre" value="Axel León Matías"> Axel León Matías</label>
+                <label class="radiopick"><input type="radio" name="valNombre" value="Rocío Paredes Ibarra"> Rocío Paredes Ibarra</label>
+                <label class="radiopick"><input type="radio" name="valNombre" value="Luis Ángel Aguayo Salas"> Luis Ángel Aguayo Salas</label>
+              </div>
+              <div class="valgroup">
+                <h4>Calle y número</h4>
+                <label class="radiopick"><input type="radio" name="valDireccion" value="Calle Rivadavia 743, Capitán Sarmiento"> Calle Rivadavia 743, Capitán Sarmiento</label>
+                <label class="radiopick"><input type="radio" name="valDireccion" value="Avenida 9 1234, Miramar"> Avenida 9 1234, Miramar</label>
+                <label class="radiopick"><input type="radio" name="valDireccion" value="484 3266, Manuel B Gonnet"> 484 3266, Manuel B Gonnet</label>
+                <label class="radiopick"><input type="radio" name="valDireccion" value="Av. Rivadavia 4521, 3° B, CABA" data-correct="true"> Av. Rivadavia 4521, 3° B, CABA</label>
+                <label class="radiopick"><input type="radio" name="valDireccion" value="Avenida Belgrano 877, Santiago del Estero"> Avenida Belgrano 877, Santiago del Estero</label>
+                <label class="radiopick"><input type="radio" name="valDireccion" value="Avenida Mitre 235, San Rafael"> Avenida Mitre 235, San Rafael</label>
+                <label class="radiopick"><input type="radio" name="valDireccion" value="Avenida Colón 987, Bahía Blanca"> Avenida Colón 987, Bahía Blanca</label>
+              </div>
+            </div>
+
+            <div class="valfeedback" id="valFeedback"></div>
+
+            <button class="btn btn-primary" id="btnValidar" disabled onclick="intentarValidar()">Validar identidad</button>
+          </div>
+
+          <!-- ===== Confirmación de dirección a asegurar (tras validar identidad) ===== -->
+          <div id="valStepConfirm" style="display:none;">
+            <div class="foundbox">
+              <div class="fb-head">
+                <div class="fb-check">✓</div>
+                <div>
+                  <div class="fb-title">Identidad validada correctamente</div>
+                  <div class="fb-sub">Confirmamos estos datos</div>
+                </div>
+              </div>
+              <div class="fb-body">
+                <div class="fb-row"><span class="k">Nombre completo</span><span class="v" id="fbNombre">—</span></div>
+                <div class="fb-row"><span class="k">Dirección registrada</span><span class="v" id="fbDireccion">—</span></div>
+              </div>
+              <div class="fb-question">
+                <p>¿Esta es la dirección que querés asegurar?</p>
+                <div class="yn">
+                  <button type="button" id="yn-si" onclick="pickAddress(true)">Sí</button>
+                  <button type="button" id="yn-no" onclick="pickAddress(false)">No</button>
+                </div>
+              </div>
+              <div class="manual-addr" id="manualAddr">
+                <div class="field"><label>Calle y número</label><input type="text" id="f-addr-manual" placeholder="Ej: Av. Corrientes 1234"></div>
+                <div class="field-row">
+                  <div class="field"><label>Piso / depto</label><input type="text" id="f-addr-piso" placeholder="Opcional"></div>
+                  <div class="field"><label>Código postal</label><input type="text" id="f-addr-cp" placeholder="Ej: C1043"></div>
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary" id="btnContinuarPago" disabled onclick="continuarAlPago()" style="margin-top:18px;">Continuar al pago</button>
+          </div>
+        </section>
+
+        <!-- ===== PASO 2b: VALIDACIÓN BLOQUEADA ===== -->
+        <section class="view" data-view="validacion-bloqueada">
+          <h2>Verificá tu identidad</h2>
+          <div class="errorblock">
+            <div class="eicon">!</div>
+            <h3>No pudimos verificar tu identidad</h3>
+            <p>Se agotaron las 3 oportunidades.</p>
+            <p>Por seguridad, esta contratación no puede continuar online.</p>
+            <p class="fine">Podés volver a empezar con otros datos o contactarte con Qualia para recibir ayuda.</p>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-ghost" onclick="reiniciarValidacion()">Volver a empezar</button>
+            <button class="btn btn-primary" onclick="alert('Esto abriría el canal de contacto de Qualia — fuera del alcance de este prototipo.')">Contactar a Qualia</button>
+          </div>
+        </section>
+
+        <!-- ===== PASO 3: PAGO ===== -->
+        <section class="view" data-view="pago">
+          <button class="backlink" onclick="showView('validacion')">← Volver atrás</button>
+          <h2>Medio de pago</h2>
+          <p class="lede">Completá los datos de tu tarjeta para confirmar la contratación.</p>
+
+          <div class="assureblock">
+            <div class="ab-label">Vamos a asegurar</div>
+            <div class="ab-address" id="assureAddress">Av. Rivadavia 4521, 3° B, CABA</div>
+          </div>
+
+          <div class="cc-visual" id="ccVisual">
+            <div class="cc-shine"></div>
+            <div class="cc-top">
+              <div class="cc-chip" aria-hidden="true"></div>
+              <div class="cc-brand" id="ccBrand"><span class="cc-brand-label">Tarjeta</span></div>
+            </div>
+            <div class="cc-number" id="ccNumber">•••• •••• •••• ••••</div>
+            <div class="cc-bottom">
+              <div>
+                <div class="cc-label">Titular</div>
+                <div class="cc-name" id="ccName">NOMBRE APELLIDO</div>
+              </div>
+              <div>
+                <div class="cc-label">Vence</div>
+                <div class="cc-exp" id="ccExp">MM/AA</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="paycard">
+            <div class="field">
+              <label for="f-cardnum">Número de tarjeta</label>
+              <div class="card-input-wrap" id="cardInputWrap">
+                <input type="text" id="f-cardnum" inputmode="numeric" autocomplete="cc-number" placeholder="0000 0000 0000 0000" maxlength="19" value="4242 4242 4242 4242">
+                <span class="brand-pill" id="brandPill">Visa</span>
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-cardname">Nombre en la tarjeta</label>
+              <input type="text" id="f-cardname" autocomplete="cc-name" placeholder="Como figura en la tarjeta" maxlength="26">
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="f-cardexp">Vencimiento</label>
+                <input type="text" id="f-cardexp" inputmode="numeric" autocomplete="cc-exp" placeholder="MM/AA" maxlength="5">
+              </div>
+              <div class="field">
+                <label for="f-cardcvv">Código de seguridad</label>
+                <input type="text" id="f-cardcvv" inputmode="numeric" autocomplete="cc-csc" placeholder="CVV" maxlength="4">
+              </div>
+            </div>
+          </div>
+
+          <div class="legalblock">
+            <label class="consent">
+              <input type="checkbox" checked>
+              Acepto que me contacten por WhatsApp
+            </label>
+            <label class="consent">
+              <input type="checkbox" checked>
+              <span><b>Declaro que:</b> Acepto Términos, Condiciones y Políticas de Privacidad (<a href="#" onclick="return false;">CONOCÉ MÁS</a>) y Cláusulas y Condiciones de la Póliza (<a href="#" onclick="return false;">CONOCÉ MÁS</a>).</span>
+            </label>
+            <label class="consent">
+              <input type="checkbox">
+              <span><b>Persona Expuesta Políticamente (PEP):</b> Declaro bajo juramento que los datos consignados en la presente son correctos, completos y fiel expresión de la verdad, que me encuentro incluido y/o alcanzado dentro de la Nómina de Funciones de Personas Expuestas Políticamente descripta (<a href="#" onclick="return false;">CONOCÉ MÁS</a>).</span>
+            </label>
+            <label class="consent">
+              <input type="checkbox">
+              <span><b>Sujeto obligado:</b> Manifiesto con carácter de declaración jurada que me encuentro incluido/a en la categoría de sujeto obligado, conforme lo dispuesto por el art. 20 de la Ley N° 25.246 y modificatorias y el art. 33 inciso b de la Res. UIF. 126/2023.</span>
+            </label>
+          </div>
+
+          <button class="btn btn-coral" id="btnContratar" onclick="contratar()">Contratar $35.400/mes</button>
+        </section>
+
+      </div>
+
+      <!-- ===== Panel resumen (desktop) ===== -->
+      <aside class="summary">
+        <div class="st-title">Tu contratación</div>
+        <div class="sp-plan" id="spPlanName">Plan 2</div>
+        <div class="sp-price" id="spPlanPrice">$35.400/mes</div>
+        <div class="sp-block">
+          <div class="sp-h">Coberturas incluidas</div>
+          <ul class="covamounts" id="covAmountsDesktop">
+            <li><span>Robo</span><span class="amt">$4.500.000</span></li>
+            <li><span>Daños a la vivienda</span><span class="amt">$102.960.000</span></li>
+            <li><span>Daños al contenido</span><span class="amt">$19.640.000</span></li>
+            <li><span>Aparatos electrónicos</span><span class="amt">$1.600.000</span></li>
+            <li><span>Reclamo a terceros</span><span class="amt">$11.580.000</span></li>
+          </ul>
+        </div>
+        <div class="sp-block">
+          <div class="sp-h">Asistencias incluidas</div>
+          <ul>
+            <li>Emergencias en el hogar</li>
+            <li>Instalaciones en el hogar</li>
+            <li>Mantenimiento/reparaciones</li>
+            <li>Dispositivos de seguridad</li>
+            <li>Asistencia para mudanzas</li>
+            <li>Pintura</li>
+          </ul>
+        </div>
+        <div class="sp-block">
+          <div class="sp-h">Estado del proceso</div>
+          <div class="progresslist" id="progressList">
+            <div class="pl-item" data-pl="1"><div class="pl-dot"></div>Datos</div>
+            <div class="pl-item" data-pl="2"><div class="pl-dot"></div>Validación</div>
+            <div class="pl-item" data-pl="3"><div class="pl-dot"></div>Pago</div>
+            <div class="pl-item" data-pl="4"><div class="pl-dot"></div>Póliza emitida</div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+  <p class="footnote">Prototipo de alta fidelidad — datos ficticios, sin conexión real a Mi Qualia ni a medios de pago.</p>
+</div>
+</div>
+
+<!-- ===== Modal: comprobante ===== -->
+<div class="modal-backdrop" id="receiptModal" onclick="if(event.target===this) closeReceipt()">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-label="Comprobante de contratación">
+    <button class="modal-close" onclick="closeReceipt()" aria-label="Cerrar">✕</button>
+    <div class="receipt-hero">
+      <div class="ric">✓</div>
+      <h2>¡Listo! Tu seguro está contratado</h2>
+      <p class="lede" id="receiptEmailLede" style="margin:8px auto 0;">Te enviamos toda la información a martina.gomez@ejemplo.com</p>
+    </div>
+
+    <div class="receipt-card">
+      <div class="rc-head">
+        <span class="rc-plan" id="rcPlanName">Seguro de Hogar — Plan 2</span>
+        <span class="rc-price" id="rcPlanPrice">$35.400/mes</span>
+      </div>
+      <div class="rc-body">
+        <div class="rc-row"><span class="k">Nombre completo</span><span class="v" id="rcName">Martina Gómez Fernández</span></div>
+        <div class="rc-row"><span class="k">Dirección asegurada</span><span class="v" id="rcAddress">Av. Rivadavia 4521, 3° B, CABA</span></div>
+        <div class="rc-row"><span class="k">Email</span><span class="v" id="rcEmail">martina.gomez@ejemplo.com</span></div>
+        <div class="rc-row"><span class="k">Medio de pago</span><span class="v" id="rcCard">Visa terminada en 4242</span></div>
+        <div class="rc-row"><span class="k">Fecha</span><span class="v">26/08/2026</span></div>
+        <div class="rc-row"><span class="k">N° de póliza</span><span class="v">QH-2026-004821</span></div>
+      </div>
+      <div class="rc-covs">
+        <div class="t">Coberturas incluidas</div>
+        <ul class="covamounts" id="covAmountsReceipt">
+          <li><span>Robo</span><span class="amt">$4.500.000</span></li>
+          <li><span>Daños a la vivienda</span><span class="amt">$102.960.000</span></li>
+          <li><span>Daños al contenido</span><span class="amt">$19.640.000</span></li>
+          <li><span>Aparatos electrónicos</span><span class="amt">$1.600.000</span></li>
+          <li><span>Reclamo a terceros</span><span class="amt">$11.580.000</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn-ghost" onclick="window.print()">Descargar comprobante</button>
+      <button class="btn btn-primary" onclick="alert('Esto abriría Mi Qualia — fuera del alcance de este prototipo.')">Ir a Mi Qualia</button>
+    </div>
+    <button class="btn btn-ghost" style="margin-top:10px;" onclick="closeReceipt(); reiniciarValidacion(); showView('datos');">Volver al inicio</button>
+  </div>
+</div>
+
+<!-- ===== Modal: ver detalle (resumen mobile) ===== -->
+<div class="modal-backdrop" id="detailModal" onclick="if(event.target===this) closeDetailModal()">
+  <div class="modal-card" role="dialog" aria-modal="true" aria-label="Detalle de tu contratación">
+    <button class="modal-close" onclick="closeDetailModal()" aria-label="Cerrar">✕</button>
+    <div class="sp-block" style="margin-top:6px;">
+      <div class="sp-h">Coberturas incluidas</div>
+      <ul class="covamounts" id="covAmountsMobile">
+        <li><span>Robo</span><span class="amt">$4.500.000</span></li>
+        <li><span>Daños a la vivienda</span><span class="amt">$102.960.000</span></li>
+        <li><span>Daños al contenido</span><span class="amt">$19.640.000</span></li>
+        <li><span>Aparatos electrónicos</span><span class="amt">$1.600.000</span></li>
+        <li><span>Reclamo a terceros</span><span class="amt">$11.580.000</span></li>
+      </ul>
+    </div>
+    <div class="sp-block">
+      <div class="sp-h">Asistencias incluidas</div>
+      <ul><li>Emergencias en el hogar</li><li>Instalaciones en el hogar</li><li>Mantenimiento/reparaciones</li><li>Dispositivos de seguridad</li><li>Asistencia para mudanzas</li><li>Pintura</li></ul>
+    </div>
+    <button class="btn btn-primary" style="margin-top:14px;" onclick="closeDetailModal()">Listo</button>
+  </div>
+</div>
+
+<script>
+  // ===== plan recibido desde la Home (querystring ?plan=1|2|3) =====
+  const PLAN_DATA = {
+    1: { name:"Plan 1", price:"$17.700", cats:[
+      {label:"Robo", amt:"$2.250.000"},
+      {label:"Daños a la vivienda", amt:"$51.480.000"},
+      {label:"Daños al contenido", amt:"$9.820.000"},
+      {label:"Aparatos electrónicos", amt:null},
+      {label:"Reclamo a terceros", amt:"$5.790.000"}
+    ]},
+    2: { name:"Plan 2", price:"$35.400", cats:[
+      {label:"Robo", amt:"$4.500.000"},
+      {label:"Daños a la vivienda", amt:"$102.960.000"},
+      {label:"Daños al contenido", amt:"$19.640.000"},
+      {label:"Aparatos electrónicos", amt:"$1.600.000"},
+      {label:"Reclamo a terceros", amt:"$11.580.000"}
+    ]},
+    3: { name:"Plan 3", price:"$53.100", cats:[
+      {label:"Robo", amt:"$6.700.000"},
+      {label:"Daños a la vivienda", amt:"$154.440.000"},
+      {label:"Daños al contenido", amt:"$29.460.000"},
+      {label:"Aparatos electrónicos", amt:"$2.400.000"},
+      {label:"Reclamo a terceros", amt:"$17.370.000"}
+    ]}
+  };
+
+  function getPlanFromURL(){
+    const params = new URLSearchParams(window.location.search);
+    const p = parseInt(params.get('plan'), 10);
+    return PLAN_DATA[p] ? p : 2;
+  }
+
+  function renderCovList(id, cats){
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.innerHTML = cats.map(c=> `<li><span>${c.label}</span><span class="amt">${c.amt || 'No incluido'}</span></li>`).join('');
+  }
+
+  function applyPlan(n){
+    const d = PLAN_DATA[n];
+    document.getElementById('pcPlanName').textContent = d.name;
+    document.getElementById('pcPlanPrice').innerHTML = d.price + '<small>/mes</small>';
+    document.getElementById('spPlanName').textContent = d.name;
+    document.getElementById('spPlanPrice').textContent = d.price + '/mes';
+    renderCovList('covAmountsDesktop', d.cats);
+    document.getElementById('msbLeft').innerHTML = d.name + ' · <b>' + d.price + '/mes</b>';
+    renderCovList('covAmountsMobile', d.cats);
+    document.getElementById('btnContratar').textContent = 'Contratar ' + d.price + '/mes';
+    document.getElementById('rcPlanName').textContent = 'Seguro de Hogar — ' + d.name;
+    document.getElementById('rcPlanPrice').textContent = d.price + '/mes';
+    renderCovList('covAmountsReceipt', d.cats);
+  }
+
+  function volverAlPlan(){
+    try{ window.parent.postMessage({type:'qualiaCheckoutBack'}, '*'); }catch(e){}
+  }
+
+  const stepOf = { 'datos':1, 'validacion':2, 'validacion-bloqueada':2, 'pago':3 };
+  const MAX_INTENTOS = 3;
+  let current = 'datos';
+  let intentosRestantes = MAX_INTENTOS;
+  let validatedName = 'Martina Gómez Fernández';
+  let validatedAddress = 'Av. Rivadavia 4521, 3° B, CABA';
+  let validatedEmail = 'martina.gomez@ejemplo.com';
+  let validatedPhone = '11 2345 6789';
+
+  function showView(view){
+    document.querySelectorAll('[data-view]').forEach(el=>{
+      el.classList.toggle('is-active', el.dataset.view === view);
+    });
+    current = view;
+    updateStepper(view);
+    updateProgress(view);
+    if(view === 'pago'){
+      const nameInput = document.getElementById('f-cardname');
+      if(!nameInput.value.trim()) nameInput.value = validatedName || document.getElementById('f-nombre').value;
+      updateCardVisual();
+    }
+    document.getElementById('stage').scrollIntoView({behavior:'smooth', block:'start'});
+  }
+
+  function updateStepper(view){
+    const n = stepOf[view];
+    document.querySelectorAll('.step').forEach(s=>{
+      const i = parseInt(s.dataset.step,10);
+      s.classList.remove('done','now');
+      if(i < n) s.classList.add('done');
+      else if(i === n) s.classList.add('now');
+    });
+  }
+
+  function updateProgress(view){
+    const n = stepOf[view];
+    document.querySelectorAll('.pl-item').forEach(el=>{
+      const i = parseInt(el.dataset.pl,10);
+      el.classList.remove('done','now');
+      if(i < n) el.classList.add('done');
+      else if(i === n) el.classList.add('now');
+    });
+  }
+
+  function openReceipt(){
+    document.getElementById('receiptModal').classList.add('open');
+    document.querySelectorAll('.pl-item').forEach(el=> el.classList.add('done'));
+    document.body.style.overflow = 'hidden';
+  }
+  function closeReceipt(){
+    document.getElementById('receiptModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape'){ closeReceipt(); closeDetailModal(); }
+  });
+
+  function openDetailModal(){
+    document.getElementById('detailModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDetailModal(){
+    document.getElementById('detailModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function setMode(mode){
+    const isMobile = mode === 'mobile';
+    document.getElementById('stage').classList.toggle('is-mobile', isMobile);
+    document.getElementById('siteheadInner').classList.toggle('is-mobile', isMobile);
+    document.getElementById('modeDesktop').classList.toggle('active', mode==='desktop');
+    document.getElementById('modeMobile').classList.toggle('active', mode==='mobile');
+  }
+
+  /* ===== Paso 1 → Paso 2 ===== */
+  function continuarDesdeDatos(){
+    validatedEmail = document.getElementById('f-mail').value || validatedEmail;
+    validatedPhone = document.getElementById('f-telefono').value || validatedPhone;
+    reiniciarIntentos();
+    showView('validacion');
+  }
+
+  /* ===== Paso 2: validación de identidad ===== */
+  function wireValidacionRadios(){
+    document.querySelectorAll('input[name="valNombre"], input[name="valDireccion"]').forEach(inp=>{
+      inp.addEventListener('change', ()=>{
+        document.querySelectorAll(`input[name="${inp.name}"]`).forEach(sib=>{
+          sib.closest('.radiopick').classList.toggle('picked', sib.checked);
+        });
+        document.getElementById('valFeedback').classList.remove('show');
+        updateBtnValidar();
+      });
+    });
+  }
+
+  function updateBtnValidar(){
+    const n = document.querySelector('input[name="valNombre"]:checked');
+    const d = document.querySelector('input[name="valDireccion"]:checked');
+    document.getElementById('btnValidar').disabled = !(n && d);
+  }
+
+  function updatePips(){
+    const used = MAX_INTENTOS - intentosRestantes;
+    document.querySelectorAll('#valPips .pip').forEach((p,i)=>{
+      p.classList.toggle('used', i < used);
+    });
+    const lbl = document.getElementById('valPipsLabel');
+    lbl.textContent = intentosRestantes === MAX_INTENTOS
+      ? 'Tenés 3 intentos'
+      : `Te quedan ${intentosRestantes} intento${intentosRestantes===1?'':'s'}`;
+  }
+
+  function reiniciarIntentos(){
+    intentosRestantes = MAX_INTENTOS;
+    document.querySelectorAll('input[name="valNombre"], input[name="valDireccion"]').forEach(r=>{
+      r.checked = false;
+      r.disabled = false;
+      r.closest('.radiopick').classList.remove('picked');
+    });
+    const fb = document.getElementById('valFeedback');
+    fb.classList.remove('show','err','ok');
+    document.getElementById('btnValidar').disabled = true;
+    updatePips();
+    document.getElementById('valStepConfirm').style.display = 'none';
+    document.getElementById('valStepSelect').style.display = '';
+    resetConfirmPaso();
+  }
+
+  function reiniciarValidacion(){
+    reiniciarIntentos();
+    showView('datos');
+  }
+
+  function intentarValidar(){
+    const nombreSel = document.querySelector('input[name="valNombre"]:checked');
+    const dirSel = document.querySelector('input[name="valDireccion"]:checked');
+    if(!nombreSel || !dirSel) return;
+
+    const ok = nombreSel.dataset.correct === 'true' && dirSel.dataset.correct === 'true';
+    const fb = document.getElementById('valFeedback');
+
+    if(ok){
+      validatedName = nombreSel.value;
+      validatedAddress = dirSel.value;
+      document.querySelectorAll('input[name="valNombre"], input[name="valDireccion"]').forEach(r=> r.disabled = true);
+      document.getElementById('btnValidar').disabled = true;
+      fb.className = 'valfeedback show ok';
+      fb.textContent = 'Identidad validada correctamente.';
+      resetConfirmPaso();
+      document.getElementById('fbNombre').textContent = validatedName;
+      document.getElementById('fbDireccion').textContent = validatedAddress;
+      document.getElementById('valStepSelect').style.display = 'none';
+      document.getElementById('valStepConfirm').style.display = '';
+    } else {
+      intentosRestantes--;
+      updatePips();
+      if(intentosRestantes <= 0){
+        showView('validacion-bloqueada');
+        return;
+      }
+      fb.className = 'valfeedback show err';
+      fb.textContent = `Los datos seleccionados no coinciden. Te quedan ${intentosRestantes} oportunidad${intentosRestantes===1?'':'es'}.`;
+    }
+  }
+
+  /* ===== Confirmación: ¿asegurar esta dirección? ===== */
+  function resetConfirmPaso(){
+    document.getElementById('yn-si').classList.remove('picked');
+    document.getElementById('yn-no').classList.remove('picked');
+    document.getElementById('manualAddr').classList.remove('show');
+    document.getElementById('f-addr-manual').value = '';
+    document.getElementById('f-addr-piso').value = '';
+    document.getElementById('f-addr-cp').value = '';
+    document.getElementById('btnContinuarPago').disabled = true;
+  }
+
+  function pickAddress(isYes){
+    document.getElementById('yn-si').classList.toggle('picked', isYes);
+    document.getElementById('yn-no').classList.toggle('picked', !isYes);
+    document.getElementById('manualAddr').classList.toggle('show', !isYes);
+    updateBtnContinuarPago();
+  }
+
+  function updateBtnContinuarPago(){
+    const siPicked = document.getElementById('yn-si').classList.contains('picked');
+    const noPicked = document.getElementById('yn-no').classList.contains('picked');
+    let ok = false;
+    if(siPicked) ok = true;
+    if(noPicked) ok = document.getElementById('f-addr-manual').value.trim().length > 0;
+    document.getElementById('btnContinuarPago').disabled = !ok;
+  }
+
+  function continuarAlPago(){
+    const noPicked = document.getElementById('yn-no').classList.contains('picked');
+    if(noPicked){
+      const calle = document.getElementById('f-addr-manual').value.trim();
+      const piso = document.getElementById('f-addr-piso').value.trim();
+      const cp = document.getElementById('f-addr-cp').value.trim();
+      let direccion = calle;
+      if(piso) direccion += ', ' + piso;
+      if(cp) direccion += ' (CP ' + cp + ')';
+      validatedAddress = direccion;
+    }
+    document.getElementById('assureAddress').textContent = validatedAddress;
+    const nameInput = document.getElementById('f-cardname');
+    if(!nameInput.value.trim()) nameInput.value = validatedName;
+    updateCardVisual();
+    showView('pago');
+  }
+
+  /* ===== Paso 3: pago + card visual ===== */
+  const BRAND_LOGOS = {
+    visa: '<svg viewBox="0 0 48 16" height="26" aria-hidden="true"><text x="0" y="13" font-size="14" font-weight="800" fill="#fff" font-family="Arial,sans-serif" letter-spacing="1">VISA</text></svg>',
+    mastercard: '<svg viewBox="0 0 40 24" height="26" aria-hidden="true"><circle cx="15" cy="12" r="10" fill="#EB001B"/><circle cx="25" cy="12" r="10" fill="#F79E1B" fill-opacity=".92"/></svg>',
+    amex: '<svg viewBox="0 0 56 16" height="22" aria-hidden="true"><text x="0" y="13" font-size="12" font-weight="800" fill="#fff" font-family="Arial,sans-serif" letter-spacing="0.5">AMEX</text></svg>',
+    naranja: '<svg viewBox="0 0 72 16" height="22" aria-hidden="true"><text x="0" y="13" font-size="12" font-weight="800" fill="#fff" font-family="Arial,sans-serif">NARANJA</text></svg>',
+    cabal: '<svg viewBox="0 0 52 16" height="22" aria-hidden="true"><text x="0" y="13" font-size="12" font-weight="800" fill="#fff" font-family="Arial,sans-serif">CABAL</text></svg>'
+  };
+  const BRAND_LABELS = { visa:'Visa', mastercard:'Mastercard', amex:'American Express', naranja:'Naranja', cabal:'Cabal', unknown:'Tarjeta' };
+
+  function detectBrand(num){
+    const n = (num || '').replace(/\D/g,'');
+    if(!n) return 'unknown';
+    if(/^3[47]/.test(n)) return 'amex';
+    if(/^589562/.test(n)) return 'naranja';
+    if(/^(589657|6042|6505)/.test(n)) return 'cabal';
+    if(/^(5[1-5]|222[1-9]|22[3-9]\d|2[3-6]\d{2}|27[01]\d|2720)/.test(n)) return 'mastercard';
+    if(/^4/.test(n)) return 'visa';
+    return 'unknown';
+  }
+
+  function formatCardNumber(raw){
+    const digits = raw.replace(/\D/g,'').slice(0,16);
+    const brand = detectBrand(digits);
+    if(brand === 'amex'){
+      const d = digits.slice(0,15);
+      return (d.slice(0,4) + ' ' + d.slice(4,10) + ' ' + d.slice(10)).trim();
+    }
+    return digits.replace(/(\d{4})(?=\d)/g,'$1 ').trim();
+  }
+
+  function maskCardDisplay(formatted, brand){
+    const digits = (formatted || '').replace(/\s/g,'');
+    if(brand === 'amex'){
+      const d = (digits + '•••••••••••••••').slice(0,15);
+      return (d.slice(0,4) + ' ' + d.slice(4,10) + ' ' + d.slice(10)).trim();
+    }
+    const d = (digits + '••••••••••••••••').slice(0,16);
+    return d.replace(/(.{4})/g,'$1 ').trim();
+  }
+
+  function updateCardVisual(){
+    const numEl = document.getElementById('f-cardnum');
+    const nameEl = document.getElementById('f-cardname');
+    const expEl = document.getElementById('f-cardexp');
+    const visual = document.getElementById('ccVisual');
+    const brandEl = document.getElementById('ccBrand');
+    const wrap = document.getElementById('cardInputWrap');
+    const pill = document.getElementById('brandPill');
+    const formatted = formatCardNumber(numEl.value);
+    numEl.value = formatted;
+    numEl.maxLength = detectBrand(formatted) === 'amex' ? 17 : 19;
+    const brand = detectBrand(formatted);
+    visual.className = 'cc-visual' + (brand !== 'unknown' ? ' ' + brand : '');
+    brandEl.innerHTML = BRAND_LOGOS[brand] || '<span class="cc-brand-label">Tarjeta</span>';
+    document.getElementById('ccNumber').textContent = maskCardDisplay(formatted, brand);
+    const name = (nameEl.value || '').trim();
+    document.getElementById('ccName').textContent = name ? name.toUpperCase() : 'NOMBRE APELLIDO';
+    document.getElementById('ccExp').textContent = expEl.value || 'MM/AA';
+    wrap.classList.toggle('has-brand', brand !== 'unknown');
+    pill.textContent = BRAND_LABELS[brand] || '';
+  }
+
+  function formatExp(raw){
+    const d = raw.replace(/\D/g,'').slice(0,4);
+    if(d.length >= 3) return d.slice(0,2) + '/' + d.slice(2);
+    return d;
+  }
+
+  function contratar(){
+    const cardVal = (document.getElementById('f-cardnum').value || '').replace(/\s+/g,'');
+    const last4 = cardVal.slice(-4) || '4242';
+    const brand = detectBrand(cardVal);
+    const brandName = BRAND_LABELS[brand] === 'Tarjeta' ? 'Tarjeta' : BRAND_LABELS[brand];
+    const titular = (document.getElementById('f-cardname').value || '').trim() || validatedName;
+    document.getElementById('rcName').textContent = validatedName;
+    document.getElementById('rcAddress').textContent = validatedAddress;
+    document.getElementById('rcEmail').textContent = validatedEmail;
+    document.getElementById('rcCard').textContent = brandName + ' terminada en ' + last4;
+    document.getElementById('receiptEmailLede').textContent = 'Te enviamos toda la información a ' + validatedEmail;
+    openReceipt();
+  }
+
+  document.querySelectorAll('[data-jump]').forEach(btn=>{
+    btn.addEventListener('click', ()=> showView(btn.dataset.jump));
+  });
+
+  wireValidacionRadios();
+  document.getElementById('f-addr-manual').addEventListener('input', updateBtnContinuarPago);
+  document.getElementById('f-cardnum').addEventListener('input', updateCardVisual);
+  document.getElementById('f-cardname').addEventListener('input', updateCardVisual);
+  document.getElementById('f-cardexp').addEventListener('input', e=>{
+    e.target.value = formatExp(e.target.value);
+    updateCardVisual();
+  });
+  document.getElementById('f-cardcvv').addEventListener('input', e=>{
+    e.target.value = e.target.value.replace(/\D/g,'').slice(0,4);
+  });
+
+  updatePips();
+  updateCardVisual();
+  applyPlan(__INITIAL_PLAN__);
+  showView('datos');
+  requestAnimationFrame(function(){
+    if(window.innerWidth < 640){ setMode('mobile'); }
+  });
+<\/script>
+
+</body>
+</html>
+</script>
+
+<style>
+  .checkout-topbar{position:sticky;top:0;z-index:60;background:#16213A;padding:12px 20px;display:flex;justify-content:flex-start;}
+  .checkout-back-btn{background:#22314A;color:#DCE7E4;border:1px solid #3A4A64;border-radius:8px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);}
+  .checkout-back-btn:hover{background:#2E4162;}
+</style>
+
+<script>
+  const SCRIPT_CLOSE_TAG = '<' + '/script>';
+
+  function openCheckout(level){
+    const raw = document.getElementById('checkoutSource').textContent.split('<\\/script>').join(SCRIPT_CLOSE_TAG);
+    const html = raw.replace('__INITIAL_PLAN__', String(level));
+    const blob = new Blob([html], {type:'text/html'});
+    const url = URL.createObjectURL(blob);
+    const frame = document.getElementById('checkoutFrame');
+    frame.src = url;
+    document.getElementById('homeView').style.display = 'none';
+    document.getElementById('checkoutView').style.display = 'block';
+    window.scrollTo(0,0);
+  }
+
+  function closeCheckout(){
+    document.getElementById('checkoutView').style.display = 'none';
+    document.getElementById('homeView').style.display = 'block';
+    const frame = document.getElementById('checkoutFrame');
+    if(frame.src && frame.src.indexOf('blob:') === 0) URL.revokeObjectURL(frame.src);
+    frame.src = 'about:blank';
+    window.scrollTo(0,0);
+  }
+
+  window.addEventListener('message', (e)=>{
+    if(!e.data || typeof e.data !== 'object') return;
+    if(e.data.type === 'qualiaCheckoutBack'){ closeCheckout(); }
+  });
+</script>
+
+</body>
+</html>

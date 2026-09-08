@@ -1,0 +1,2156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="ext-resource-dependency" content="assets/familia.png" />
+<meta name="ext-resource-dependency" content="assets/ic-bici-black.png" />
+<meta name="ext-resource-dependency" content="assets/ic-bolso-black.png" />
+<meta name="ext-resource-dependency" content="assets/ic-hogar-black.png" />
+<meta name="ext-resource-dependency" content="assets/ic-hogar-color.png" />
+<meta name="ext-resource-dependency" content="assets/ic-mascotas-black.png" />
+<meta name="ext-resource-dependency" content="assets/ic-notebook-black.png" />
+<meta name="ext-resource-dependency" content="assets/ic-salud-black.png" />
+<meta name="ext-resource-dependency" content="assets/ic-vida-black.png" />
+<meta name="ext-resource-dependency" content="assets/ilus-incendio.png" />
+<meta name="ext-resource-dependency" content="assets/ilus-living.png" />
+<meta name="ext-resource-dependency" content="assets/logo-qualia.png" />
+<meta name="ext-resource-dependency" content="assets/plan-1.png" />
+<meta name="ext-resource-dependency" content="assets/plan-2.png" />
+<meta name="ext-resource-dependency" content="assets/plan-3.png" />
+<meta name="ext-resource-dependency" content="assets/qi-as-emergencias.png" />
+<meta name="ext-resource-dependency" content="assets/qi-as-instalaciones.png" />
+<meta name="ext-resource-dependency" content="assets/qi-as-mantenimiento.png" />
+<meta name="ext-resource-dependency" content="assets/qi-as-mudanza.png" />
+<meta name="ext-resource-dependency" content="assets/qi-as-pintura.png" />
+<meta name="ext-resource-dependency" content="assets/qi-as-seguridad.png" />
+<meta name="ext-resource-dependency" content="assets/qi-cob-civil.png" />
+<meta name="ext-resource-dependency" content="assets/qi-cob-contenido.png" />
+<meta name="ext-resource-dependency" content="assets/qi-cob-electronica.png" />
+<meta name="ext-resource-dependency" content="assets/qi-cob-robo.png" />
+<meta name="ext-resource-dependency" content="assets/qi-cob-vivienda.png" />
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><rect width="200" height="200" fill="#00C1C6"/><path d="M60 105 L100 70 L140 105 V140 H60 Z" fill="none" stroke="#FFFFFF" stroke-width="9" stroke-linejoin="round"/><circle cx="100" cy="122" r="8" fill="#FCAB50"/></svg></template>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="crossorigin" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,300,0,-25" rel="stylesheet" />
+<style>
+  html, body { margin:0; padding:0; background:#FAFAFA; color:#303030; font-family:'Roboto', Helvetica, Arial, sans-serif; font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#0095A8; text-decoration:none; }
+  a:hover { color:#00707F; text-decoration:underline; }
+  button { font-family:'DM Sans', Helvetica, Arial, sans-serif; cursor:pointer; }
+  input, select { font-family:'Roboto', Helvetica, Arial, sans-serif; }
+  ::selection { background:#00C1C6; color:#fff; }
+</style>
+</helmet>
+
+<div style="background:#1B1B1B; padding:12px 20px; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:10px 18px; position:relative; z-index:200">
+  <span style="font-family:'Roboto', sans-serif; font-weight:700; font-size:11px; letter-spacing:1px; text-transform:uppercase; color:#9A9A9A">Hipótesis de experiencia</span>
+  <div style="display:flex; gap:4px; background:#2E2E2E; border-radius:100px; padding:4px">
+    <sc-for list="{{ proposals }}" as="p" hint-placeholder-count="2">
+      <button type="button" onClick="{{ p.onClick }}" style="position:relative; border:none; background:none; border-radius:100px; padding:7px 16px; font-size:11px; font-weight:700; letter-spacing:1px; white-space:nowrap">
+        <sc-if value="{{ p.sel }}" hint-placeholder-val="{{ true }}"><span style="position:absolute; inset:0; background:#00C1C6; border-radius:100px"></span></sc-if>
+        <span style="position:relative; color:{{ p.txt }}">{{ p.label }}</span>
+      </button>
+    </sc-for>
+  </div>
+  <div style="width:1px; height:20px; background:#3C3C3C"></div>
+  <div style="display:flex; gap:4px; background:#2E2E2E; border-radius:100px; padding:4px">
+    <sc-for list="{{ viewports }}" as="v" hint-placeholder-count="2">
+      <button type="button" onClick="{{ v.onClick }}" style="position:relative; border:none; background:none; border-radius:100px; padding:7px 16px; font-size:11px; font-weight:700; letter-spacing:1px; white-space:nowrap">
+        <sc-if value="{{ v.sel }}" hint-placeholder-val="{{ true }}"><span style="position:absolute; inset:0; background:#FCAB50; border-radius:100px"></span></sc-if>
+        <span style="position:relative; color:{{ v.txt2 }}">{{ v.label }}</span>
+      </button>
+    </sc-for>
+  </div>
+</div>
+
+<div style="{{ outerStyle }}">
+<div ref="{{ frameRef }}" style="{{ frameStyle }}">
+<div style="{{ screenStyle }}">
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div style="padding-bottom:{{ bottomPad }}">
+
+  <div style="background:#FFFFFF; border-bottom:1px solid #EFEFEF; position:sticky; top:0; z-index:40">
+    <div style="max-width:1120px; margin:0 auto; padding:{{ shellPad }}; display:flex; align-items:center; justify-content:space-between; gap:32px">
+      <img src="assets/logo-qualia.png" alt="Qualia — Un seguro de tu lado" style="height:34px; width:auto; display:block; flex-shrink:0" />
+      <div style="display:{{ navLinks }}; gap:24px; font-size:14px; color:#585858">
+        <a href="#seguros" style="color:#585858; white-space:nowrap">Seguros</a>
+        <a href="#faq" style="color:#585858; white-space:nowrap">Preguntas Frecuentes</a>
+        <a href="#contacto" style="color:#585858; white-space:nowrap">Contacto</a>
+        <a href="#blog" style="color:#585858; white-space:nowrap">Blog</a>
+        <a href="#club" style="color:#585858; white-space:nowrap">Club Qualia</a>
+      </div>
+      <div style="display:flex; align-items:center; gap:20px; flex-shrink:0">
+        <a href="#mi-qualia" style="display:flex; align-items:center; gap:6px; font-size:14px; font-weight:700; color:#303030">
+          <span style="font-family:'Material Symbols Outlined'; font-variation-settings:'wght' 300,'GRAD' -25,'opsz' 24; font-size:20px; line-height:1; color:#585858">account_circle</span><span style="display:{{ miQualiaLabel }}">Mi Qualia</span></a>
+        <a href="#cotizar" style="background:#FCAB50; color:#303030; font-family:'DM Sans', sans-serif; font-weight:700; font-size:{{ navCtaFont }}; letter-spacing:1px; padding:{{ navCtaPad }}; border-radius:100px; white-space:nowrap" style-hover="background:#F09A38">Cotizar ahora</a>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF; border-bottom:1px solid #EFEFEF">
+    <div style="max-width:1120px; margin:0 auto; padding:{{ catNavPad }}; display:flex; gap:6px; overflow-x:auto">
+      <a href="#bicicleta" style="display:flex; align-items:center; gap:8px; padding:8px 18px; border-radius:100px; font-size:14px; font-weight:700; font-family:'DM Sans', sans-serif; color:#585858; white-space:nowrap" style-hover="background:#EFEFEF; text-decoration:none">
+        <img src="assets/ic-bici-black.png" alt="" style="width:24px; height:24px; display:block; opacity:.75" />Bicicleta</a>
+      <a href="#notebook" style="display:flex; align-items:center; gap:8px; padding:8px 18px; border-radius:100px; font-size:14px; font-weight:700; font-family:'DM Sans', sans-serif; color:#585858; white-space:nowrap" style-hover="background:#EFEFEF; text-decoration:none">
+        <img src="assets/ic-notebook-black.png" alt="" style="width:24px; height:24px; display:block; opacity:.75" />Notebook</a>
+      <a href="#mascotas" style="display:flex; align-items:center; gap:8px; padding:8px 18px; border-radius:100px; font-size:14px; font-weight:700; font-family:'DM Sans', sans-serif; color:#585858; white-space:nowrap" style-hover="background:#EFEFEF; text-decoration:none">
+        <img src="assets/ic-mascotas-black.png" alt="" style="width:24px; height:24px; display:block; opacity:.75" />Mascotas</a>
+      <a href="#vida" style="display:flex; align-items:center; gap:8px; padding:8px 18px; border-radius:100px; font-size:14px; font-weight:700; font-family:'DM Sans', sans-serif; color:#585858; white-space:nowrap" style-hover="background:#EFEFEF; text-decoration:none">
+        <img src="assets/ic-vida-black.png" alt="" style="width:24px; height:24px; display:block; opacity:.75" />Vida</a>
+      <a href="#salud" style="display:flex; align-items:center; gap:8px; padding:8px 18px; border-radius:100px; font-size:14px; font-weight:700; font-family:'DM Sans', sans-serif; color:#585858; white-space:nowrap" style-hover="background:#EFEFEF; text-decoration:none">
+        <img src="assets/ic-salud-black.png" alt="" style="width:24px; height:24px; display:block; opacity:.75" />Salud</a>
+      <a href="#bolso" style="display:flex; align-items:center; gap:8px; padding:8px 18px; border-radius:100px; font-size:14px; font-weight:700; font-family:'DM Sans', sans-serif; color:#585858; white-space:nowrap" style-hover="background:#EFEFEF; text-decoration:none">
+        <img src="assets/ic-bolso-black.png" alt="" style="width:24px; height:24px; display:block; opacity:.75" />Bolso</a>
+      <div style="display:flex; align-items:center; gap:8px; padding:8px 18px; border-radius:100px; font-size:14px; font-weight:700; font-family:'DM Sans', sans-serif; background:#E0F7F8; border:1.5px solid #00C1C6; color:#00707F; white-space:nowrap; order:-1">
+        <img src="assets/ic-hogar-black.png" alt="" style="width:24px; height:24px; display:block" />Hogar</div>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF; border-bottom:1px solid #EFEFEF">
+    <div style="max-width:1120px; margin:0 auto; padding:{{ heroPad }}; display:grid; grid-template-columns:{{ gridHero }}; gap:36px; align-items:center">
+      <div>
+        <h1 style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:{{ heroTitleSize }}; letter-spacing:-1.5px; line-height:1.1; margin:0 0 10px; color:#303030; text-wrap:balance">{{ heroTitle }}</h1>
+        <p style="font-size:16px; color:#585858; margin:0; max-width:620px; text-wrap:pretty">{{ heroLede }}</p>
+      </div>
+    </div>
+  </div>
+
+  <sc-if value="{{ isO1 }}" hint-placeholder-val="{{ true }}">
+  <div style="max-width:1120px; margin:0 auto; padding:{{ pagePad }}">
+
+    <div style="display:grid; grid-template-columns:{{ gridPlans }}; gap:{{ plansGap }}; align-items:stretch; margin-top:14px">
+      <sc-for list="{{ plans }}" as="p" hint-placeholder-count="3">
+        <div onClick="{{ p.onSelect }}" style="position:relative; background:#FFFFFF; border:1.5px solid #EFEFEF; border-radius:{{ planRadius }}; cursor:pointer; text-align:center; overflow:visible; display:flex; flex-direction:column" style-hover="border-color:#FCAB50">
+          <sc-if value="{{ p.sel }}" hint-placeholder-val="{{ false }}">
+            <span style="position:absolute; inset:-1.5px; border:2.5px solid #FCAB50; border-radius:{{ planRadius }}; pointer-events:none; box-shadow:0 18px 36px -18px rgba(252,171,80,.55)"></span>
+          </sc-if>
+          <sc-if value="{{ p.reco }}" hint-placeholder-val="{{ false }}">
+            <span style="{{ recoPillStyle }}">Recomendado</span>
+          </sc-if>
+          <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+            <div style="position:relative; border-radius:11px; overflow:hidden; padding:10px 13px 9px; text-align:left">
+              <sc-if value="{{ p.reco }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; inset:0; background:#FFF3E2; z-index:0"></span></sc-if>
+              <div style="position:relative; z-index:1; display:flex; align-items:baseline; justify-content:space-between; gap:8px">
+                <span style="display:flex; align-items:center; gap:6px">
+                  <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:14px; color:#303030">{{ p.alias }}</span>
+                  <sc-if value="{{ p.sel }}" hint-placeholder-val="{{ false }}">
+                    <span style="width:17px; height:17px; border-radius:50%; background:#FCAB50; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Outlined'; font-variation-settings:'wght' 300,'GRAD' -25,'opsz' 20; font-size:12px; flex-shrink:0">check</span>
+                  </sc-if>
+                  <sc-if value="{{ p.notSel }}" hint-placeholder-val="{{ true }}">
+                    <span style="width:17px; height:17px; border-radius:50%; border:1.6px solid #DEDEDE; background:#FFFFFF; flex-shrink:0"></span>
+                  </sc-if>
+                </span>
+                <span style="display:flex; align-items:baseline; gap:3px; white-space:nowrap">
+                  <span style="font-size:11px; color:#585858">Pagá</span>
+                  <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:16px; color:#303030">{{ p.priceLabel }}</span>
+                  <span style="font-size:10px; color:#585858">/mes</span>
+                </span>
+              </div>
+              <div style="position:relative; z-index:1; display:flex; align-items:center; gap:10px; margin-top:5px">
+                <img src="{{ p.illus }}" alt="{{ p.alias }}" style="width:56px; height:auto; display:block; flex-shrink:0" />
+                <span style="font-size:12px; color:#585858; line-height:1.35">Hasta <b style="font-family:'DM Sans', sans-serif; font-weight:700; color:#303030">{{ p.viviendaLabel }}</b> de cobertura máxima</span>
+              </div>
+              <button type="button" onClick="{{ p.onDetail }}" style="position:relative; z-index:1; width:100%; margin-top:6px; padding:8px 0 0; border:none; border-top:1px solid #EFEFEF; background:none; display:flex; align-items:center; justify-content:space-between; font-size:12px; font-weight:700; letter-spacing:1px; color:#585858; text-align:left">
+                <span>Ver detalle</span><span style="font-size:14px; line-height:1; color:#8A8A8A">›</span></button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+          <div style="border-radius:18.5px; overflow:hidden; flex:1; display:flex; flex-direction:column">
+            <div style="position:relative; padding:26px 18px 16px">
+              <sc-if value="{{ p.reco }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; left:0; right:0; top:0; bottom:0; background:#FFF3E2; z-index:0"></span></sc-if>
+              <div style="position:relative; z-index:1; display:flex; align-items:center; justify-content:center; gap:10px">
+                <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:24px; color:#303030">{{ p.alias }}</span>
+                <sc-if value="{{ p.sel }}" hint-placeholder-val="{{ false }}">
+                  <span style="width:24px; height:24px; border-radius:50%; background:#FCAB50; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Outlined'; font-variation-settings:'wght' 300,'GRAD' -25,'opsz' 24; font-size:16px">check</span>
+                </sc-if>
+                <sc-if value="{{ p.notSel }}" hint-placeholder-val="{{ true }}">
+                  <span style="width:24px; height:24px; border-radius:50%; border:1.6px solid #EFEFEF; background:#FFFFFF"></span>
+                </sc-if>
+              </div>
+              <div style="position:relative; z-index:1; font-size:14px; color:#585858; margin-top:2px">{{ p.name }}</div>
+            </div>
+            <div style="padding:4px 20px 22px; flex:1; display:flex; flex-direction:column">
+              <div style="font-size:14px; color:#585858">Pagá</div>
+              <div style="font-family:'DM Sans', sans-serif; font-weight:700; letter-spacing:-1px; color:#303030">
+                <span style="font-size:34px">{{ p.priceLabel }}</span><span style="font-size:14px; font-weight:400; color:#585858; letter-spacing:0; margin-left:4px">/mes</span>
+              </div>
+              <img src="{{ p.illus }}" alt="{{ p.alias }}" style="width:170px; height:auto; display:block; margin:16px auto 10px" />
+              <div style="font-size:14px; color:#585858; line-height:1.45">{{ p.viviendaLabel }} de cobertura<br />máxima de daños</div>
+              <sc-if value="{{ p.notSel }}" hint-placeholder-val="{{ true }}">
+                <div style="font-size:12px; color:#8A8A8A; margin-top:12px">Tocá para elegir</div>
+              </sc-if>
+              <button type="button" onClick="{{ p.onDetail }}" style="width:100%; margin-top:auto; padding-top:12px; border:none; border-top:1px solid #EFEFEF; background:none; display:flex; align-items:center; justify-content:space-between; font-size:14px; font-weight:700; letter-spacing:1px; color:#0095A8" style-hover="color:#00707F">
+                <span>Ver detalle</span><span style="font-size:18px; line-height:1">›</span></button>
+            </div>
+          </div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+
+    <p style="font-size:14px; color:#585858; text-align:center; margin:22px auto 0; max-width:760px; text-wrap:pretty">{{ recoNote }}</p>
+
+    <h2 style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:{{ h2Size }}; margin:{{ h2TopGap }} 0 6px; color:#303030">Tu protección con {{ activeAlias }}</h2>
+    <p style="font-size:{{ h2Sub }}; color:#585858; margin:0 0 14px">Tocá cualquier categoría para ver el detalle completo.</p>
+
+    <div style="display:grid; grid-template-columns:{{ gridCats }}; gap:14px">
+      <sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+        <div onClick="{{ c.onClick }}" style="border:1px solid #EFEFEF; border-radius:12px; background:#FFFFFF; padding:{{ catPad }}; text-align:left; cursor:pointer; display:flex; flex-direction:column" style-hover="border-color:#FCAB50; box-shadow:0 8px 20px -12px rgba(48,48,48,.22)">
+          <span style="width:{{ catIconBox }}; height:{{ catIconBox }}; display:flex; align-items:center; justify-content:flex-start; margin-bottom:{{ catIconGap }}"><img src="{{ c.img }}" alt="" style="width:{{ catIconImg }}; height:{{ catIconImg }}; display:block" /></span>
+          <div style="font-size:{{ catNmSize }}; font-weight:700; color:#585858; margin-bottom:3px">{{ c.nm }}</div>
+          <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:{{ catAmtSize }}; letter-spacing:-0.5px; color:#303030">{{ c.amtLabel }}</div>
+          <div style="display:{{ catDescDisplay }}; font-size:12px; color:#585858; margin-top:8px; line-height:1.4; flex-grow:1">{{ c.desc }}</div>
+          <span style="display:inline-flex; align-items:center; gap:3px; margin-top:{{ catDetailTop }}; background:#EFEFEF; color:#0095A8; border-radius:8px; padding:{{ catDetailPad }}; font-size:11px; font-weight:700; letter-spacing:1px; align-self:flex-start">Ver detalle ›</span>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isO2 }}" hint-placeholder-val="{{ false }}">
+  <div style="max-width:1120px; margin:0 auto; padding:{{ pagePad }}">
+    <div style="position:relative; border:2px solid #EFEFEF; background:#FFFFFF; border-radius:{{ edRadius }}; padding:{{ edPad }}">
+      <sc-if value="{{ o2IsReco }}" hint-placeholder-val="{{ true }}">
+        <span style="position:absolute; inset:-2px; border:2px solid #00C1C6; border-radius:{{ edRadius }}; background:#E0F7F8; z-index:0"></span>
+      </sc-if>
+      <div style="position:relative; z-index:1">
+        <span style="display:inline-block; background:#00C1C6; color:#FFFFFF; font-family:'Roboto', sans-serif; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:5px 14px; border-radius:100px; margin-bottom:16px">{{ o2Eyebrow }}</span>
+        <h3 style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:{{ edNameSize }}; letter-spacing:-1px; margin:0 0 2px; color:#303030">{{ o2Name }}</h3>
+        <p style="font-size:13px; color:#585858; margin:0 0 8px">{{ o2Alias }}</p>
+        <p style="font-size:{{ edTagSize }}; color:#585858; margin:{{ edTagGap }}; max-width:520px; text-wrap:pretty">{{ o2Tagline }}</p>
+
+        <div style="display:grid; grid-template-columns:{{ gridO2Cats }}; gap:{{ edCatsGap }}; margin-bottom:{{ edCatsBottom }}">
+          <sc-for list="{{ o2Cats }}" as="c" hint-placeholder-count="5">
+            <div onClick="{{ c.onClick }}" style="background:#FFFFFF; border:1px solid #EFEFEF; border-radius:10px; padding:{{ edCatPad }}; display:flex; align-items:center; justify-content:space-between; gap:10px; cursor:pointer" style-hover="border-color:#00C1C6">
+              <span style="display:flex; align-items:center; gap:8px; min-width:0; flex:1 1 auto">
+                <span style="width:{{ edCatIcon }}; height:{{ edCatIcon }}; display:flex; align-items:center; justify-content:center; flex-shrink:0"><img src="{{ c.img }}" alt="" style="width:{{ edCatImg }}; height:{{ edCatImg }}; display:block" /></span>
+                <span style="font-size:{{ edCatNm }}; color:#585858; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap">{{ c.nm }}</span>
+              </span>
+              <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:{{ edCatAmt }}; letter-spacing:-0.5px; color:#303030; white-space:nowrap; flex:0 0 auto">{{ c.amtLabel }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:flex; flex-direction:{{ edBottomDir }}; justify-content:space-between; align-items:center; gap:12px">
+          <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:{{ edPriceSize }}; letter-spacing:-1px; color:#303030; align-self:flex-start">{{ o2Price }}<span style="font-family:'Roboto', sans-serif; font-weight:400; font-size:13px; color:#585858; letter-spacing:0"> /mes</span></div>
+          <button type="button" onClick="{{ goCheckoutO2 }}" style="width:{{ edCtaWidth }}; background:#FCAB50; color:#303030; border:none; border-radius:100px; padding:{{ edCtaPad }}; font-size:15px; font-weight:700; letter-spacing:1px" style-hover="background:#F09A38">Elegir esta protección</button>
+        </div>
+        <button type="button" onClick="{{ openAssist }}" style="margin-top:16px; background:none; border:none; padding:0; font-size:14px; font-weight:700; letter-spacing:1px; color:#0095A8" style-hover="text-decoration:underline">Ver asistencias incluidas</button>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:22px; display:flex; flex-direction:column; align-items:center">
+      <p style="font-size:13px; color:#585858; margin:0 0 10px">¿Buscás algo diferente?</p>
+      <div style="display:flex; gap:6px; background:#FFFFFF; border:1px solid #EFEFEF; border-radius:100px; padding:5px; width:{{ hypRowWidth }}">
+        <sc-for list="{{ o2Switch }}" as="s" hint-placeholder-count="3">
+          <button type="button" onClick="{{ s.onClick }}" style="position:relative; flex:{{ hypBtnFlex }}; border:none; background:none; padding:{{ swBtnPad }}; border-radius:100px; font-size:{{ hypBtnFont }}; font-weight:700; letter-spacing:1px; color:#585858; white-space:nowrap">
+            <sc-if value="{{ s.sel }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; inset:0; background:#FCAB50; border-radius:100px"></span></sc-if>
+            <span style="position:relative; z-index:1">{{ s.label }}</span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ showComparison }}" hint-placeholder-val="{{ true }}">
+  <div id="sec-comparar" style="max-width:1120px; margin:0 auto; padding:{{ pagePad }}">
+    <h2 style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:{{ h2Size }}; margin:0 0 6px; color:#303030">Comparar planes</h2>
+    <p style="font-size:16px; color:#585858; margin:0 0 24px">{{ compareSub }}</p>
+
+    <div style="display:grid; grid-template-columns:{{ gridCompare }}; gap:10px; margin-bottom:14px">
+      <sc-for list="{{ compareCols }}" as="col" hint-placeholder-count="3">
+        <div style="position:relative; background:#FFFFFF; border:1px solid #EFEFEF; border-radius:12px; padding:{{ cmpColPad }}; text-align:center">
+          <sc-if value="{{ col.selected }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; inset:-1px; border:2px solid #00C1C6; border-radius:12px; background:#E0F7F8"></span></sc-if>
+          <div style="position:relative; z-index:1">
+            <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+              <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:{{ cmpColAliasFont }}; color:#303030">{{ col.alias }}</div>
+            </sc-if>
+            <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+              <select value="{{ col.level }}" onChange="{{ col.onChange }}" style="width:100%; border:1.5px solid #DEDEDE; border-radius:8px; padding:8px 6px; font-family:'DM Sans', sans-serif; font-weight:700; font-size:13px; color:#303030; background:#FFFFFF">
+                <sc-for list="{{ col.options }}" as="o" hint-placeholder-count="3">
+                  <option value="{{ o.value }}">{{ o.label }}</option>
+                </sc-for>
+              </select>
+            </sc-if>
+            <sc-if value="{{ col.reco }}" hint-placeholder-val="{{ false }}"><div style="font-size:{{ cmpColMetaFont }}; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; color:#0095A8; margin-top:2px">Recomendado</div></sc-if>
+            <div style="font-family:'DM Sans', sans-serif; font-size:{{ cmpColMetaFont }}; color:#585858; margin-top:4px">{{ col.priceLabel }}/mes</div>
+            <sc-if value="{{ col.selected }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top:9px; display:flex; align-items:center; justify-content:center; gap:5px; font-size:{{ cmpColMetaFont }}; font-weight:700; letter-spacing:0.5px; color:#00707F">✓ Seleccionado</div>
+            </sc-if>
+            <sc-if value="{{ col.selectable }}" hint-placeholder-val="{{ true }}">
+              <button type="button" onClick="{{ col.onSelect }}" style="margin-top:9px; width:100%; background:#FFFFFF; border:1.5px solid #FCAB50; color:#303030; border-radius:100px; padding:8px 6px; font-size:{{ cmpColMetaFont }}; font-weight:700; letter-spacing:0.5px" style-hover="background:#FFF3E2">Seleccionar</button>
+            </sc-if>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <div style="background:#FFFFFF; border:1px solid #EFEFEF; border-radius:14px; overflow:hidden">
+      <div style="display:flex; align-items:center; gap:8px; padding:{{ cmpHeadPad }}; background:#FAFAFA">
+        <span style="flex:{{ cmpLabelFlex }}"></span>
+        <sc-for list="{{ compareHead }}" as="h" hint-placeholder-count="3">
+          <span style="flex:1; text-align:center; padding-left:{{ h.padL }}; font-size:{{ cmpColMetaFont }}; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; color:{{ h.color }}">{{ h.alias }}</span>
+        </sc-for>
+        <span style="flex:0 0 14px"></span>
+      </div>
+      <sc-for list="{{ compareRows }}" as="r" hint-placeholder-count="5">
+        <div onClick="{{ r.onClick }}" style="display:flex; align-items:center; gap:8px; padding:{{ cmpRowPad }}; border-top:1px solid #EFEFEF; cursor:pointer" style-hover="background:#FAFAFA">
+          <span style="flex:{{ cmpLabelFlex }}; display:flex; align-items:center; gap:6px; min-width:0">
+            <span style="width:26px; height:26px; display:flex; align-items:center; justify-content:center; flex-shrink:0"><img src="{{ r.img }}" alt="" style="width:24px; height:24px; display:block" /></span>
+            <span style="display:flex; flex-direction:column; min-width:0">
+              <span style="font-family:'DM Sans', sans-serif; font-size:{{ cmpLabelFont }}; font-weight:700; color:#303030">{{ r.label }}</span>
+              <span style="font-size:12px; color:#585858; margin-top:2px">{{ r.hint }}</span>
+            </span>
+          </span>
+          <sc-for list="{{ r.cells }}" as="c" hint-placeholder-count="3">
+            <span style="flex:1; text-align:center; padding-left:{{ c.padL }}">
+              <sc-if value="{{ c.included }}" hint-placeholder-val="{{ true }}">
+                <span style="font-family:'DM Sans', sans-serif; font-size:{{ cellFont }}; font-weight:700; color:#00707F">{{ c.txt }}</span>
+              </sc-if>
+              <sc-if value="{{ c.excluded }}" hint-placeholder-val="{{ false }}">
+                <span style="font-family:'Roboto', sans-serif; font-size:13px; font-weight:400; color:#585858">No incluido</span>
+              </sc-if>
+            </span>
+          </sc-for>
+          <span style="flex:0 0 14px; text-align:right; color:#585858; font-size:18px">›</span>
+        </div>
+      </sc-for>
+    </div>
+    <p style="font-size:14px; color:#585858; text-align:center; margin:14px 0 0">Tocá cualquier fila para ver el detalle completo de esa categoría.</p>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+    <div id="sec-asistencias" style="background:#FFFFFF; border-top:1px solid #EFEFEF; padding:18px; scroll-margin-top:12px">
+      <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:16px; color:#303030; margin-bottom:4px">Conocé lo que ofrece tu seguro de hogar</div>
+      <p style="font-size:12.5px; color:#585858; margin:0 0 12px">Estas asistencias están incluidas en los tres niveles.</p>
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <sc-for list="{{ assists }}" as="a" hint-placeholder-count="6">
+          <div style="border:1px solid #EFEFEF; border-radius:12px; background:#FFFFFF; padding:14px">
+            <div style="display:flex; align-items:center; gap:9px; margin-bottom:6px">
+              <img src="{{ a.img }}" alt="" style="width:26px; height:26px; display:block; flex-shrink:0" />
+              <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:15px; color:#303030">{{ a.nm }}</div>
+            </div>
+            <div style="font-size:13px; color:#585858; line-height:1.45">{{ a.desc }}</div>
+            <sc-if value="{{ a.open }}" hint-placeholder-val="{{ false }}">
+              <ul style="margin:9px 0 0; padding-left:17px; font-size:12.5px; color:#585858; line-height:1.45">
+                <sc-for list="{{ a.items }}" as="it" hint-placeholder-count="2">
+                  <li style="margin-bottom:5px">{{ it }}</li>
+                </sc-for>
+              </ul>
+            </sc-if>
+            <button type="button" onClick="{{ a.onToggle }}" style="margin-top:9px; background:none; border:none; padding:0; font-size:12px; font-weight:700; letter-spacing:1px; color:#0095A8">{{ a.toggleLabel }}</button>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+  <div style="background:#FFFFFF; border-top:1px solid #EFEFEF; display:{{ assistIllusDisplay }}">
+    <div style="max-width:1120px; margin:0 auto; padding:{{ assistSectionPad }}">
+      <div style="display:grid; grid-template-columns:{{ gridAssistSection }}; gap:48px; align-items:start">
+        <div>
+          <h2 id="sec-asistencias" style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:32px; margin:0 0 6px; color:#303030; scroll-margin-top:12px">Conocé lo que ofrece tu seguro de hogar</h2>
+          <p style="font-size:16px; color:#585858; margin:0 0 26px; max-width:560px; text-wrap:pretty">Estas asistencias están incluidas en los tres niveles, más allá de cuál elijas.</p>
+          <div style="display:grid; grid-template-columns:{{ gridAssist }}; gap:14px; align-items:start">
+            <sc-for list="{{ assists }}" as="a" hint-placeholder-count="6">
+              <div style="border:1px solid #EFEFEF; border-radius:12px; background:#FFFFFF; padding:18px 16px">
+                <span style="width:44px; height:44px; border-radius:11px; background:transparent; display:flex; align-items:center; justify-content:center; margin-bottom:12px"><img src="{{ a.img }}" alt="" style="width:28px; height:28px; display:block" /></span>
+                <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:16px; color:#303030; margin-bottom:6px">{{ a.nm }}</div>
+                <div style="font-size:14px; color:#585858; line-height:1.45">{{ a.desc }}</div>
+                <sc-if value="{{ a.open }}" hint-placeholder-val="{{ false }}">
+                  <ul style="margin:12px 0 0; padding-left:18px; font-size:13px; color:#585858; line-height:1.45">
+                    <sc-for list="{{ a.items }}" as="it" hint-placeholder-count="3">
+                      <li style="margin-bottom:6px">{{ it }}</li>
+                    </sc-for>
+                  </ul>
+                </sc-if>
+                <button type="button" onClick="{{ a.onToggle }}" style="margin-top:10px; background:none; border:none; padding:0; font-size:12px; font-weight:700; letter-spacing:1px; color:#0095A8" style-hover="text-decoration:underline">{{ a.toggleLabel }}</button>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <img src="assets/ilus-incendio.png" alt="Asistencia ante siniestros en el hogar" style="width:100%; height:auto; display:block; margin-top:60px" />
+      </div>
+    </div>
+  </div>
+
+  <div style="max-width:1120px; margin:0 auto; padding:48px 32px 40px; text-align:center">
+    <p style="font-size:14px; color:#585858; max-width:620px; margin:0 auto; text-wrap:pretty">Home / Hogar — dos hipótesis de experiencia sobre el mismo contenido y montos reales de qualiaseguros.com.ar/seguro-hogar. Coberturas completas por nivel cargadas con los datos provistos.</p>
+  </div>
+
+  <sc-if value="{{ ctaIsFooter }}" hint-placeholder-val="{{ true }}">
+  <div style="{{ ctaWrapStyle }}">
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <span style="display:flex; flex-direction:column; gap:1px; min-width:0">
+        <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:16px; color:#303030">{{ activeAlias }}</span>
+        <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:16px; color:#00707F">{{ activePrice }}<span style="font-family:'Roboto', sans-serif; font-weight:400; font-size:12px; color:#585858"> /mes</span></span>
+        <button type="button" onClick="{{ openActiveDetail }}" style="background:none; border:none; padding:0; font-size:11.5px; font-weight:700; letter-spacing:0.5px; color:#00707F; text-align:left; text-decoration:underline">Ver detalle</button>
+      </span>
+      <button type="button" onClick="{{ goCheckout }}" style="background:#FCAB50; color:#303030; border:none; border-radius:100px; padding:12px 20px; font-size:14px; font-weight:700; letter-spacing:1px; white-space:nowrap; flex-shrink:0" style-hover="background:#F09A38">Contratar</button>
+    </sc-if>
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <span style="grid-column:1; grid-row:1/3; width:46px; height:46px; border-radius:12px; background:#E0F7F8; display:flex; align-items:center; justify-content:center"><img src="assets/ic-hogar-black.png" alt="Seguro de hogar" style="width:30px; height:30px; display:block" /></span>
+      <span style="grid-column:2; grid-row:1/3; display:flex; flex-direction:column; gap:1px">
+        <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:18px; color:#303030">{{ activeAlias }}</span>
+        <span style="font-size:14px; color:#0095A8">{{ activeName }}</span>
+      </span>
+      <span style="grid-column:4; grid-row:1; justify-self:end; font-family:'DM Sans', sans-serif; font-weight:700; font-size:24px; letter-spacing:-1px; color:#303030">{{ activePrice }}<span style="font-family:'Roboto', sans-serif; font-weight:400; font-size:13px; color:#585858; letter-spacing:0"> /mes</span></span>
+      <span style="grid-column:4; grid-row:2; justify-self:end; font-size:12px; color:#585858">Hasta {{ activeVivienda }} de cobertura máxima</span>
+      <button type="button" onClick="{{ goCheckout }}" style="grid-column:5; grid-row:1/3; align-self:center; background:#FCAB50; color:#303030; border:none; border-radius:100px; padding:16px 32px; font-size:16px; font-weight:700; letter-spacing:1px; white-space:nowrap; margin-left:8px" style-hover="background:#F09A38">Contratá {{ activeAlias }}</button>
+    </sc-if>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ ctaIsRight }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed; right:22px; top:230px; width:236px; background:#FFFFFF; border:2px solid #FCAB50; border-radius:16px; padding:16px; display:flex; flex-direction:column; gap:10px; box-shadow:0 16px 40px -14px rgba(48,48,48,.32); z-index:70">
+    <span style="font-family:'Roboto', sans-serif; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#8A8A8A">Tu protección elegida</span>
+    <span style="display:flex; flex-direction:column; gap:1px">
+      <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:20px; color:#303030">{{ activeAlias }}</span>
+      <span style="font-size:13px; color:#0095A8">{{ activeName }}</span>
+    </span>
+    <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:22px; letter-spacing:-1px; color:#303030">{{ activePrice }}<span style="font-family:'Roboto', sans-serif; font-weight:400; font-size:13px; color:#585858; letter-spacing:0"> /mes</span></span>
+    <button type="button" onClick="{{ goCheckout }}" style="width:100%; background:#FCAB50; color:#303030; border:none; border-radius:100px; padding:13px 16px; font-size:14px; font-weight:700; letter-spacing:1px" style-hover="background:#F09A38">Contratá {{ activeAlias }}</button>
+  </div>
+  </sc-if>
+
+  <sc-if value="{{ showNotes }}" hint-placeholder-val="{{ false }}">
+    <button type="button" onClick="{{ toggleNotes }}" style="position:fixed; right:22px; bottom:112px; z-index:80; background:#303030; color:#FFFFFF; border:none; border-radius:100px; padding:13px 20px; font-size:14px; font-weight:700; letter-spacing:1px; display:flex; align-items:center; gap:8px; box-shadow:0 14px 34px -12px rgba(48,48,48,.5)">
+      <span style="width:8px; height:8px; border-radius:50%; background:#00C1C6"></span>Por qué así</button>
+  </sc-if>
+
+  <sc-if value="{{ notesOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed; right:22px; bottom:166px; z-index:80; width:380px; background:#FFFFFF; border:1px solid #EFEFEF; border-radius:14px; box-shadow:0 24px 60px -20px rgba(48,48,48,.4); padding:22px; max-height:64vh; overflow-y:auto">
+      <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:18px; margin:0 0 4px; color:#303030">{{ notesTitle }}</div>
+      <p style="font-size:12px; color:#585858; margin:0 0 16px">Fundamentos ligados al benchmark y a la Evidencia de Fuentes.</p>
+      <sc-for list="{{ notes }}" as="n" hint-placeholder-count="4">
+        <div style="padding:12px 0; border-top:1px solid #EFEFEF">
+          <span style="display:inline-block; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#0095A8; background:#E0F7F8; padding:3px 9px; border-radius:100px; margin-bottom:7px">{{ n.src }}</span>
+          <p style="font-size:14px; color:#585858; margin:0; line-height:1.5">{{ n.txt }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+
+</div>
+</sc-if>
+
+<sc-if value="{{ isCompare }}" hint-placeholder-val="{{ false }}">
+<div>
+  <div style="background:#FFFFFF; border-bottom:1px solid #EFEFEF">
+    <div style="max-width:1240px; margin:0 auto; padding:{{ shellPad }}; display:flex; align-items:center; justify-content:space-between; gap:24px">
+      <img src="assets/logo-qualia.png" alt="Qualia — Un seguro de tu lado" style="height:34px; width:auto; display:block; flex-shrink:0" />
+      <span style="font-family:'Roboto', sans-serif; font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:#9A9A9A">Comparador</span>
+    </div>
+  </div>
+
+  <div style="background:#FFFFFF; padding:{{ cmpHeroPad }}">
+    <div style="max-width:1240px; margin:0 auto; display:flex; flex-direction:column; gap:14px">
+      <div style="display:flex; align-items:center; gap:10px">
+        <img src="{{ cmpProdIcon }}" alt="" style="width:30px; height:30px; display:block" />
+        <span style="font-family:'Roboto', sans-serif; font-size:11px; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:#00707F">Seguro de {{ cmpProdLabel }}</span>
+      </div>
+      <h1 style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:{{ cmpH1 }}; line-height:1.08; letter-spacing:-.02em; color:#303030; margin:0; text-wrap:pretty">Compará y elegí tu plan de {{ cmpProdLabel }}.</h1>
+      <p style="font-size:{{ cmpTagFont }}; line-height:1.45; color:#585858; margin:0; max-width:620px; text-wrap:pretty">{{ cmpTagline }}</p>
+      <div style="display:flex; gap:{{ cmpChipGap }}; overflow-x:{{ cmpChipOverflow }}; padding:6px 0 2px; margin:0 -2px">
+        <sc-for list="{{ cmpProducts }}" as="p" hint-placeholder-count="7">
+          <button type="button" onClick="{{ p.onClick }}" title="{{ p.label }}" aria-label="{{ p.label }}" style="display:flex; align-items:center; justify-content:center; gap:8px; flex:{{ cmpChipFlex }}; padding:{{ cmpChipPad }}; border-radius:{{ cmpChipRadius }}; background:{{ p.bg }}; border:{{ p.border }}; cursor:pointer">
+            <img src="{{ p.icon }}" alt="" style="width:24px; height:24px; display:block" />
+            <span style="display:{{ cmpChipTextDisplay }}; flex-direction:column; align-items:flex-start; line-height:1.1">
+              <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:13px; color:{{ p.color }}; white-space:nowrap">{{ p.label }}</span>
+              <span style="font-family:'Roboto', sans-serif; font-size:10px; color:#8A8A8A; white-space:nowrap">{{ p.count }}</span>
+            </span>
+          </button>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:{{ cmpTablePad }}">
+    <div style="max-width:1240px; margin:0 auto; overflow-x:{{ cmpOverflow }}; background:#FFFFFF; border:1px solid #EFEFEF; border-radius:20px">
+      <div style="display:grid; grid-template-columns:{{ cmpGrid }}; min-width:{{ cmpMinWidth }}; align-items:stretch">
+
+        <div style="position:sticky; left:0; z-index:3; background:#FFFFFF; padding:{{ cmpColPad }}; border-bottom:1px solid #EFEFEF; display:flex; align-items:flex-end">
+          <span style="font-family:'Roboto', sans-serif; font-size:11px; font-weight:700; letter-spacing:1.2px; text-transform:uppercase; color:#9A9A9A">{{ cmpPlanCount }}</span>
+        </div>
+        <sc-for list="{{ cmpCols }}" as="c" hint-placeholder-count="3">
+          <div style="background:{{ c.bg }}; padding:{{ cmpColPad }}; border-bottom:1px solid #EFEFEF; border-left:1px solid #F5F5F5; display:flex; flex-direction:column; gap:8px; position:relative; min-width:0">
+            <sc-if value="{{ c.reco }}" hint-placeholder-val="{{ false }}">
+              <span style="align-self:flex-start; max-width:100%; background:#FFF3E2; color:#8A5A12; font-family:'Roboto', sans-serif; font-size:{{ cmpPillFont }}; font-weight:700; letter-spacing:{{ cmpPillTrack }}; text-transform:uppercase; padding:3px 8px; border-radius:100px; overflow:hidden; text-overflow:ellipsis">{{ cmpPillLabel }}</span>
+            </sc-if>
+            <sc-if value="{{ c.canPick }}" hint-placeholder-val="{{ false }}">
+              <select value="{{ c.pickValue }}" onChange="{{ c.onPick }}" style="width:100%; border:1.5px solid #DEDEDE; border-radius:8px; padding:7px 6px; font-family:'DM Sans', sans-serif; font-weight:700; font-size:13px; color:#303030; background:#FFFFFF">
+                <sc-for list="{{ c.options }}" as="o" hint-placeholder-count="3">
+                  <option value="{{ o.value }}">{{ o.label }}</option>
+                </sc-for>
+              </select>
+            </sc-if>
+            <div style="display:flex; flex-direction:column; gap:1px">
+              <sc-if value="{{ c.showAlias }}" hint-placeholder-val="{{ true }}">
+                <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:{{ cmpAliasFont }}; color:#303030; line-height:1.15">{{ c.alias }}</span>
+              </sc-if>
+              <span style="font-size:11.5px; color:#8A8A8A; line-height:1.25">{{ c.name }}</span>
+            </div>
+            <div style="display:flex; align-items:baseline; gap:4px">
+              <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:{{ cmpPriceFont }}; color:#303030; line-height:1">{{ c.price }}</span>
+              <span style="font-size:11px; color:#8A8A8A">/mes</span>
+            </div>
+            <button type="button" onClick="{{ c.onClick }}" style="margin-top:2px; background:{{ c.btnBg }}; color:{{ c.btnColor }}; border:{{ c.btnBorder }}; border-radius:100px; padding:8px 12px; font-family:'DM Sans', sans-serif; font-weight:700; font-size:12px; letter-spacing:.5px; cursor:pointer; white-space:nowrap">{{ c.btnLabel }}</button>
+          </div>
+        </sc-for>
+
+        <sc-for list="{{ cmpCells }}" as="x" hint-placeholder-count="60">
+          <sc-if value="{{ x.isGroup }}" hint-placeholder-val="{{ false }}">
+            <div style="grid-column:1 / -1; position:sticky; left:0; background:#FAFAFA; padding:{{ cmpGroupPad }}; border-top:1px solid #EFEFEF; border-bottom:1px solid #EFEFEF; min-width:0">
+              <span style="font-family:'Roboto', sans-serif; font-size:{{ cmpGroupFont }}; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:#585858">{{ x.text }}</span>
+            </div>
+          </sc-if>
+          <sc-if value="{{ x.isLabel }}" hint-placeholder-val="{{ false }}">
+            <div style="position:sticky; left:0; z-index:2; background:#FFFFFF; padding:{{ cmpCellPad }}; border-bottom:1px solid #F5F5F5; display:flex; flex-direction:column; gap:1px; min-width:0">
+              <span style="font-size:{{ cmpLabelFont }}; color:#303030; line-height:1.3; text-wrap:pretty">{{ x.text }}</span>
+              <sc-if value="{{ x.hasHint }}" hint-placeholder-val="{{ false }}">
+                <span style="font-size:11px; color:#9A9A9A; line-height:1.25">{{ x.hint }}</span>
+              </sc-if>
+            </div>
+          </sc-if>
+          <sc-if value="{{ x.isVal }}" hint-placeholder-val="{{ true }}">
+            <div style="background:{{ x.bg }}; padding:{{ cmpCellPad }}; border-bottom:1px solid #F5F5F5; border-left:1px solid #F5F5F5; display:flex; align-items:center; min-width:0">
+              <span style="font-family:'DM Sans', sans-serif; font-size:{{ cmpValFont }}; font-weight:{{ x.weight }}; color:{{ x.color }}; line-height:1.3; text-wrap:pretty">{{ x.text }}</span>
+            </div>
+          </sc-if>
+        </sc-for>
+
+      </div>
+    </div>
+  </div>
+
+  <div style="{{ cmpCtaStyle }}">
+    <span style="display:flex; flex-direction:column; gap:1px; min-width:0">
+      <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:16px; color:#303030">{{ cmpProdLabel }} · {{ cmpSelAlias }}</span>
+      <span style="font-size:12px; color:#8A8A8A; white-space:nowrap; overflow:hidden; text-overflow:ellipsis">{{ cmpSelPrice }} /mes · {{ cmpSelName }}</span>
+    </span>
+    <button type="button" onClick="{{ goCompareCheckout }}" style="background:#FCAB50; color:#303030; border:none; border-radius:100px; padding:13px 26px; font-family:'DM Sans', sans-serif; font-weight:700; font-size:13px; letter-spacing:1px; white-space:nowrap; cursor:pointer">CONTRATAR</button>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCheckout }}" hint-placeholder-val="{{ false }}">
+<div>
+  <div style="background:#FFFFFF; border-bottom:1px solid #EFEFEF">
+    <div style="max-width:980px; margin:0 auto; padding:{{ checkoutShellPad }}; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap">
+      <div style="display:flex; align-items:center; gap:16px">
+        <img src="assets/logo-qualia.png" alt="Qualia" style="height:28px; width:auto; display:block" />
+        <span style="font-size:14px; color:#585858; border-left:1px solid #EFEFEF; padding-left:16px">Seguro de Hogar</span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px">
+        <button type="button" onClick="{{ backHome }}" style="background:#FFFFFF; border:1.5px solid #EFEFEF; color:#585858; border-radius:100px; padding:10px 18px; font-size:14px; font-weight:700; letter-spacing:1px; white-space:nowrap" style-hover="border-color:#00C1C6; color:#00707F">← Volver</button>
+      </div>
+    </div>
+  </div>
+
+  <div style="padding:{{ checkoutPad }}; display:flex; justify-content:center">
+    <div style="width:100%; max-width:980px">
+      <div style="background:#FFFFFF; border:1px solid #EFEFEF; border-radius:20px; box-shadow:0 12px 32px -20px rgba(48,48,48,.18)">
+
+        <div style="display:flex; align-items:flex-start; padding:24px 28px 6px">
+          <sc-for list="{{ steps }}" as="s" hint-placeholder-count="3">
+            <div style="display:flex; flex-direction:column; align-items:center; flex:1; position:relative">
+              <sc-if value="{{ s.barDone }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; top:15px; left:-50%; width:100%; height:2px; background:#FCAB50; z-index:0"></span></sc-if>
+              <sc-if value="{{ s.barOff }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; top:15px; left:-50%; width:100%; height:2px; background:#EFEFEF; z-index:0"></span></sc-if>
+              <sc-if value="{{ s.done }}" hint-placeholder-val="{{ false }}">
+                <span style="width:32px; height:32px; border-radius:50%; background:#FCAB50; border:2px solid #FCAB50; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Outlined'; font-variation-settings:'wght' 300,'GRAD' -25,'opsz' 20; font-size:18px; z-index:1">check</span>
+              </sc-if>
+              <sc-if value="{{ s.now }}" hint-placeholder-val="{{ true }}">
+                <span style="width:32px; height:32px; border-radius:50%; background:#FFFFFF; border:2px solid #FCAB50; color:#B96F13; display:flex; align-items:center; justify-content:center; font-family:'DM Sans', sans-serif; font-size:14px; font-weight:700; box-shadow:0 0 0 4px #FFF3E2; z-index:1">{{ s.n }}</span>
+              </sc-if>
+              <sc-if value="{{ s.todo }}" hint-placeholder-val="{{ false }}">
+                <span style="width:32px; height:32px; border-radius:50%; background:#FFFFFF; border:2px solid #EFEFEF; color:#8A8A8A; display:flex; align-items:center; justify-content:center; font-family:'DM Sans', sans-serif; font-size:14px; font-weight:700; z-index:1">{{ s.n }}</span>
+              </sc-if>
+              <span style="font-size:12px; font-weight:700; color:{{ s.labelColor }}; margin-top:8px; text-align:center">{{ s.label }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid; grid-template-columns:{{ gridCheckout }}">
+          <div style="padding:{{ checkoutMainPad }}; min-height:{{ checkoutMainMinH }}">
+
+            <sc-if value="{{ isStepDatos }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <h2 style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:24px; letter-spacing:-0.5px; margin:0 0 6px; color:#303030">Tu Seguro de Hogar</h2>
+              <p style="font-size:14px; color:#585858; margin:0 0 20px; max-width:460px">Revisá el plan que elegiste y completá tus datos para avanzar.</p>
+
+              <div style="border:1.5px solid #00C1C6; background:#E0F7F8; border-radius:14px; padding:20px; margin-bottom:20px">
+                <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px">
+                  <div>
+                    <div style="display:flex; align-items:center; gap:9px; font-family:'DM Sans', sans-serif; font-weight:700; font-size:18px; color:#00707F">
+                      <img src="assets/ic-hogar-black.png" alt="" style="width:26px; height:26px; display:block" />{{ activeAlias }}</div>
+                    <div style="display:flex; align-items:center; gap:7px; margin-top:8px; font-size:13px; font-weight:700; color:#00707F">
+                      <span style="width:18px; height:18px; border-radius:50%; background:#00C1C6; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Outlined'; font-variation-settings:'wght' 300,'GRAD' -25,'opsz' 20; font-size:13px">check</span>Plan seleccionado</div>
+                  </div>
+                  <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:24px; letter-spacing:-1px; color:#00707F; white-space:nowrap">{{ activePrice }}<span style="font-family:'Roboto', sans-serif; font-weight:400; font-size:13px"> /mes</span></div>
+                </div>
+                <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:16px">
+                  <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+                    <button type="button" onClick="{{ openSummary }}" style="background:#00C1C6; border:1.5px solid #00C1C6; color:#FFFFFF; border-radius:100px; padding:9px 18px; font-size:13px; font-weight:700; letter-spacing:1px" style-hover="background:#00707F; border-color:#00707F">Ver resumen</button>
+                  </sc-if>
+                  <button type="button" onClick="{{ openPlanSwitch }}" style="background:none; border:1.5px solid #00C1C6; color:#00707F; border-radius:100px; padding:9px 18px; font-size:13px; font-weight:700; letter-spacing:1px" style-hover="background:#00C1C6; color:#FFFFFF">Cambiar plan</button>
+                </div>
+              </div>
+
+              <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:18px; margin:0 0 14px; color:#303030">Tus datos</div>
+              <div style="display:flex; flex-direction:column; gap:14px; max-width:520px">
+                <label style="display:block">
+                  <span style="display:block; font-size:13px; font-weight:700; color:#303030; margin-bottom:6px">DNI</span>
+                  <input type="text" value="{{ fDni }}" onChange="{{ onDni }}" placeholder="Ej: 34.556.789" style="width:100%; border:1.5px solid #EFEFEF; border-radius:10px; padding:12px 13px; font-size:15px; color:#303030" />
+                </label>
+                <label style="display:block">
+                  <span style="display:block; font-size:13px; font-weight:700; color:#303030; margin-bottom:6px">Nombre y apellido</span>
+                  <input type="text" value="{{ fNombre }}" onChange="{{ onNombre }}" placeholder="Como figura en tu documento" style="width:100%; border:1.5px solid #EFEFEF; border-radius:10px; padding:12px 13px; font-size:15px; color:#303030" />
+                </label>
+                <label style="display:block">
+                  <span style="display:block; font-size:13px; font-weight:700; color:#303030; margin-bottom:6px">Email</span>
+                  <input type="email" value="{{ fMail }}" onChange="{{ onMail }}" placeholder="tu@email.com" style="width:100%; border:1.5px solid #EFEFEF; border-radius:10px; padding:12px 13px; font-size:15px; color:#303030" />
+                  <span style="display:block; font-size:12px; color:#585858; margin-top:5px">A este correo te vamos a enviar tu póliza.</span>
+                </label>
+                <label style="display:block">
+                  <span style="display:block; font-size:13px; font-weight:700; color:#303030; margin-bottom:6px">Teléfono</span>
+                  <input type="tel" value="{{ fTel }}" onChange="{{ onTel }}" placeholder="Ej: 11 2345 6789" style="width:100%; border:1.5px solid #EFEFEF; border-radius:10px; padding:12px 13px; font-size:15px; color:#303030" />
+                </label>
+                <label style="display:flex; align-items:flex-start; gap:9px; font-size:13px; color:#585858; line-height:1.45">
+                  <input type="checkbox" checked="{{ cTerms }}" onChange="{{ onTerms }}" style="margin-top:3px; accent-color:#00C1C6" />
+                  Acepto los Términos y Condiciones y la Política de Privacidad de Qualia.
+                </label>
+                <button type="button" onClick="{{ goValidacion }}" style="background:#FCAB50; color:#303030; border:none; border-radius:11px; padding:14px 22px; font-size:15px; font-weight:700; letter-spacing:1px" style-hover="background:#0095A8">Continuar</button>
+              </div>
+            </div>
+            </sc-if>
+
+            <sc-if value="{{ isStepValidacion }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex; align-items:center; gap:10px; background:#E0F7F8; border:1.5px solid #00C1C6; border-radius:12px; padding:10px 12px; margin-bottom:16px">
+                  <span style="display:flex; flex-direction:column; gap:1px; min-width:0; flex:1 1 auto">
+                    <span style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#0095A8">Plan seleccionado</span>
+                    <span style="display:flex; align-items:baseline; gap:7px; min-width:0">
+                      <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:14px; color:#303030; white-space:nowrap">{{ activeAlias }}</span>
+                      <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:14px; color:#00707F; white-space:nowrap">{{ activePrice }}<span style="font-family:'Roboto', sans-serif; font-weight:400; font-size:11px; color:#585858"> /mes</span></span>
+                    </span>
+                  </span>
+                  <button type="button" onClick="{{ openSummary }}" style="background:#00C1C6; border:none; color:#FFFFFF; border-radius:100px; padding:8px 14px; font-size:12px; font-weight:700; letter-spacing:1px; white-space:nowrap; flex-shrink:0">Ver resumen</button>
+                </div>
+              </sc-if>
+              <button type="button" onClick="{{ backToDatos }}" style="background:none; border:none; padding:0; margin-bottom:14px; font-size:14px; font-weight:700; color:#585858" style-hover="color:#303030">← Volver atrás</button>
+              <h2 style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:24px; letter-spacing:-0.5px; margin:0 0 6px; color:#303030">Verificá tu identidad</h2>
+              <p style="font-size:14px; color:#585858; margin:0 0 20px; max-width:460px">Para poder verificar tu identidad, seleccioná tu nombre y tu dirección.</p>
+
+              <sc-if value="{{ valSelecting }}" hint-placeholder-val="{{ true }}">
+              <div>
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:18px">
+                  <span style="display:flex; gap:5px">
+                    <sc-for list="{{ pips }}" as="p" hint-placeholder-count="3">
+                      <span style="width:10px; height:10px; border-radius:50%; background:{{ p.color }}"></span>
+                    </sc-for>
+                  </span>
+                  <span style="font-size:13px; font-weight:700; color:#585858">{{ pipsLabel }}</span>
+                </div>
+
+                <div style="display:grid; grid-template-columns:{{ gridValidacion }}; gap:22px; margin-bottom:10px">
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#585858; margin-bottom:9px">Nombre</div>
+                    <sc-for list="{{ valNames }}" as="o" hint-placeholder-count="7">
+                      <div onClick="{{ o.onClick }}" style="position:relative; border:1.5px solid #EFEFEF; border-radius:10px; padding:10px 12px; margin-bottom:8px; font-size:13px; color:#303030; cursor:pointer; display:flex; align-items:center; gap:9px" style-hover="border-color:#8FE3E6">
+                        <sc-if value="{{ o.sel }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; inset:-1.5px; border:1.5px solid #00C1C6; border-radius:10px; background:#E0F7F8"></span></sc-if>
+                        <span style="position:relative; width:16px; height:16px; border-radius:50%; border:1.5px solid #B8B8B8; background:#FFFFFF; flex-shrink:0; display:flex; align-items:center; justify-content:center">
+                          <sc-if value="{{ o.sel }}" hint-placeholder-val="{{ false }}"><span style="width:8px; height:8px; border-radius:50%; background:#00C1C6"></span></sc-if>
+                        </span>
+                        <span style="position:relative">{{ o.label }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                  <div>
+                    <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#585858; margin-bottom:9px">Calle y número</div>
+                    <sc-for list="{{ valAddrs }}" as="o" hint-placeholder-count="7">
+                      <div onClick="{{ o.onClick }}" style="position:relative; border:1.5px solid #EFEFEF; border-radius:10px; padding:10px 12px; margin-bottom:8px; font-size:13px; color:#303030; cursor:pointer; display:flex; align-items:center; gap:9px" style-hover="border-color:#8FE3E6">
+                        <sc-if value="{{ o.sel }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; inset:-1.5px; border:1.5px solid #00C1C6; border-radius:10px; background:#E0F7F8"></span></sc-if>
+                        <span style="position:relative; width:16px; height:16px; border-radius:50%; border:1.5px solid #B8B8B8; background:#FFFFFF; flex-shrink:0; display:flex; align-items:center; justify-content:center">
+                          <sc-if value="{{ o.sel }}" hint-placeholder-val="{{ false }}"><span style="width:8px; height:8px; border-radius:50%; background:#00C1C6"></span></sc-if>
+                        </span>
+                        <span style="position:relative">{{ o.label }}</span>
+                      </div>
+                    </sc-for>
+                  </div>
+                </div>
+
+                <sc-if value="{{ valError }}" hint-placeholder-val="{{ false }}">
+                  <div style="background:#FBEAE9; border:1.5px solid #F2C1BC; color:#7A1D16; border-radius:10px; padding:12px 14px; font-size:13px; font-weight:700; margin:6px 0 18px">{{ valErrorMsg }}</div>
+                </sc-if>
+
+                <sc-if value="{{ valCanSubmit }}" hint-placeholder-val="{{ false }}">
+                  <button type="button" onClick="{{ intentarValidar }}" style="width:100%; background:#FCAB50; color:#303030; border:none; border-radius:11px; padding:14px 22px; font-size:15px; font-weight:700; letter-spacing:1px" style-hover="background:#0095A8">Validar identidad</button>
+                </sc-if>
+                <sc-if value="{{ valCannotSubmit }}" hint-placeholder-val="{{ true }}">
+                  <div style="width:100%; background:#EFEFEF; color:#8A8A8A; border-radius:11px; padding:14px 22px; font-family:'DM Sans', sans-serif; font-size:15px; font-weight:700; letter-spacing:1px; text-align:center">Validar identidad</div>
+                </sc-if>
+              </div>
+              </sc-if>
+
+              <sc-if value="{{ valConfirming }}" hint-placeholder-val="{{ false }}">
+              <div>
+                <div style="border:1.5px solid #00C1C6; border-radius:14px; overflow:hidden">
+                  <div style="background:#E0F7F8; padding:14px 18px; display:flex; align-items:center; gap:10px">
+                    <span style="width:28px; height:28px; border-radius:50%; background:#00C1C6; color:#FFFFFF; display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Outlined'; font-variation-settings:'wght' 300,'GRAD' -25,'opsz' 20; font-size:18px; flex-shrink:0">check</span>
+                    <span style="display:flex; flex-direction:column">
+                      <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:15px; color:#00707F">Identidad validada correctamente</span>
+                      <span style="font-size:13px; color:#0095A8">Confirmamos estos datos</span>
+                    </span>
+                  </div>
+                  <div style="padding:16px 18px; display:flex; flex-direction:column; gap:11px">
+                    <div style="display:flex; justify-content:space-between; gap:12px; font-size:14px"><span style="color:#585858">Nombre completo</span><span style="font-weight:700; color:#303030; text-align:right">{{ validatedName }}</span></div>
+                    <div style="display:flex; justify-content:space-between; gap:12px; font-size:14px"><span style="color:#585858">Dirección registrada</span><span style="font-weight:700; color:#303030; text-align:right">{{ validatedAddress }}</span></div>
+                  </div>
+                  <div style="border-top:1px solid #EFEFEF; padding:15px 18px; background:#FAFAFA">
+                    <p style="font-size:14px; font-weight:700; margin:0 0 10px; color:#303030">¿Esta es la dirección que querés asegurar?</p>
+                    <div style="display:flex; gap:10px">
+                      <button type="button" onClick="{{ pickYes }}" style="position:relative; flex:1; padding:10px; border-radius:9px; border:1.5px solid #EFEFEF; background:#FFFFFF; font-size:14px; font-weight:700; color:#303030">
+                        <sc-if value="{{ addrYes }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; inset:-1.5px; border-radius:9px; background:#00C1C6"></span></sc-if>
+                        <span style="position:relative; color:{{ yesColor }}">Sí</span></button>
+                      <button type="button" onClick="{{ pickNo }}" style="position:relative; flex:1; padding:10px; border-radius:9px; border:1.5px solid #EFEFEF; background:#FFFFFF; font-size:14px; font-weight:700; color:#303030">
+                        <sc-if value="{{ addrNo }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; inset:-1.5px; border-radius:9px; background:#00C1C6"></span></sc-if>
+                        <span style="position:relative; color:{{ noColor }}">No</span></button>
+                    </div>
+                  </div>
+                  <sc-if value="{{ addrNo }}" hint-placeholder-val="{{ false }}">
+                    <div style="padding:14px 18px 18px; display:flex; flex-direction:column; gap:12px">
+                      <label style="display:block">
+                        <span style="display:block; font-size:13px; font-weight:700; color:#303030; margin-bottom:6px">Calle y número</span>
+                        <input type="text" value="{{ mCalle }}" onChange="{{ onCalle }}" placeholder="Ej: Av. Corrientes 1234" style="width:100%; border:1.5px solid #EFEFEF; border-radius:10px; padding:12px 13px; font-size:15px; color:#303030" />
+                      </label>
+                      <div style="display:flex; gap:12px">
+                        <label style="flex:1">
+                          <span style="display:block; font-size:13px; font-weight:700; color:#303030; margin-bottom:6px">Piso / depto</span>
+                          <input type="text" value="{{ mPiso }}" onChange="{{ onPiso }}" placeholder="Opcional" style="width:100%; border:1.5px solid #EFEFEF; border-radius:10px; padding:12px 13px; font-size:15px; color:#303030" />
+                        </label>
+                        <label style="flex:1">
+                          <span style="display:block; font-size:13px; font-weight:700; color:#303030; margin-bottom:6px">Código postal</span>
+                          <input type="text" value="{{ mCp }}" onChange="{{ onCp }}" placeholder="Ej: C1043" style="width:100%; border:1.5px solid #EFEFEF; border-radius:10px; padding:12px 13px; font-size:15px; color:#303030" />
+                        </label>
+                      </div>
+                    </div>
+                  </sc-if>
+                </div>
+                <sc-if value="{{ canGoPago }}" hint-placeholder-val="{{ false }}">
+                  <button type="button" onClick="{{ goPago }}" style="width:100%; margin-top:18px; background:#FCAB50; color:#303030; border:none; border-radius:11px; padding:14px 22px; font-size:15px; font-weight:700; letter-spacing:1px" style-hover="background:#0095A8">Continuar al pago</button>
+                </sc-if>
+                <sc-if value="{{ cannotGoPago }}" hint-placeholder-val="{{ true }}">
+                  <div style="width:100%; margin-top:18px; background:#EFEFEF; color:#8A8A8A; border-radius:11px; padding:14px 22px; font-family:'DM Sans', sans-serif; font-size:15px; font-weight:700; letter-spacing:1px; text-align:center">Continuar al pago</div>
+                </sc-if>
+              </div>
+              </sc-if>
+            </div>
+            </sc-if>
+
+            <sc-if value="{{ isStepBloqueada }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <h2 style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:24px; letter-spacing:-0.5px; margin:0 0 16px; color:#303030">Verificá tu identidad</h2>
+              <div style="border:1.5px solid #F2C1BC; background:#FBEAE9; border-radius:14px; padding:22px">
+                <div style="width:46px; height:46px; border-radius:50%; background:#F6D8D4; color:#B3261E; display:flex; align-items:center; justify-content:center; font-family:'DM Sans', sans-serif; font-size:24px; font-weight:700; margin-bottom:12px">!</div>
+                <h3 style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:18px; margin:0 0 6px; color:#7A1D16">No pudimos verificar tu identidad</h3>
+                <p style="font-size:14px; color:#8A2A22; margin:0 0 6px">Se agotaron las 3 oportunidades.</p>
+                <p style="font-size:14px; color:#8A2A22; margin:0">Por seguridad, esta contratación no puede continuar online.</p>
+                <p style="font-size:13px; color:#9A4A40; margin:10px 0 0">Podés volver a empezar con otros datos o contactarte con Qualia para recibir ayuda.</p>
+              </div>
+              <div style="display:flex; gap:10px; margin-top:18px">
+                <button type="button" onClick="{{ reiniciarValidacion }}" style="flex:1; background:#FFFFFF; border:1.5px solid #EFEFEF; color:#303030; border-radius:11px; padding:14px 20px; font-size:15px; font-weight:700; letter-spacing:1px" style-hover="border-color:#585858">Volver a empezar</button>
+                <button type="button" onClick="{{ backHome }}" style="flex:1; background:#FCAB50; color:#303030; border:none; border-radius:11px; padding:14px 20px; font-size:15px; font-weight:700; letter-spacing:1px" style-hover="background:#0095A8">Contactar a Qualia</button>
+              </div>
+            </div>
+            </sc-if>
+
+            <sc-if value="{{ isStepPago }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex; align-items:center; gap:10px; background:#E0F7F8; border:1.5px solid #00C1C6; border-radius:12px; padding:10px 12px; margin-bottom:16px">
+                  <span style="display:flex; flex-direction:column; gap:1px; min-width:0; flex:1 1 auto">
+                    <span style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#0095A8">Plan seleccionado</span>
+                    <span style="display:flex; align-items:baseline; gap:7px; min-width:0">
+                      <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:14px; color:#303030; white-space:nowrap">{{ activeAlias }}</span>
+                      <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:14px; color:#00707F; white-space:nowrap">{{ activePrice }}<span style="font-family:'Roboto', sans-serif; font-weight:400; font-size:11px; color:#585858"> /mes</span></span>
+                    </span>
+                  </span>
+                  <button type="button" onClick="{{ openSummary }}" style="background:#00C1C6; border:none; color:#FFFFFF; border-radius:100px; padding:8px 14px; font-size:12px; font-weight:700; letter-spacing:1px; white-space:nowrap; flex-shrink:0">Ver resumen</button>
+                </div>
+              </sc-if>
+              <button type="button" onClick="{{ backToValidacion }}" style="background:none; border:none; padding:0; margin-bottom:14px; font-size:14px; font-weight:700; color:#585858" style-hover="color:#303030">← Volver atrás</button>
+              <h2 style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:24px; letter-spacing:-0.5px; margin:0 0 6px; color:#303030">Medio de pago</h2>
+              <p style="font-size:14px; color:#585858; margin:0 0 20px; max-width:460px">Completá los datos de tu tarjeta para confirmar la contratación.</p>
+
+              <div style="background:#FAFAFA; border:1.5px solid #EFEFEF; border-radius:14px; padding:14px 18px; margin-bottom:20px">
+                <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#585858; margin-bottom:3px">Vamos a asegurar</div>
+                <div style="font-family:'DM Sans', sans-serif; font-size:16px; font-weight:700; color:#303030">{{ validatedAddress }}</div>
+              </div>
+
+              <div style="position:relative; width:100%; max-width:{{ ccMaxW }}; margin:0 auto 18px; aspect-ratio:1.68/1; border-radius:{{ ccRadius }}; padding:{{ ccPad }}; color:#FFFFFF; overflow:hidden; background:linear-gradient(135deg,#123340 0%,#0095A8 60%,#00C1C6 140%); box-shadow:0 10px 22px rgba(48,48,48,.2)">
+                <div style="position:absolute; inset:0; background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.14) 50%,transparent 60%)"></div>
+                <div style="position:relative; display:flex; justify-content:space-between; align-items:flex-start">
+                  <span style="width:{{ ccChipW }}; height:{{ ccChipH }}; border-radius:4px; background:linear-gradient(135deg,#E8D48B,#C4A35A 45%,#F3E6B3)"></span>
+                  <span style="font-family:'DM Sans', sans-serif; font-size:{{ ccBrandSize }}; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; opacity:.85">{{ ccBrandLabel }}</span>
+                </div>
+                <div style="position:relative; margin-top:{{ ccNumTop }}; font-family:'DM Sans', sans-serif; font-size:{{ ccNumSize }}; font-weight:700; letter-spacing:{{ ccNumLs }}">{{ ccNumberMask }}</div>
+                <div style="position:relative; display:flex; justify-content:space-between; align-items:flex-end; margin-top:{{ ccFootTop }}; gap:10px">
+                  <span style="display:flex; flex-direction:column">
+                    <span style="font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; opacity:.75">Titular</span>
+                    <span style="font-family:'DM Sans', sans-serif; font-size:12px; font-weight:700; letter-spacing:1px">{{ ccNameLabel }}</span>
+                  </span>
+                  <span style="display:flex; flex-direction:column; text-align:right">
+                    <span style="font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; opacity:.75">Vence</span>
+                    <span style="font-family:'DM Sans', sans-serif; font-size:12px; font-weight:700; letter-spacing:1px">{{ ccExpLabel }}</span>
+                  </span>
+                </div>
+              </div>
+
+              <div style="border:1.5px solid #EFEFEF; border-radius:14px; padding:18px; margin-bottom:16px; display:flex; flex-direction:column; gap:14px">
+                <label style="display:block">
+                  <span style="display:block; font-size:13px; font-weight:700; color:#303030; margin-bottom:6px">Número de tarjeta</span>
+                  <input type="text" inputMode="numeric" value="{{ cardNum }}" onChange="{{ onCardNum }}" placeholder="0000 0000 0000 0000" style="width:100%; border:1.5px solid #EFEFEF; border-radius:10px; padding:12px 13px; font-size:15px; color:#303030" />
+                </label>
+                <label style="display:block">
+                  <span style="display:block; font-size:13px; font-weight:700; color:#303030; margin-bottom:6px">Nombre en la tarjeta</span>
+                  <input type="text" value="{{ cardName }}" onChange="{{ onCardName }}" placeholder="Como figura en la tarjeta" style="width:100%; border:1.5px solid #EFEFEF; border-radius:10px; padding:12px 13px; font-size:15px; color:#303030" />
+                </label>
+                <div style="display:flex; gap:12px">
+                  <label style="flex:1">
+                    <span style="display:block; font-size:13px; font-weight:700; color:#303030; margin-bottom:6px">Vencimiento</span>
+                    <input type="text" inputMode="numeric" value="{{ cardExp }}" onChange="{{ onCardExp }}" placeholder="MM/AA" style="width:100%; border:1.5px solid #EFEFEF; border-radius:10px; padding:12px 13px; font-size:15px; color:#303030" />
+                  </label>
+                  <label style="flex:1">
+                    <span style="display:block; font-size:13px; font-weight:700; color:#303030; margin-bottom:6px">Código de seguridad</span>
+                    <input type="text" inputMode="numeric" value="{{ cardCvv }}" onChange="{{ onCardCvv }}" placeholder="CVV" style="width:100%; border:1.5px solid #EFEFEF; border-radius:10px; padding:12px 13px; font-size:15px; color:#303030" />
+                  </label>
+                </div>
+              </div>
+
+              <div style="display:flex; flex-direction:column; gap:10px; margin:18px 0 4px">
+                <sc-for list="{{ legals }}" as="l" hint-placeholder-count="4">
+                  <label style="display:flex; align-items:flex-start; gap:9px; font-size:13px; color:#585858; line-height:1.45">
+                    <input type="checkbox" checked="{{ l.checked }}" onChange="{{ l.onChange }}" style="margin-top:3px; accent-color:#00C1C6" />
+                    <span><b style="color:#303030">{{ l.strong }}</b>{{ l.txt }}</span>
+                  </label>
+                </sc-for>
+              </div>
+
+              <div style="{{ payCtaWrap }}">
+                <button type="button" onClick="{{ contratar }}" style="width:100%; background:#FCAB50; color:#303030; border:none; border-radius:11px; padding:16px 22px; font-size:16px; font-weight:700; letter-spacing:1px" style-hover="background:#F09A38">Contratar {{ activePrice }}/mes</button>
+              </div>
+            </div>
+            </sc-if>
+
+            <sc-if value="{{ isStepListo }}" hint-placeholder-val="{{ false }}">
+            <div>
+              <div style="text-align:center; padding:4px 0 22px">
+                <div style="width:58px; height:58px; border-radius:50%; background:#00C1C6; color:#FFFFFF; margin:0 auto 14px; display:flex; align-items:center; justify-content:center; font-family:'Material Symbols Outlined'; font-variation-settings:'wght' 300,'GRAD' -25,'opsz' 24; font-size:30px">check</div>
+                <h2 style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:24px; letter-spacing:-0.5px; margin:0; color:#303030">¡Listo! Tu seguro está contratado</h2>
+                <p style="font-size:14px; color:#585858; margin:8px auto 0">Te enviamos toda la información a {{ fMail }}</p>
+              </div>
+              <div style="border:1.5px solid #EFEFEF; border-radius:14px; overflow:hidden; margin-bottom:16px">
+                <div style="background:#FAFAFA; padding:14px 18px; border-bottom:1px solid #EFEFEF; display:flex; justify-content:space-between; align-items:center; gap:10px">
+                  <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:15px; color:#303030">Seguro de Hogar — {{ activeAlias }}</span>
+                  <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:15px; color:#00707F">{{ activePrice }}/mes</span>
+                </div>
+                <div style="padding:16px 18px; display:flex; flex-direction:column; gap:10px">
+                  <sc-for list="{{ receiptRows }}" as="r" hint-placeholder-count="6">
+                    <div style="display:flex; justify-content:space-between; gap:10px; font-size:13px">
+                      <span style="color:#585858">{{ r.k }}</span><span style="font-weight:700; color:#303030; text-align:right">{{ r.v }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+                <div style="border-top:1px solid #EFEFEF; padding:14px 18px">
+                  <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#585858; margin-bottom:8px">Coberturas incluidas</div>
+                  <sc-for list="{{ covGroups }}" as="g" hint-placeholder-count="5">
+                    <div style="display:flex; justify-content:space-between; gap:10px; font-size:13px; color:#585858; padding:4px 0">
+                      <span>{{ g.short }}</span><b style="font-family:'DM Sans', sans-serif; color:#303030; white-space:nowrap">{{ g.value }}</b>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <div style="display:flex; flex-wrap:wrap; gap:10px">
+                <button type="button" onClick="{{ printReceipt }}" style="flex:1 1 180px; background:#FFFFFF; border:1.5px solid #EFEFEF; color:#303030; border-radius:11px; padding:14px 18px; font-size:14px; font-weight:700; letter-spacing:1px" style-hover="border-color:#585858">Descargar comprobante</button>
+                <button type="button" onClick="{{ backHome }}" style="flex:1 1 180px; background:#FCAB50; color:#303030; border:none; border-radius:11px; padding:14px 18px; font-size:14px; font-weight:700; letter-spacing:1px" style-hover="background:#F09A38">Ir a Mi Qualia</button>
+              </div>
+            </div>
+            </sc-if>
+
+          </div>
+
+          <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+          <aside style="background:#FAFAFA; border-left:{{ asideBorderLeft }}; border-top:{{ asideBorder }}; padding:{{ asidePad }}; border-radius:{{ asideRadius }}">
+            <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#585858; margin-bottom:12px">Tu contratación</div>
+            <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:18px; color:#303030">{{ activeAlias }}</div>
+            <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:22px; letter-spacing:-1px; color:#00707F; margin-bottom:16px">{{ activePrice }}/mes</div>
+
+            <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#585858; margin-bottom:8px">Coberturas incluidas</div>
+            <sc-for list="{{ covLines }}" as="l" hint-placeholder-count="8">
+              <div onClick="{{ l.onClick }}" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:{{ l.pad }}; border-bottom:1px solid {{ l.border }}; cursor:{{ l.cursor }}">
+                <sc-if value="{{ l.isHeader }}" hint-placeholder-val="{{ true }}">
+                  <span style="display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#303030">
+                    <img src="{{ l.img }}" alt="" style="width:18px; height:18px; display:block" />{{ l.label }}</span>
+                </sc-if>
+                <sc-if value="{{ l.isRow }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size:12px; color:#585858; padding-left:26px; line-height:1.35">{{ l.label }}</span>
+                </sc-if>
+                <b style="font-family:'DM Sans', sans-serif; font-size:12px; font-weight:700; color:#303030; white-space:nowrap">{{ l.value }}</b>
+              </div>
+            </sc-for>
+
+            <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#585858; margin:20px 0 8px">Estado del proceso</div>
+            <div style="display:flex; flex-direction:column; gap:9px">
+              <sc-for list="{{ progress }}" as="p" hint-placeholder-count="4">
+                <div style="display:flex; align-items:center; gap:9px; font-size:13px; color:{{ p.color }}">
+                  <span style="width:16px; height:16px; border-radius:50%; border:2px solid {{ p.dotBorder }}; background:{{ p.dotBg }}; flex-shrink:0"></span>{{ p.label }}</div>
+              </sc-for>
+            </div>
+          </aside>
+          </sc-if>
+
+        </div>
+      </div>
+      <p style="font-size:12px; color:#8A8A8A; text-align:center; margin:22px 0 0">Prototipo de alta fidelidad — datos ficticios, sin conexión real a Mi Qualia ni a medios de pago.</p>
+    </div>
+  </div>
+
+  <sc-if value="{{ summaryOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeSummary }}" style="{{ modalOverlayStyle }}">
+      <div onClick="{{ stop }}" style="position:relative; background:#FFFFFF; width:100%; max-width:{{ modalCardMaxSm }}; max-height:{{ modalMaxH }}; overflow-y:auto; border-radius:20px; padding:{{ modalCardPadSm }}">
+        <button type="button" onClick="{{ closeSummary }}" style="position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:50%; background:#EFEFEF; border:none; color:#585858; font-family:'Material Symbols Outlined'; font-variation-settings:'wght' 300,'GRAD' -25,'opsz' 20; font-size:18px; display:flex; align-items:center; justify-content:center">close</button>
+        <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#585858; margin:0 40px 8px 0">Tu contratación</div>
+        <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:18px; color:#303030">{{ activeAlias }}</div>
+        <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:22px; letter-spacing:-1px; color:#00707F; margin-bottom:16px">{{ activePrice }}<span style="font-family:'Roboto', sans-serif; font-weight:400; font-size:12px; color:#585858; letter-spacing:0"> /mes</span></div>
+
+        <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#585858; margin-bottom:8px">Coberturas incluidas</div>
+        <sc-for list="{{ covLines }}" as="l" hint-placeholder-count="8">
+          <div onClick="{{ l.onClick }}" style="display:flex; align-items:center; justify-content:space-between; gap:10px; padding:{{ l.pad }}; border-bottom:1px solid {{ l.border }}; cursor:{{ l.cursor }}">
+            <sc-if value="{{ l.isHeader }}" hint-placeholder-val="{{ true }}">
+              <span style="display:flex; align-items:center; gap:8px; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#303030">
+                <img src="{{ l.img }}" alt="" style="width:18px; height:18px; display:block" />{{ l.label }}</span>
+            </sc-if>
+            <sc-if value="{{ l.isRow }}" hint-placeholder-val="{{ false }}">
+              <span style="font-size:12px; color:#585858; padding-left:26px; line-height:1.35">{{ l.label }}</span>
+            </sc-if>
+            <b style="font-family:'DM Sans', sans-serif; font-size:12px; font-weight:700; color:#303030; white-space:nowrap">{{ l.value }}</b>
+          </div>
+        </sc-for>
+
+        <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#585858; margin:20px 0 8px">Estado del proceso</div>
+        <div style="display:flex; flex-direction:column; gap:9px">
+          <sc-for list="{{ progress }}" as="p" hint-placeholder-count="4">
+            <div style="display:flex; align-items:center; gap:9px; font-size:13px; color:{{ p.color }}">
+              <span style="width:16px; height:16px; border-radius:50%; border:2px solid {{ p.dotBorder }}; background:{{ p.dotBg }}; flex-shrink:0"></span>{{ p.label }}</div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ planSwitchOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closePlanSwitch }}" style="{{ modalOverlayStyle }}">
+      <div onClick="{{ stop }}" style="position:relative; background:#FFFFFF; width:100%; max-width:{{ modalCardMaxSm }}; max-height:{{ modalMaxH }}; overflow-y:auto; border-radius:20px; padding:{{ modalCardPadSm }}">
+        <button type="button" onClick="{{ closePlanSwitch }}" style="position:absolute; top:16px; right:16px; width:32px; height:32px; border-radius:50%; background:#EFEFEF; border:none; color:#585858; font-family:'Material Symbols Outlined'; font-variation-settings:'wght' 300,'GRAD' -25,'opsz' 20; font-size:18px; display:flex; align-items:center; justify-content:center">close</button>
+        <div style="font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#585858; margin:0 40px 4px 0">Elegí tu plan</div>
+        <p style="font-size:13px; color:#585858; margin:0 0 16px">Cambiá de nivel sin perder los datos que ya cargaste.</p>
+        <sc-for list="{{ switchOptions }}" as="o" hint-placeholder-count="3">
+          <div style="position:relative; border:1.5px solid #EFEFEF; border-radius:14px; padding:14px 16px; margin-bottom:10px">
+            <sc-if value="{{ o.current }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; inset:-1.5px; border:1.5px solid #00C1C6; border-radius:14px; background:#E0F7F8"></span></sc-if>
+            <div style="position:relative">
+              <div onClick="{{ o.onSelect }}" style="cursor:pointer">
+                <div style="display:flex; align-items:center; justify-content:space-between; gap:10px">
+                  <span style="display:flex; align-items:center; gap:8px; font-family:'DM Sans', sans-serif; font-weight:700; font-size:16px; color:#303030">
+                    <img src="assets/ic-hogar-black.png" alt="" style="width:22px; height:22px; display:block" />{{ o.alias }}</span>
+                  <sc-if value="{{ o.current }}" hint-placeholder-val="{{ false }}"><span style="font-size:12px; font-weight:700; color:#0095A8">✓ Actual</span></sc-if>
+                </div>
+                <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:20px; color:#00707F; margin-top:2px">{{ o.price }}<span style="font-family:'Roboto', sans-serif; font-weight:400; font-size:12px; color:#585858"> /mes</span></div>
+                <div style="font-size:12px; color:#585858; margin-top:2px">Hasta {{ o.vivienda }} de cobertura máxima</div>
+              </div>
+              <button type="button" onClick="{{ o.onToggle }}" style="display:flex; align-items:center; justify-content:space-between; width:100%; margin-top:8px; padding:8px 0 0; border:none; border-top:1px solid #EFEFEF; background:none; font-size:12px; font-weight:700; letter-spacing:1px; color:#0095A8">
+                <span>Ver detalle</span><span>{{ o.arrow }}</span></button>
+              <sc-if value="{{ o.open }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:8px; padding-top:8px; border-top:1px dashed #EFEFEF">
+                  <sc-for list="{{ o.rows }}" as="r" hint-placeholder-count="5">
+                    <div style="display:flex; justify-content:space-between; gap:10px; font-size:13px; color:#585858; padding:4px 0">
+                      <span>{{ r.label }}</span><b style="font-family:'DM Sans', sans-serif; color:#303030; white-space:nowrap">{{ r.value }}</b>
+                    </div>
+                  </sc-for>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</sc-if>
+
+</div>
+</div>
+</div>
+
+  <sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+    <div onClick="{{ closeModal }}" style="{{ modalOverlayStyle }}">
+      <div onClick="{{ stop }}" style="position:relative; background:#FFFFFF; width:100%; max-width:{{ modalCardMax }}; max-height:{{ modalMaxH }}; overflow-y:auto; border-radius:20px; padding:{{ modalCardPad }}">
+        <button type="button" onClick="{{ closeModal }}" style="position:absolute; top:{{ modalCloseOffset }}; right:{{ modalCloseOffset }}; width:34px; height:34px; border-radius:50%; background:#EFEFEF; border:none; color:#585858; font-family:'Material Symbols Outlined'; font-variation-settings:'wght' 300,'GRAD' -25,'opsz' 20; font-size:20px; display:flex; align-items:center; justify-content:center">close</button>
+        <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:{{ modalTitleSize }}; letter-spacing:-0.5px; margin:0 40px 6px 0; color:#303030">{{ modalTitle }}</div>
+        <p style="font-size:14px; color:#585858; margin:0 0 18px">{{ modalSub }}</p>
+
+        <sc-if value="{{ modalHasPrice }}" hint-placeholder-val="{{ false }}">
+          <div style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:34px; letter-spacing:-1px; color:#303030; margin-bottom:16px">{{ modalPrice }}<span style="font-family:'Roboto', sans-serif; font-weight:400; font-size:14px; color:#585858; letter-spacing:0"> /mes</span></div>
+        </sc-if>
+
+        <sc-if value="{{ modalHasRows }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <sc-for list="{{ modalRows }}" as="r" hint-placeholder-count="5">
+              <div style="display:flex; justify-content:space-between; gap:16px; padding:12px 0; border-top:1px solid #EFEFEF; font-size:14px; color:#585858">
+                <span>{{ r.label }}</span>
+                <b style="font-family:'DM Sans', sans-serif; font-weight:700; color:#303030; white-space:nowrap">{{ r.value }}</b>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ modalHasGroups }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <sc-for list="{{ modalLines }}" as="l" hint-placeholder-count="8">
+              <div onClick="{{ l.onClick }}" style="display:flex; align-items:center; justify-content:space-between; gap:14px; padding:{{ l.pad }}; border-top:1px solid {{ l.border }}; cursor:{{ l.cursor }}">
+                <sc-if value="{{ l.isHeader }}" hint-placeholder-val="{{ true }}">
+                  <span style="display:flex; align-items:center; gap:9px; font-family:'Roboto', sans-serif; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#303030">
+                    <img src="{{ l.img }}" alt="" style="width:20px; height:20px; display:block" />{{ l.label }}</span>
+                </sc-if>
+                <sc-if value="{{ l.isRow }}" hint-placeholder-val="{{ false }}">
+                  <span style="font-size:13px; color:#585858; padding-left:29px">{{ l.label }}</span>
+                </sc-if>
+                <b style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:13px; color:#303030; white-space:nowrap">{{ l.value }}</b>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ modalHasBullets }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flex-direction:column; gap:14px">
+            <sc-for list="{{ modalBullets }}" as="b" hint-placeholder-count="6">
+              <div style="display:flex; gap:12px; align-items:flex-start">
+                <span style="width:38px; height:38px; border-radius:10px; background:transparent; display:flex; align-items:center; justify-content:center; flex-shrink:0"><img src="{{ b.img }}" alt="" style="width:24px; height:24px; display:block" /></span>
+                <span style="display:flex; flex-direction:column">
+                  <span style="font-family:'DM Sans', sans-serif; font-weight:700; font-size:16px; color:#303030">{{ b.nm }}</span>
+                  <span style="font-size:14px; color:#585858; line-height:1.45">{{ b.desc }}</span>
+                </span>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ modalHasLinks }}" hint-placeholder-val="{{ false }}">
+          <div style="display:flex; flex-direction:column; gap:8px; margin-top:16px">
+            <sc-for list="{{ modalLinks }}" as="lk" hint-placeholder-count="2">
+              <button type="button" onClick="{{ lk.onClick }}" style="display:flex; align-items:center; justify-content:space-between; gap:10px; width:100%; background:#FFFFFF; border:1px solid #DEDEDE; border-radius:10px; padding:12px 14px; font-size:14px; font-weight:700; letter-spacing:1px; color:#303030; text-align:left" style-hover="border-color:#FCAB50">
+                <span style="display:flex; flex-direction:column; gap:2px">
+                  <span>{{ lk.label }}</span>
+                  <span style="font-family:'Roboto', sans-serif; font-weight:400; font-size:12px; letter-spacing:0; color:#585858">{{ lk.hint }}</span>
+                </span>
+                <span style="font-size:16px; color:#8A8A8A">↓</span></button>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ modalHasCta }}" hint-placeholder-val="{{ false }}">
+          <button type="button" onClick="{{ modalCta }}" style="width:100%; margin-top:20px; background:#FCAB50; color:#303030; border:none; border-radius:100px; padding:16px 30px; font-size:16px; font-weight:700; letter-spacing:1px" style-hover="background:#F09A38">{{ modalCtaLabel }}</button>
+        </sc-if>
+        <sc-if value="{{ modalCtaDisabled }}" hint-placeholder-val="{{ false }}">
+          <div style="width:100%; margin-top:20px; background:#FFFFFF; border:1.5px solid #EFEFEF; color:#585858; border-radius:100px; padding:16px 30px; font-family:'DM Sans', sans-serif; font-size:16px; font-weight:700; letter-spacing:1px; text-align:center">✓ Plan seleccionado</div>
+        </sc-if>
+      </div>
+    </div>
+  </sc-if>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;viewport&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;desktop&quot;,&quot;mobile&quot;],&quot;default&quot;:&quot;desktop&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Vista&quot;},&quot;recommendedPlan&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;1&quot;,&quot;2&quot;,&quot;3&quot;],&quot;default&quot;:&quot;2&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Comportamiento&quot;},&quot;ctaPosition&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;footer&quot;,&quot;derecha&quot;],&quot;default&quot;:&quot;footer&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Comportamiento&quot;},&quot;showComparison&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Comportamiento&quot;},&quot;showNotes&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Comportamiento&quot;}}">
+const IC = {
+  vivienda: "assets/qi-cob-vivienda.png",
+  contenido: "assets/qi-cob-contenido.png",
+  robo: "assets/qi-cob-robo.png",
+  electronica: "assets/qi-cob-electronica.png",
+  civil: "assets/qi-cob-civil.png"
+};
+
+const LEVELS = {
+  1: { price:"$17.700", name:"Protección Esencial", alias:"Plan 1",
+    tagline:"Para cubrir lo fundamental de tu hogar.",
+    cats:[
+      {img:IC.vivienda, nm:"Vivienda", key:"vivienda", amtLabel:"$51.480.000", desc:"Reconstrucción ante incendio o fenómenos climáticos"},
+      {img:IC.contenido, nm:"Contenido", key:"contenido", amtLabel:"$9.820.000", desc:"Tus muebles y objetos dentro de la casa"},
+      {img:IC.robo, nm:"Robo", key:"robo", amtLabel:"$2.250.000", desc:"Tus pertenencias si te roban"},
+      {img:IC.electronica, nm:"Electrónica", key:"electronica", amtLabel:"$800.000", desc:"Reparación o reposición de tus equipos"},
+      {img:IC.civil, nm:"Resp. civil", key:"civil", amtLabel:"$5.790.000", desc:"Si alguien resulta dañado en tu casa"}
+    ]},
+  2: { price:"$35.400", name:"Protección Recomendada", alias:"Plan 2",
+    tagline:"Un nivel más completo de protección para tu hogar y tus cosas — duplica la cobertura de Plan 1 sin duplicar el precio.",
+    cats:[
+      {img:IC.vivienda, nm:"Vivienda", key:"vivienda", amtLabel:"$102.960.000", desc:"Reconstrucción ante incendio o fenómenos climáticos"},
+      {img:IC.contenido, nm:"Contenido", key:"contenido", amtLabel:"$19.640.000", desc:"Tus muebles y objetos dentro de la casa"},
+      {img:IC.robo, nm:"Robo", key:"robo", amtLabel:"$4.500.000", desc:"Tus pertenencias si te roban"},
+      {img:IC.electronica, nm:"Electrónica", key:"electronica", amtLabel:"$1.600.000", desc:"Reparación o reposición de tus equipos"},
+      {img:IC.civil, nm:"Resp. civil", key:"civil", amtLabel:"$11.580.000", desc:"Si alguien resulta dañado en tu casa"}
+    ]},
+  3: { price:"$53.100", name:"Protección Máxima", alias:"Plan 3",
+    tagline:"Para quienes buscan los montos de cobertura más altos.",
+    cats:[
+      {img:IC.vivienda, nm:"Vivienda", key:"vivienda", amtLabel:"$154.440.000", desc:"Reconstrucción ante incendio o fenómenos climáticos"},
+      {img:IC.contenido, nm:"Contenido", key:"contenido", amtLabel:"$29.460.000", desc:"Tus muebles y objetos dentro de la casa"},
+      {img:IC.robo, nm:"Robo", key:"robo", amtLabel:"$6.750.000", desc:"Tus pertenencias si te roban"},
+      {img:IC.electronica, nm:"Electrónica", key:"electronica", amtLabel:"$2.400.000", desc:"Reparación o reposición de tus equipos"},
+      {img:IC.civil, nm:"Resp. civil", key:"civil", amtLabel:"$17.370.000", desc:"Si alguien resulta dañado en tu casa"}
+    ]}
+};
+
+const CATEGORY_DETAIL = {
+  vivienda:{ title:"Daños a la vivienda — Edificio", short:"Daños a la vivienda", img:IC.vivienda, single:false, rows:[
+    {label:"Incendio edificio", vals:{1:"$51.480.000",2:"$102.960.000",3:"$154.440.000"}},
+    {label:"Huracán · Ciclón · Tornado · Granizo edificio", vals:{1:"$51.480.000",2:"$102.960.000",3:"$154.440.000"}},
+    {label:"Acumulación de nieve edificio", vals:{1:"$51.480.000",2:"$102.960.000",3:"$154.440.000"}},
+    {label:"Remoción de escombros / limpieza", vals:{1:"$10.820.000",2:"$21.640.000",3:"$32.460.000"}},
+    {label:"Estadía en hotel", vals:{1:"$1.029.800",2:"$2.059.600",3:"$3.089.400"}},
+    {label:"Gastos de mudanza", vals:{1:"$1.029.800",2:"$2.059.600",3:"$3.089.400"}}
+  ]},
+  contenido:{ title:"Daños al contenido", short:"Daños al contenido", img:IC.contenido, single:false, rows:[
+    {label:"Incendio contenido", vals:{1:"$9.820.000",2:"$19.640.000",3:"$29.460.000"}},
+    {label:"Huracán · Ciclón · Tornado · Granizo contenido", vals:{1:"$9.820.000",2:"$19.640.000",3:"$29.460.000"}},
+    {label:"Acumulación de nieve contenido", vals:{1:"$9.820.000",2:"$19.640.000",3:"$29.460.000"}},
+    {label:"Rotura de cristales", vals:{1:"$1.275.900",2:"$2.551.800",3:"$3.827.700"}},
+    {label:"Pérdida de alimentos refrigerados", vals:{1:"$1.275.900",2:"$2.551.800",3:"$3.827.700"}},
+    {label:"Gastos extraordinarios", vals:{1:"$1.029.800",2:"$2.059.600",3:"$3.089.400"}}
+  ]},
+  robo:{ title:"Robo", short:"Robo", img:IC.robo, single:true, rows:[
+    {label:"Robo", vals:{1:"$2.250.000",2:"$4.500.000",3:"$6.750.000"}}
+  ]},
+  electronica:{ title:"Daños a aparatos electrónicos y electrodomésticos", short:"Aparatos electrónicos", img:IC.electronica, single:true, rows:[
+    {label:"Aparatos electrónicos y electrodomésticos", vals:{1:"$800.000",2:"$1.600.000",3:"$2.400.000"}}
+  ]},
+  civil:{ title:"Reclamos a terceros", short:"Reclamos a terceros", img:IC.civil, single:false, rows:[
+    {label:"Resp. civil por incendio y/o explosión", vals:{1:"$5.790.000",2:"$11.580.000",3:"$17.370.000"}},
+    {label:"Resp. civil hechos privados", vals:{1:"$2.895.000",2:"$5.790.000",3:"$8.685.000"}}
+  ]}
+};
+
+const COV_ORDER = ["robo","vivienda","contenido","electronica","civil"];
+
+const PLAN_ILLUS = {1:"assets/plan-1.png", 2:"assets/plan-2.png", 3:"assets/plan-3.png"};
+
+const ASSISTS = [
+  {img:"assets/qi-as-emergencias.png", nm:"Emergencias en el hogar", desc:"Cerrajería, plomería, destapaciones, electricidad y gas.", items:[
+    "Apertura por destrabe de cerradura, por pérdida de llaves.",
+    "Emergencia ante rotura de caños expuestos.",
+    "Asistencia en cortes de luz por cortocircuito.",
+    "Detección de pérdidas de gas."
+  ]},
+  {img:"assets/qi-as-instalaciones.png", nm:"Instalaciones en el hogar", desc:"Cerrajería, plomería, electricidad, gas, aires acondicionados y pequeños arreglos.", items:[
+    "Cerrojos, instalación o cambio de cerradura.",
+    "Artefactos de plomería o eléctricos.",
+    "Luminarias.",
+    "Cocina y hornos, calefones y termotanques.",
+    "Aires acondicionados.",
+    "Pequeñas tareas: cortinas con barrales, cuadros, estantes con ménsula, soportes de TV."
+  ]},
+  {img:"assets/qi-as-mantenimiento.png", nm:"Mantenimiento y reparaciones", desc:"Reparación y mantenimiento preventivo de línea blanca, electro y desinfección.", items:[
+    "Copias de llaves, cambio de combinación, reparación de cerraduras.",
+    "Reparaciones por pérdidas de agua y arreglos básicos de plomería.",
+    "Puesta a punto de tomas y llaves de luz.",
+    "Mantenimiento de calefones, termotanques, calefactores, cocina y hornos.",
+    "Reparaciones por pérdidas de gas.",
+    "Servicios de desinfección ante plagas.",
+    "Línea blanca: heladeras, microondas, lavarropas, lavavajillas, horno eléctrico, audio y TV Led."
+  ]},
+  {img:"assets/qi-as-seguridad.png", nm:"Dispositivos de seguridad", desc:"Instalación de cámaras, alarmas, detectores y sensores.", items:[
+    "Instalación de cámaras de seguridad, alarmas, detectores, sensores y estabilizadores de tensión."
+  ]},
+  {img:"assets/qi-as-mudanza.png", nm:"Asistencia para mudanzas", desc:"Gastos de mudanzas nacionales en vehículos de carga.", items:[
+    "Asistencia para gastos de mudanzas nacionales que se efectúen en concepto de traslados en vehículos de carga."
+  ]},
+  {img:"assets/qi-as-pintura.png", nm:"Pintura", desc:"Mano de obra en paredes interiores y exteriores del domicilio.", items:[
+    "Asistencia para gastos de mano de obra de pintura en el domicilio.",
+    "Solo incluye paredes interiores y exteriores al domicilio asegurado."
+  ]}
+];
+
+const O2META = {
+  1:{eyebrow:"Esencial", h2:"Protección Esencial", h2sub:"Lo fundamental para empezar a proteger tu hogar."},
+  2:{eyebrow:"Recomendada", h2:"Protección Recomendada", h2sub:"La sugerimos como punto de partida — abajo podés ver las otras dos."},
+  3:{eyebrow:"Máxima", h2:"Protección Máxima", h2sub:"Para quienes priorizan los montos de cobertura más altos."}
+};
+
+const NOTES = {
+  1:[
+    {src:"Evidencia de Fuentes", txt:"Plan 2 y Plan 3 duplican y triplican exactamente a Plan 1 en casi cada cobertura. En vez de ocultar ese patrón detrás de 3 listas repetidas, se lo hace el eje central de la interfaz."},
+    {src:"Patrón: Singlife", txt:"La comparación se recorre subiendo o bajando de nivel, viendo cómo crece cada categoría — no como 3 columnas paralelas."},
+    {src:"CTA como resumen", txt:"El bloque de contratación queda siempre visible con el plan elegido y lleva directo al checkout: quien ya decidió no atraviesa contenido comparativo para encontrar el botón."},
+    {src:"Patrón: Sancor", txt:"Plan 2 viene preseleccionado como recomendado desde que carga la pantalla, con una razón explícita basada en cuánto crece cada cobertura real."},
+    {src:"Patrón: Kin / Getsafe", txt:"Cada categoría se traduce a qué protege en vez de mostrar solo el monto técnico."},
+    {src:"Patrón: Dropbox / Zendesk", txt:"La tabla completa vive en 'Comparar planes' y el detalle por nivel en el modal 'Ver detalle' — nunca se fuerza una tabla ancha de entrada."}
+  ],
+  2:[
+    {src:"Idea rectora", txt:"El eje es semántico, no matemático: Esencial / Recomendada / Máxima; 'Plan N' queda como denominación secundaria."},
+    {src:"Formato editorial", txt:"Se muestra una sola protección a la vez, empezando por la Recomendada — nunca 3 tarjetas idénticas compitiendo."},
+    {src:"Patrón: Zendesk", txt:"Cada plan se presenta como pieza completa de ancho total, con un mecanismo explícito para ver las otras opciones."},
+    {src:"Corrige algo real de Qualia", txt:"El comparador sigue disponible para quien lo busca, atacando el punto débil del benchmark sin competir con la decisión principal."}
+  ]
+};
+
+const VAL_NAMES = [
+  "Valeria Delarosa Pichardo",
+  "Jacobo Gálvez Mayorga",
+  "Martina Gómez Fernández",
+  "Brandon Kortajarena De Cavazos",
+  "Axel León Matías",
+  "Rocío Paredes Ibarra",
+  "Luis Ángel Aguayo Salas"
+];
+const VAL_ADDRS = [
+  "Calle Rivadavia 743, Capitán Sarmiento",
+  "Avenida 9 1234, Miramar",
+  "484 3266, Manuel B Gonnet",
+  "Av. Rivadavia 4521, 3° B, CABA",
+  "Avenida Belgrano 877, Santiago del Estero",
+  "Avenida Mitre 235, San Rafael",
+  "Avenida Colón 987, Bahía Blanca"
+];
+const CORRECT_NAME = "Martina Gómez Fernández";
+const CORRECT_ADDR = "Av. Rivadavia 4521, 3° B, CABA";
+const MAX_INTENTOS = 3;
+
+const STEP_INDEX = { datos:1, validacion:2, bloqueada:2, pago:3 };
+
+function detectBrand(num){
+  const n = (num || "").replace(/\D/g, "");
+  if(!n) return "Tarjeta";
+  if(/^3[47]/.test(n)) return "American Express";
+  if(/^589562/.test(n)) return "Naranja";
+  if(/^(589657|6042|6505)/.test(n)) return "Cabal";
+  if(/^(5[1-5]|222[1-9]|22[3-9]\d|2[3-6]\d{2}|27[01]\d|2720)/.test(n)) return "Mastercard";
+  if(/^4/.test(n)) return "Visa";
+  return "Tarjeta";
+}
+function formatCardNumber(raw){
+  const digits = (raw || "").replace(/\D/g, "").slice(0,16);
+  return digits.replace(/(\d{4})(?=\d)/g, "$1 ").trim();
+}
+function maskCard(formatted){
+  const digits = (formatted || "").replace(/\s/g, "");
+  const d = (digits + "••••••••••••••••").slice(0,16);
+  return d.replace(/(.{4})/g, "$1 ").trim();
+}
+function formatExp(raw){
+  const d = (raw || "").replace(/\D/g, "").slice(0,4);
+  return d.length >= 3 ? d.slice(0,2) + "/" + d.slice(2) : d;
+}
+
+function compactAmt(str){
+  const n = parseInt(String(str).replace(/[^0-9]/g, ""), 10);
+  if(!n) return str;
+  if(n >= 1000000){
+    const m = n / 1000000;
+    return "$" + (m >= 100 ? String(Math.round(m)) : String(Math.round(m * 10) / 10).replace(".", ",")) + "M";
+  }
+  return "$" + Math.round(n / 1000) + "K";
+}
+
+
+const CMP_PRODUCTS = [
+  { key:"bici", label:"Bicicleta", icon:"assets/ic-bici-black.png" },
+  { key:"notebook", label:"Notebook", icon:"assets/ic-notebook-black.png" },
+  { key:"mascotas", label:"Mascotas", icon:"assets/ic-mascotas-black.png" },
+  { key:"vida", label:"Vida", icon:"assets/ic-vida-black.png" },
+  { key:"salud", label:"Salud", icon:"assets/ic-salud-black.png" },
+  { key:"bolso", label:"Bolso", icon:"assets/ic-bolso-black.png" },
+  { key:"hogar", label:"Hogar", icon:"assets/ic-hogar-black.png" }
+];
+
+const CMP = {
+  hogar: {
+    tagline: "Tres niveles para tu casa. Misma asistencia 24 h, distintos montos asegurados.",
+    plans: [
+      { name:"Lo básico bien cubierto", price:"$8.900", reco:false },
+      { name:"El punto de partida", price:"$12.400", reco:true },
+      { name:"Cobertura más alta", price:"$17.800", reco:false }
+    ],
+    groups: [
+      { title:"Coberturas", rows:[
+        { label:"Daños a la vivienda", hint:"Incendio, rayo, explosión", vals:["$12M","$25M","$45M"] },
+        { label:"Contenido general", vals:["$2,5M","$5M","$9M"] },
+        { label:"Robo en el hogar", vals:["$1,2M","$3M","$6M"] },
+        { label:"Electrónica y notebooks", vals:["$250K","$600K","$1,5M"] },
+        { label:"Responsabilidad civil", hint:"Daños a terceros", vals:["$1M","$3M","$8M"] }
+      ]},
+      { title:"Asistencias", rows:[
+        { label:"Plomería y gas urgente", vals:["2 visitas / año","5 visitas / año","Ilimitadas"] },
+        { label:"Cerrajería 24 h", vals:["1 visita / año","3 visitas / año","Ilimitadas"] },
+        { label:"Electricista", vals:["1 visita / año","3 visitas / año","6 visitas / año"] },
+        { label:"Pintura y mantenimiento", vals:["4 h / año","10 h / año","20 h / año"] },
+        { label:"Mudanza asistida", vals:["$80K","$200K","$450K"] }
+      ]},
+      { title:"Condiciones", rows:[
+        { label:"Franquicia", vals:["$40.000","$25.000","$0"] },
+        { label:"Plazo de reintegro", vals:["72 h","48 h","24 h"] },
+        { label:"Atención", vals:["Chat","Chat + teléfono","Ejecutivo dedicado"] }
+      ]}
+    ]
+  },
+  bici: {
+    tagline: "Desde la salida del domingo hasta la carrera del fin de semana.",
+    plans: [
+      { name:"Uso recreativo", price:"$2.400", reco:false },
+      { name:"Uso frecuente", price:"$3.900", reco:true },
+      { name:"Uso deportivo", price:"$6.200", reco:false }
+    ],
+    groups: [
+      { title:"Coberturas", rows:[
+        { label:"Robo total", vals:["$400K","$900K","$1,8M"] },
+        { label:"Daño accidental", vals:["$180K","$500K","$1,2M"] },
+        { label:"Accesorios y casco", vals:["$30K","$80K","$200K"] },
+        { label:"Responsabilidad civil", vals:["$500K","$1,5M","$4M"] }
+      ]},
+      { title:"Asistencias", rows:[
+        { label:"Auxilio en ruta", vals:["2 / año","6 / año","Ilimitado"] },
+        { label:"Traslado de la bici", vals:["50 km","150 km","400 km"] },
+        { label:"Taller a domicilio", vals:["1 / año","3 / año","8 / año"] }
+      ]},
+      { title:"Condiciones", rows:[
+        { label:"Uso en competencias", vals:["2 eventos / año","6 eventos / año","Ilimitado"] },
+        { label:"Franquicia", vals:["10%","5%","0%"] }
+      ]}
+    ]
+  },
+  notebook: {
+    tagline: "Tu equipo de trabajo cubierto, adentro y afuera de casa.",
+    plans: [
+      { name:"Robo y service", price:"$1.900", reco:false },
+      { name:"Robo y daños", price:"$3.200", reco:true },
+      { name:"Todo riesgo", price:"$4.800", reco:false }
+    ],
+    groups: [
+      { title:"Coberturas", rows:[
+        { label:"Robo", vals:["$500K","$1,1M","$2,2M"] },
+        { label:"Daño por líquidos", vals:["$120K","$400K","$1M"] },
+        { label:"Pantalla rota", vals:["$90K","$180K","$450K"] },
+        { label:"Uso en el exterior", vals:["15 días","30 días","90 días"] }
+      ]},
+      { title:"Servicio", rows:[
+        { label:"Equipo de reemplazo", vals:["15 días","7 días","48 h"] },
+        { label:"Backup en la nube", vals:["50 GB","100 GB","1 TB"] },
+        { label:"Service oficial", vals:["1 / año","2 / año","4 / año"] }
+      ]},
+      { title:"Condiciones", rows:[
+        { label:"Franquicia", vals:["$35.000","$18.000","$0"] },
+        { label:"Antigüedad máxima", vals:["3 años","5 años","7 años"] }
+      ]}
+    ]
+  },
+  mascotas: {
+    tagline: "Cinco niveles según la edad y la vida de tu mascota.",
+    plans: [
+      { name:"Primeros meses", price:"$1.500", reco:false },
+      { name:"Control anual", price:"$2.300", reco:false },
+      { name:"El más elegido", price:"$3.600", reco:true },
+      { name:"Salud y urgencias", price:"$5.400", reco:false },
+      { name:"Sin límites", price:"$7.900", reco:false }
+    ],
+    groups: [
+      { title:"Salud", rows:[
+        { label:"Consultas veterinarias", vals:["2 / año","4 / año","8 / año","16 / año","Ilimitadas"] },
+        { label:"Vacunas y desparasitación", vals:["$18K","$35K","$60K","$95K","$140K"] },
+        { label:"Cirugías", vals:["$60K","$150K","$400K","$900K","$1,8M"] },
+        { label:"Internación", vals:["$40K","$90K","$200K","$500K","$1,2M"] },
+        { label:"Estudios y laboratorio", vals:["30%","50%","70%","90%","100%"] }
+      ]},
+      { title:"Bienestar", rows:[
+        { label:"Urgencias 24 h", vals:["1 / año","2 / año","4 / año","8 / año","Ilimitadas"] },
+        { label:"Veterinario a domicilio", vals:["1 / año","2 / año","3 / año","6 / año","12 / año"] },
+        { label:"Sesiones de conducta", vals:["1 sesión","2 sesiones","4 sesiones","6 sesiones","10 sesiones"] }
+      ]},
+      { title:"Otros", rows:[
+        { label:"RC por mordedura", vals:["$120K","$300K","$800K","$2M","$5M"] },
+        { label:"Paseador o guardería", vals:["1 día","2 días","4 días","7 días","15 días"] }
+      ]}
+    ]
+  },
+  vida: {
+    tagline: "Un solo plan, sin escalones: el capital lo elegís vos.",
+    plans: [
+      { name:"Plan único", price:"$4.500", reco:true }
+    ],
+    groups: [
+      { title:"Coberturas", rows:[
+        { label:"Fallecimiento", vals:["$20M"] },
+        { label:"Invalidez total y permanente", vals:["$15M"] },
+        { label:"Enfermedades graves", vals:["$5M"] },
+        { label:"Doble indemnización por accidente", vals:["$40M"] }
+      ]},
+      { title:"Servicios", rows:[
+        { label:"Asesor patrimonial", vals:["4 sesiones / año"] },
+        { label:"Servicio de sepelio", vals:["$1,5M"] },
+        { label:"Segunda opinión médica", vals:["2 / año"] }
+      ]},
+      { title:"Condiciones", rows:[
+        { label:"Edad de ingreso", vals:["18 a 65 años"] },
+        { label:"Sin examen médico", vals:["Hasta $20M"] }
+      ]}
+    ]
+  },
+  salud: {
+    tagline: "Cuatro planes con la misma red de clínicas y distinto alcance.",
+    plans: [
+      { name:"Menos de 35", price:"$12.900", reco:false },
+      { name:"Grupo familiar", price:"$19.500", reco:true },
+      { name:"Libre elección", price:"$28.400", reco:false },
+      { name:"Sin restricciones", price:"$41.000", reco:false }
+    ],
+    groups: [
+      { title:"Coberturas", rows:[
+        { label:"Consultas médicas", vals:["6 / año","12 / año","24 / año","Ilimitadas"] },
+        { label:"Internación", vals:["30 días / año","60 días / año","120 días / año","365 días / año"] },
+        { label:"Cirugías", vals:["$800K","$2M","$5M","$12M"] },
+        { label:"Odontología", vals:["$60K","$120K","$260K","$500K"] }
+      ]},
+      { title:"Bienestar", rows:[
+        { label:"Medicamentos", vals:["40%","50%","70%","100%"] },
+        { label:"Salud mental", vals:["4 sesiones","12 sesiones","24 sesiones","48 sesiones"] },
+        { label:"Kinesiología", vals:["10 sesiones","20 sesiones","40 sesiones","80 sesiones"] }
+      ]},
+      { title:"Condiciones", rows:[
+        { label:"Cobertura en el exterior", vals:["USD 5K","USD 15K","USD 30K","USD 100K"] },
+        { label:"Espera por preexistencias", vals:["12 meses","6 meses","3 meses","Sin espera"] }
+      ]}
+    ]
+  },
+  bolso: {
+    tagline: "Lo que llevás encima todos los días, y en viaje.",
+    plans: [
+      { name:"Uso diario", price:"$1.200", reco:false },
+      { name:"Diario y viajes", price:"$2.100", reco:true },
+      { name:"Todo el año, en todo el mundo", price:"$3.400", reco:false }
+    ],
+    groups: [
+      { title:"Coberturas", rows:[
+        { label:"Robo del bolso", vals:["$150K","$400K","$900K"] },
+        { label:"Contenido electrónico", vals:["$80K","$250K","$600K"] },
+        { label:"Documentos y llaves", vals:["$20K","$45K","$100K"] },
+        { label:"Efectivo", vals:["$12K","$30K","$80K"] }
+      ]},
+      { title:"Asistencias", rows:[
+        { label:"Bloqueo de tarjetas", vals:["2 / año","5 / año","Ilimitado"] },
+        { label:"Gestión de documentación", vals:["1 / año","3 / año","6 / año"] },
+        { label:"Cobertura en viaje", vals:["15 días","30 días","90 días"] }
+      ]},
+      { title:"Condiciones", rows:[
+        { label:"Franquicia", vals:["$15.000","$8.000","$0"] },
+        { label:"Resolución de denuncia", vals:["24 h","12 h","2 h"] }
+      ]}
+    ]
+  }
+};
+
+class Component extends DCLogic {
+  state = {
+    prop:1, o1:null, o2:null, notesOpen:false, modal:null, assistOpen:{},
+    view:"home", plan:null, step:"datos",
+    dni:"34.556.789", nombre:"Martina Gómez Fernández", mail:"martina.gomez@ejemplo.com", tel:"11 2345 6789", terms:true,
+    valName:null, valAddr:null, attempts:MAX_INTENTOS, valErr:null, valOk:false,
+    addrChoice:null, calle:"", piso:"", cp:"",
+    cardNum:"4242 4242 4242 4242", cardName:"", cardExp:"", cardCvv:"",
+    legalWa:true, legalTerms:true, legalPep:false, legalSo:false,
+    receiptOpen:false, planSwitchOpen:false, pswOpen:{}, covOpen:{}, covOne:null, covOneM:null, cmpA:1, cmpB:2,
+    cmpProd:"hogar", cmpSel:{}, cmpPair:{}
+  };
+
+  selectLevel = (n) => this.setState(this.state.prop === 1 ? { o1:n } : { o2:n });
+
+  get reco(){ const r = parseInt(this.props.recommendedPlan ?? 2, 10); return (r===1||r===2||r===3) ? r : 2; }
+  get o1(){ return this.state.o1 ?? this.reco; }
+  get o2(){ return this.state.o2 ?? this.reco; }
+  get homeLevel(){ return this.state.prop === 1 ? this.o1 : this.o2; }
+  get level(){ return this.state.view === "checkout" ? (this.state.plan ?? this.homeLevel) : this.homeLevel; }
+
+  covGroupsFor = (level) => COV_ORDER.map(k => {
+    const c = CATEGORY_DETAIL[k];
+    return {
+      key:k, img:c.img, title:c.title, short:c.short,
+      single:c.single, multi:!c.single,
+      value:c.rows[0].vals[level] || "No incluido",
+      rows:c.rows.map(r => ({ label:r.label, value:r.vals[level] || "No incluido" }))
+    };
+  });
+
+  overlayStyle = (mob, z, alpha) => {
+    const base = "background:rgba(48,48,48," + alpha + "); z-index:" + z + "; display:flex; align-items:center; justify-content:center; padding:" + (mob ? "16px" : "24px");
+    const r = this.state.frameRect;
+    if(mob && r) return "position:fixed; top:" + r.top + "px; left:" + r.left + "px; width:" + r.width + "px; height:" + r.height + "px; " + base;
+    return "position:fixed; inset:0; " + base;
+  };
+
+  measureFrame = () => {
+    if(!this.frameEl) return;
+    const b = this.frameEl.getBoundingClientRect();
+    const cur = this.state.frameRect;
+    if(cur && Math.abs(cur.top - b.top) < 1 && Math.abs(cur.left - b.left) < 1 && Math.abs(cur.width - b.width) < 1 && Math.abs(cur.height - b.height) < 1) return;
+    this.setState({ frameRect:{ top:b.top, left:b.left, width:b.width, height:b.height }, frameH:b.height });
+  };
+
+  componentDidMount(){
+    this.measureFrame();
+    this._mf = () => this.measureFrame();
+    window.addEventListener("resize", this._mf);
+    window.addEventListener("scroll", this._mf, true);
+  }
+
+  componentDidUpdate(){ this.measureFrame(); }
+
+  componentWillUnmount(){
+    window.removeEventListener("resize", this._mf);
+    window.removeEventListener("scroll", this._mf, true);
+  }
+
+  scrollToId = (id) => {
+    this.setState({ modal:null });
+    const go = () => {
+      const el = document.getElementById(id);
+      if(!el) return;
+      let sc = el.parentElement;
+      while(sc && sc !== document.body){
+        const s = getComputedStyle(sc);
+        if((s.overflowY === "auto" || s.overflowY === "scroll") && sc.scrollHeight > sc.clientHeight + 4) break;
+        sc = sc.parentElement;
+      }
+      if(sc && sc !== document.body){
+        sc.scrollTo({ top: sc.scrollTop + el.getBoundingClientRect().top - sc.getBoundingClientRect().top - 16, behavior:"smooth" });
+      } else {
+        window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 16, behavior:"smooth" });
+      }
+    };
+    requestAnimationFrame(() => requestAnimationFrame(go));
+  };
+
+  openCategory = (key, level) => {
+    const cat = CATEGORY_DETAIL[key], d = LEVELS[level];
+    this.setState({ modal:{
+      title: cat.title,
+      sub: "Detalle para " + d.alias + " — " + d.name,
+      rows: cat.rows.map(r => ({ label:r.label, value: r.vals[level] || "No incluido" })),
+      links: this.state.view === "checkout" ? [] : [{ label:"Comparar planes", to:"sec-comparar", hint:"Ver esta categoría en los otros niveles" }]
+    }});
+  };
+
+  openPlanDetail = (level) => {
+    const d = LEVELS[level];
+    const inCheckout = this.state.view === "checkout";
+    const selected = level === (inCheckout ? (this.state.plan ?? this.homeLevel) : this.o1);
+    this.setState({ modal:{
+      title: d.alias,
+      sub: d.name + " — " + d.tagline,
+      price: d.price,
+      groups: this.covGroupsFor(level),
+      links: inCheckout ? [] : [
+        { label:"Ver las asistencias", to:"sec-asistencias", hint:"Conocé lo que ofrece tu seguro de hogar" },
+        { label:"Comparar planes", to:"sec-comparar", hint:"Los tres niveles, categoría por categoría" }
+      ],
+      ctaDisabled: selected,
+      ctaLabel: "Elegir " + d.alias,
+      cta: selected ? null : () => this.setState(inCheckout ? { plan: level, modal:null } : { o1: level, modal:null })
+    }});
+  };
+
+  openAssist = () => this.setState({ modal:{
+    title: "Asistencias incluidas en los 3 niveles",
+    sub: "Están en los tres niveles, más allá del que elijas.",
+    bullets: ASSISTS,
+    links: [{ label:"Ver las asistencias", to:"sec-asistencias", hint:"Conocé lo que ofrece tu seguro de hogar" }]
+  }});
+
+  goCheckout = (level) => this.setState({
+    view:"checkout", plan:level, step:"datos", receiptOpen:false, modal:null,
+    valName:null, valAddr:null, attempts:MAX_INTENTOS, valErr:null, valOk:false, addrChoice:null
+  });
+
+  backHome = () => this.setState({ view:"home", step:"datos", planSwitchOpen:false });
+
+  intentarValidar = () => {
+    const ok = this.state.valName === CORRECT_NAME && this.state.valAddr === CORRECT_ADDR;
+    if(ok){ this.setState({ valOk:true, valErr:null }); return; }
+    const left = this.state.attempts - 1;
+    if(left <= 0){ this.setState({ attempts:0, step:"bloqueada", valErr:null }); return; }
+    this.setState({ attempts:left, valErr:"Los datos seleccionados no coinciden. Te quedan " + left + " oportunidad" + (left===1?"":"es") + "." });
+  };
+
+  reiniciarValidacion = () => this.setState({
+    step:"datos", valName:null, valAddr:null, attempts:MAX_INTENTOS, valErr:null, valOk:false, addrChoice:null, calle:"", piso:"", cp:""
+  });
+
+  get finalAddress(){
+    if(this.state.addrChoice === "no"){
+      let a = this.state.calle.trim();
+      if(this.state.piso.trim()) a += ", " + this.state.piso.trim();
+      if(this.state.cp.trim()) a += " (CP " + this.state.cp.trim() + ")";
+      return a || CORRECT_ADDR;
+    }
+    return CORRECT_ADDR;
+  }
+
+  cmpSelIndex(){
+    const k = this.state.cmpProd;
+    const d = CMP[k];
+    const stored = this.state.cmpSel[k];
+    if(typeof stored === "number") return stored;
+    const r = d.plans.findIndex(p => p.reco);
+    return r < 0 ? 0 : r;
+  }
+
+  compareVals(mob){
+    const key = this.state.cmpProd;
+    const d = CMP[key];
+    const meta = CMP_PRODUCTS.find(p => p.key === key);
+    const n = d.plans.length;
+    const sel = this.cmpSelIndex();
+    const selPlan = d.plans[sel];
+    const reco = Math.max(0, d.plans.findIndex(p => p.reco));
+
+    // en mobile mostramos 2 planes por vez (sin scroll horizontal), como en la Home
+    const pair = this.state.cmpPair[key] || (n === 1 ? [0] : [Math.min(sel, n - 2), Math.min(sel, n - 2) + 1]);
+    const shown = mob ? (n === 1 ? [0] : pair) : d.plans.map((p,i) => i);
+    const vis = shown.length;
+
+    const colW = mob ? "minmax(0, 1fr)" : (n >= 5 ? "184px" : "minmax(0, 1fr)");
+    const labW = mob ? "minmax(0, 1.15fr)" : "268px";
+    const valColor = (v) => v === "—" ? "#C6C6C6" : "#303030";
+    const setPair = (slot, idx) => this.setState(s => {
+      const cur = (s.cmpPair[key] || pair).slice();
+      cur[slot] = idx;
+      if(cur[0] === cur[1]) cur[slot === 0 ? 1 : 0] = idx === 0 ? 1 : idx - 1;
+      return { cmpPair: Object.assign({}, s.cmpPair, { [key]: cur }) };
+    });
+    this.cmpSetPair = setPair;
+
+    const cells = [];
+    d.groups.forEach(g => {
+      cells.push({ isGroup:true, isLabel:false, isVal:false, text:g.title });
+      g.rows.forEach(r => {
+        cells.push({ isGroup:false, isLabel:true, isVal:false, text:r.label, hint:r.hint || "", hasHint: !!r.hint });
+        shown.forEach(i => cells.push({
+          isGroup:false, isLabel:false, isVal:true, text:r.vals[i],
+          color: valColor(r.vals[i]),
+          weight: r.vals[i] === "—" ? "400" : "700",
+          bg: i === sel ? "#F4FCFC" : "#FFFFFF"
+        }));
+      });
+    });
+
+    return {
+      cmpProducts: CMP_PRODUCTS.map(p => ({
+        label:p.label, icon:p.icon,
+        sel: p.key === key,
+        bg: p.key === key ? "#E0F7F8" : "#FFFFFF",
+        border: p.key === key ? "1.5px solid #00C1C6" : "1.5px solid #EFEFEF",
+        color: p.key === key ? "#0B3B3F" : "#585858",
+        count: CMP[p.key].plans.length + (CMP[p.key].plans.length === 1 ? " plan" : " planes"),
+        onClick: () => this.setState({ cmpProd:p.key })
+      })),
+      cmpProdLabel: meta.label,
+      cmpProdIcon: meta.icon,
+      cmpTagline: d.tagline,
+      cmpPlanCount: n === 1 ? "Plan único" : n + " planes para comparar",
+      cmpGrid: labW + " repeat(" + vis + ", " + colW + ")",
+      cmpMinWidth: "100%",
+      cmpPickerHint: n === 1 ? "" : "Elegí qué dos planes comparar",
+      cmpShowPicker: mob && n > 2,
+      cmpCols: shown.map((i, slot) => ({
+        alias:"Plan " + (i + 1), name:d.plans[i].name, price:d.plans[i].price,
+        reco:d.plans[i].reco,
+        sel: i === sel,
+        canPick: mob && n > 2,
+        showAlias: !(mob && n > 2),
+        pickValue: i,
+        options: d.plans.map((pp,j) => ({ value:j, label:"Plan " + (j + 1) })),
+        onPick: (e) => setPair(slot, parseInt(e.target.value, 10)),
+        bg: i === sel ? "#F4FCFC" : "#FFFFFF",
+        btnBg: i === sel ? "#00C1C6" : "#FFFFFF",
+        btnColor: i === sel ? "#FFFFFF" : "#0B3B3F",
+        btnBorder: i === sel ? "1.5px solid #00C1C6" : "1.5px solid #C9C9C9",
+        btnLabel: i === sel ? "✓ Seleccionado" : "Seleccionar",
+        onClick: () => this.setState(s => ({ cmpSel: Object.assign({}, s.cmpSel, { [key]: i }) }))
+      })),
+      cmpCells: cells,
+      cmpSelAlias: "Plan " + (sel + 1),
+      cmpSelName: selPlan.name,
+      cmpSelPrice: selPlan.price,
+      cmpOverflow: mob ? "hidden" : "auto",
+      cmpPillFont: mob ? "8.5px" : "9.5px",
+      cmpPillTrack: mob ? ".4px" : "1px",
+      cmpPillLabel: mob ? "Reco" : "Recomendado",
+      cmpHeroPad: mob ? "22px 18px 18px" : "44px 32px 30px",
+      cmpTablePad: mob ? "0 12px 120px" : "8px 32px 150px",
+      cmpH1: mob ? "26px" : "44px",
+      cmpTagFont: mob ? "13.5px" : "17px",
+      cmpChipPad: mob ? "9px 0" : "10px 16px",
+      cmpChipRadius: mob ? "14px" : "100px",
+      cmpChipFlex: mob ? "1 1 0" : "0 0 auto",
+      cmpChipGap: mob ? "5px" : "8px",
+      cmpChipOverflow: mob ? "hidden" : "auto",
+      cmpChipTextDisplay: mob ? "none" : "flex",
+      cmpColPad: mob ? "14px 10px 12px" : "20px 16px 18px",
+      cmpAliasFont: mob ? "16px" : "22px",
+      cmpPriceFont: mob ? "18px" : "26px",
+      cmpCellPad: mob ? "11px 10px" : "14px 16px",
+      cmpLabelFont: mob ? "12px" : "14.5px",
+      cmpValFont: mob ? "12.5px" : "15px",
+      cmpGroupFont: mob ? "11px" : "12px",
+      cmpGroupPad: mob ? "16px 10px 7px" : "26px 16px 10px",
+      goCompareCheckout: () => this.goCheckout(Math.min(3, sel + 1)),
+      cmpCtaStyle: mob
+        ? "position:sticky; bottom:0; z-index:70; margin:0 12px 12px; background:#FFFFFF; border:1px solid #EFEFEF; border-radius:16px; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:10px; box-shadow:0 -6px 24px -12px rgba(48,48,48,.3)"
+        : "position:fixed; left:50%; transform:translateX(-50%); bottom:20px; width:calc(100% - 64px); max-width:1240px; background:#FFFFFF; border:1px solid #EFEFEF; border-radius:18px; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:20px; box-shadow:0 20px 50px -18px rgba(48,48,48,.3); z-index:70"
+    };
+  }
+
+  renderVals(){
+    const prop = this.state.prop;
+    const reco = this.reco;
+    const level = this.level;
+    const d = LEVELS[level];
+    const o2 = LEVELS[this.o2];
+    const m = this.state.modal;
+    const st = this.state.step;
+    const stepN = st === "listo" ? 4 : (STEP_INDEX[st] || 1);
+    const ctaPos = this.props.ctaPosition ?? "footer";
+    const mob = (this.state.vpOverride ?? this.props.viewport ?? "desktop") === "mobile";
+    const viewports = [
+      { key: "desktop", label: "DESKTOP", sel: !mob, txt2: !mob ? "#303030" : "#B4B4B4", onClick: () => this.setState({ vpOverride: "desktop" }) },
+      { key: "mobile", label: "MOBILE", sel: mob, txt2: mob ? "#303030" : "#B4B4B4", onClick: () => this.setState({ vpOverride: "mobile" }) },
+    ];
+    const cmpLevels = mob ? [this.state.cmpA, this.state.cmpB] : [1,2,3];
+    const brand = detectBrand(this.state.cardNum);
+    const cardHolder = (this.state.cardName || "").trim() || (this.state.valOk ? this.state.valName : "");
+
+    return {
+      isMobile: mob,
+      isDesktop: !mob,
+      viewports,
+      outerStyle: mob
+        ? "min-height:100vh; background:#E4E4E4; padding:26px 0 40px; display:flex; justify-content:center; align-items:flex-start"
+        : "min-height:100vh; background:#FAFAFA",
+      frameStyle: mob
+        ? "width:414px; max-width:100%; background:#141414; border-radius:40px; padding:12px; box-shadow:0 30px 70px -24px rgba(20,20,20,.55)"
+        : "width:100%",
+      screenStyle: mob
+        ? "background:#FAFAFA; border-radius:30px; overflow-y:auto; height:min(820px, calc(100vh - 120px)); position:relative"
+        : "",
+      gridPlans: mob ? "1fr" : "repeat(3,1fr)",
+      plansGap: mob ? "10px" : "20px",
+      h2Size: mob ? "21px" : "32px",
+      h2Sub: mob ? "13.5px" : "16px",
+      h2Gap: mob ? "0 0 16px" : "0 0 28px",
+      h2TopGap: mob ? "28px" : "48px",
+      hypPad: mob ? "12px 18px 0" : "12px 32px 0",
+      hypDir: mob ? "column" : "row",
+      hypAlign: mob ? "stretch" : "center",
+      hypRowWidth: mob ? "100%" : "auto",
+      hypBtnFlex: mob ? "1" : "0 0 auto",
+      hypBtnPad: mob ? "9px 10px" : "9px 18px",
+      hypBtnFont: mob ? "12px" : "14px",
+      swBtnPad: mob ? "9px 6px" : "10px 22px",
+      modalOverlayPad: mob ? "16px" : "24px",
+      modalCardMax: mob ? "358px" : "560px",
+      modalCardMaxSm: mob ? "358px" : "460px",
+      modalCardPad: mob ? "22px 18px 24px" : "30px 28px 32px",
+      modalCardPadSm: mob ? "20px 16px 22px" : "26px",
+      modalTitleSize: mob ? "18px" : "24px",
+      modalCloseOffset: mob ? "14px" : "18px",
+      edPad: mob ? "20px 16px 18px" : "34px 36px",
+      edRadius: mob ? "14px" : "20px",
+      edNameSize: mob ? "20px" : "32px",
+      edTagSize: mob ? "13px" : "16px",
+      edTagGap: mob ? "0 0 14px" : "0 0 24px",
+      edPriceSize: mob ? "24px" : "32px",
+      edCatsGap: mob ? "8px" : "14px",
+      edCatPad: mob ? "10px 12px" : "14px 16px",
+      edCatIcon: mob ? "26px" : "34px",
+      edCatImg: mob ? "20px" : "22px",
+      edCatNm: mob ? "11.5px" : "14px",
+      edCatAmt: mob ? "14px" : "18px",
+      edCatsBottom: mob ? "16px" : "26px",
+      edBottomDir: mob ? "column" : "row",
+      edCtaWidth: mob ? "100%" : "auto",
+      edCtaPad: mob ? "14px 20px" : "16px 34px",
+      catPad: mob ? "10px 11px" : "18px 16px",
+      catIconBox: mob ? "26px" : "44px",
+      catIconImg: mob ? "22px" : "26px",
+      catIconGap: mob ? "6px" : "12px",
+      catNmSize: mob ? "11.5px" : "14px",
+      catAmtSize: mob ? "13.5px" : "18px",
+      catDescDisplay: mob ? "none" : "block",
+      catDetailPad: mob ? "5px 8px" : "7px 11px",
+      catDetailTop: mob ? "8px" : "14px",
+      assistSectionPad: mob ? "22px 18px 26px" : "52px 32px 56px",
+      assistIllusDisplay: mob ? "none" : "block",
+      planRadius: mob ? "12px" : "20px",
+      recoPillStyle: mob
+        ? "position:absolute; top:-10px; left:50%; transform:translateX(-50%); background:#00C1C6; color:#FFFFFF; font-family:'Roboto', sans-serif; font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:4px 10px; border-radius:100px; white-space:nowrap; z-index:2"
+        : "position:absolute; top:-14px; left:50%; transform:translateX(-50%); background:#00C1C6; color:#FFFFFF; font-family:'Roboto', sans-serif; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:6px 16px; border-radius:100px; white-space:nowrap; z-index:2",
+      gridCats: mob ? "1fr 1fr" : "repeat(5,1fr)",
+      gridO2Cats: mob ? "1fr" : "repeat(auto-fit,minmax(255px,1fr))",
+      gridAssist: mob ? "1fr" : "repeat(3,1fr)",
+      gridAssistSection: mob ? "1fr" : "1fr 300px",
+      gridHero: "1fr",
+      gridCheckout: mob ? "1fr" : "1fr 320px",
+      gridValidacion: mob ? "1fr" : "1fr 1fr",
+      navLinks: mob ? "none" : "flex",
+      pagePad: mob ? "24px 18px 36px" : "36px 32px 48px",
+      shellPad: mob ? "16px 18px" : "18px 32px",
+      ctaWrapStyle: mob
+        ? "position:sticky; bottom:0; z-index:70; margin:0 12px 12px; background:#FFFFFF; border:1px solid #EFEFEF; border-radius:16px; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; gap:10px; box-shadow:0 -6px 24px -12px rgba(48,48,48,.3)"
+        : "position:fixed; left:50%; transform:translateX(-50%); bottom:20px; width:calc(100% - 64px); max-width:1120px; background:#FFFFFF; border:1px solid #EFEFEF; border-radius:18px; padding:14px 24px; display:grid; grid-template-columns:auto auto 1fr auto auto; grid-template-rows:auto auto; align-items:center; column-gap:16px; box-shadow:0 20px 50px -18px rgba(48,48,48,.3); z-index:70",
+      bottomPad: mob ? "0" : "132px",
+
+      isHome: this.state.view === "home",
+      isCheckout: this.state.view === "checkout",
+      isCompare: this.state.view === "compare",
+      ...this.compareVals(mob),
+      ctaIsFooter: mob || ctaPos === "footer",
+      ctaIsRight: !mob && ctaPos === "derecha",
+
+      isO1: prop === 1,
+      isO2: prop === 2,
+      showComparison: this.props.showComparison ?? true,
+      showNotes: !mob && (this.props.showNotes ?? true),
+      notesOpen: this.state.notesOpen,
+      notesTitle: "Por qué así — Opción " + prop,
+      notes: NOTES[prop],
+      toggleNotes: () => this.setState(s => ({ notesOpen: !s.notesOpen })),
+
+      heroTitle: prop === 1
+        ? "Elegí cuánto querés proteger tu hogar."
+        : "Elegí el nivel de protección que tu hogar necesita.",
+      heroLede: prop === 1
+        ? "No son tres seguros distintos: los tres niveles cubren exactamente lo mismo, cambia cuánto. Subí o bajá y ve el efecto al instante."
+        : "Tres niveles pensados para distintos momentos: lo esencial, lo recomendado como punto de partida, o la cobertura más alta.",
+
+      proposals: [1,2,3].map(n => ({
+        label: n === 3
+          ? (mob ? "Compare" : "Compare · Comparador de productos")
+          : (mob
+              ? (n === 1 ? "Opción 1" : "Opción 2")
+              : (n === 1 ? "Opción 1 · Multiplicá tu protección" : "Opción 2 · Esencial / Recomendada / Máxima")),
+        sel: n === 3 ? this.state.view === "compare" : (prop === n && this.state.view !== "compare"),
+        txt: (n === 3 ? this.state.view === "compare" : (prop === n && this.state.view !== "compare")) ? "#0B3B3F" : "#B4B4B4",
+        onClick: () => this.setState(n === 3 ? { prop:3, view:"compare" } : { prop:n, view:"home" })
+      })),
+
+      plans: [1,2,3].map(n => {
+        const p = LEVELS[n];
+        return {
+          alias: p.alias, name: p.name, priceLabel: p.price,
+          illus: PLAN_ILLUS[n],
+          viviendaLabel: p.cats[0].amtLabel,
+          sel: this.o1 === n, notSel: this.o1 !== n, reco: n === reco,
+          onSelect: () => this.setState({ o1:n }),
+          onDetail: (e) => { e.stopPropagation(); this.openPlanDetail(n); }
+        };
+      }),
+
+      recoNote: "Recomendamos " + LEVELS[reco].alias + ": duplica la cobertura de vivienda, contenido y todo lo demás — sin duplicar el precio.",
+
+      activeAlias: d.alias,
+      activeName: d.name,
+      activePrice: d.price,
+      activeVivienda: d.cats[0].amtLabel,
+      goCheckout: () => this.goCheckout(this.homeLevel),
+      goCheckoutO2: () => this.goCheckout(this.o2),
+
+      cats: LEVELS[this.o1].cats.map(c => ({
+        img:c.img, nm:c.nm, amtLabel:c.amtLabel, desc:c.desc,
+        onClick: () => this.openCategory(c.key, this.o1)
+      })),
+
+      o2Title: O2META[this.o2].h2,
+      o2Sub: O2META[this.o2].h2sub,
+      o2Eyebrow: O2META[this.o2].eyebrow,
+      o2IsReco: this.o2 === reco,
+      o2Name: o2.name, o2Alias: o2.alias, o2Tagline: o2.tagline, o2Price: o2.price,
+      o2Cats: o2.cats.map(c => ({
+        img:c.img, nm:c.nm, amtLabel:c.amtLabel,
+        onClick: () => this.openCategory(c.key, this.o2)
+      })),
+      o2Switch: [1,2,3].map(n => ({
+        label: O2META[n].eyebrow, sel: this.o2 === n,
+        onClick: () => this.setState({ o2:n })
+      })),
+      openAssist: this.openAssist,
+
+      gridCompare: mob ? "1fr 1fr" : "1fr 1fr 1fr",
+      cellFont: mob ? "11px" : "14px",
+      cmpRowPad: mob ? "13px 6px 13px 6px" : "16px 18px",
+      cmpHeadPad: mob ? "10px 6px 10px 6px" : "11px 18px",
+      cmpLabelFont: mob ? "13px" : "16px",
+      catNavPad: mob ? "10px 18px" : "10px 32px",
+      checkoutPad: mob ? "18px 12px 32px" : "36px 20px 80px",
+      checkoutMainPad: mob ? "20px 16px 26px" : "26px 28px 32px",
+      checkoutMainMinH: mob ? "auto" : "440px",
+      asidePad: mob ? "20px 16px 24px" : "26px 24px",
+      asideBorder: mob ? "1px solid #EFEFEF" : "none",
+      asideBorderLeft: mob ? "none" : "1px solid #EFEFEF",
+      asideRadius: mob ? "0 0 20px 20px" : "0 0 20px 0",
+      checkoutShellPad: mob ? "14px 16px" : "16px 28px",
+      heroTitleSize: mob ? "29px" : "40px",
+      navCtaPad: mob ? "9px 14px" : "12px 24px",
+      navCtaFont: mob ? "13px" : "14px",
+      miQualiaLabel: mob ? "none" : "inline",
+      cmpLabelFlex: mob ? "1.45" : "1.4",
+      compareSub: mob
+        ? "Elegí qué dos planes comparar y seleccioná el que vas a contratar."
+        : "El detalle de cada categoría para los 3 planes, siempre a la vista.",
+      cmpColPad: mob ? "10px 8px" : "14px",
+      cmpColAliasFont: mob ? "14px" : "18px",
+      cmpColMetaFont: mob ? "11px" : "13px",
+      compareCols: cmpLevels.map((n, idx) => ({
+        alias: LEVELS[n].alias, priceLabel: LEVELS[n].price, reco: n === reco,
+        selected: n === level, selectable: n !== level, onSelect: () => this.selectLevel(n),
+        level: String(n),
+        options: [1,2,3].map(k => ({ value:String(k), label:LEVELS[k].alias })),
+        onChange: (e) => this.setState(idx === 0 ? { cmpA: parseInt(e.target.value,10) } : { cmpB: parseInt(e.target.value,10) })
+      })),
+      compareHead: cmpLevels.map((n, ci) => ({
+        alias: LEVELS[n].alias, color: n === level ? "#00707F" : "#8A8A8A", padL: ci === 0 ? (mob ? "12px" : "24px") : (mob ? "4px" : "10px")
+      })),
+      compareRows: [0,1,2,3,4].map(i => {
+        const key = LEVELS[1].cats[i].key;
+        const len = CATEGORY_DETAIL[key].rows.length;
+        return {
+          img: LEVELS[1].cats[i].img,
+          label: CATEGORY_DETAIL[key].short,
+          hint: mob ? "" : (key === "vivienda" ? "Edificio · 6 ítems" : (len > 1 ? len + " ítems" : "")),
+          cells: cmpLevels.map((n, ci) => ({ txt: LEVELS[n].cats[i].amtLabel, included:true, excluded:false, padL: ci === 0 ? (mob ? "12px" : "24px") : (mob ? "4px" : "10px") })),
+          onClick: () => this.openCategory(key, cmpLevels[cmpLevels.length - 1])
+        };
+      }),
+
+      assists: ASSISTS.map((a,i) => ({
+        img:a.img, nm:a.nm, desc:a.desc, items:a.items,
+        open: !!this.state.assistOpen[i],
+        toggleLabel: this.state.assistOpen[i] ? "Ver menos ⌃" : "Ver más ⌄",
+        onToggle: () => this.setState(s => ({ assistOpen: Object.assign({}, s.assistOpen, { [i]: !s.assistOpen[i] }) }))
+      })),
+
+      modalOpen: !!m,
+      modalTitle: m ? m.title : "",
+      modalSub: m ? m.sub : "",
+      modalHasPrice: !!(m && m.price),
+      modalPrice: m && m.price ? m.price : "",
+      modalHasRows: !!(m && m.rows),
+      modalRows: m && m.rows ? m.rows : [],
+      modalHasGroups: !!(m && m.groups),
+      modalLines: (() => {
+        if(!m || !m.groups) return [];
+        const out = [];
+        m.groups.forEach(g => {
+          const open = this.state.covOneM === g.key;
+          out.push({
+            key:g.key, isHeader:true, isRow:false, img:g.img,
+            label:g.title, value: g.single ? g.value : (open ? "⌃" : "⌄"),
+            pad:"13px 0", border:"#EFEFEF", cursor: g.single ? "default" : "pointer",
+            onClick: g.single ? undefined : () => this.setState(s => ({ covOneM: s.covOneM === g.key ? null : g.key }))
+          });
+          if(!g.single && open){
+            g.rows.forEach(r => out.push({ key:g.key + r.label, isHeader:false, isRow:true, label:r.label, value:r.value, pad:"7px 0", border:"transparent", img:"" }));
+          }
+        });
+        return out;
+      })(),
+      modalHasBullets: !!(m && m.bullets),
+      modalBullets: m && m.bullets ? m.bullets : [],
+      modalHasLinks: !!(m && m.links && m.links.length),
+      modalLinks: (m && m.links ? m.links : []).map(l => ({
+        label:l.label, hint:l.hint, onClick: () => this.scrollToId(l.to)
+      })),
+      never: false,
+      ccMaxW: mob ? "176px" : "300px",
+      ccRadius: mob ? "10px" : "14px",
+      ccPad: mob ? "11px" : "18px",
+      ccChipW: mob ? "20px" : "30px",
+      ccChipH: mob ? "15px" : "22px",
+      ccBrandSize: mob ? "9px" : "13px",
+      ccNumTop: mob ? "10px" : "20px",
+      ccNumSize: mob ? "11px" : "17px",
+      ccNumLs: mob ? "1px" : "2px",
+      ccFootTop: mob ? "8px" : "16px",
+      payCtaWrap: mob
+        ? "position:sticky; bottom:0; z-index:60; margin:18px -18px 0; padding:12px 18px; background:#FFFFFF; border-top:1px solid #EFEFEF"
+        : "margin-top:18px",
+      frameRef: (el) => { this.frameEl = el; },
+      modalOverlayStyle: this.overlayStyle(mob, 200, ".5"),
+      modalOverlayStyleHi: this.overlayStyle(mob, 210, ".55"),
+      modalMaxH: mob ? ((this.state.frameH ? (this.state.frameH - 40) : 380) + "px") : "82vh",
+      ctaFooterDesktop: !mob && ctaPos === "footer",
+      heroPad: mob ? "18px 18px 16px" : "30px 32px 26px",
+      openActiveDetail: () => this.openPlanDetail(level),
+      goCompare: () => this.scrollToId("sec-comparar"),
+      goAssists: () => this.scrollToId("sec-asistencias"),
+      modalHasCta: !!(m && m.cta),
+      modalCtaLabel: m && m.ctaLabel ? m.ctaLabel : "",
+      modalCta: m && m.cta ? m.cta : () => {},
+      modalCtaDisabled: !!(m && m.ctaDisabled),
+      closeModal: () => this.setState({ modal:null }),
+      stop: (e) => e.stopPropagation(),
+
+      steps: [1,2,3].map(n => ({
+        n: String(n),
+        label: n === 1 ? "Tus datos" : (n === 2 ? "Validación" : "Pago"),
+        done: n < stepN, now: n === stepN, todo: n > stepN,
+        barDone: n > 1 && n <= stepN,
+        barOff: n > 1 && n > stepN,
+        labelColor: n <= stepN ? "#303030" : "#8A8A8A"
+      })),
+      isStepDatos: st === "datos",
+      isStepValidacion: st === "validacion",
+      isStepBloqueada: st === "bloqueada",
+      isStepPago: st === "pago",
+      backHome: this.backHome,
+      backToDatos: () => this.setState({ step:"datos" }),
+      backToValidacion: () => this.setState({ step:"validacion" }),
+      goValidacion: () => this.setState({ step:"validacion" }),
+
+      fDni: this.state.dni, fNombre: this.state.nombre, fMail: this.state.mail, fTel: this.state.tel,
+      onDni: (e) => this.setState({ dni:e.target.value }),
+      onNombre: (e) => this.setState({ nombre:e.target.value }),
+      onMail: (e) => this.setState({ mail:e.target.value }),
+      onTel: (e) => this.setState({ tel:e.target.value }),
+      cTerms: this.state.terms,
+      onTerms: () => this.setState(s => ({ terms: !s.terms })),
+
+      valSelecting: !this.state.valOk,
+      valConfirming: this.state.valOk,
+      pips: [0,1,2].map(i => ({ color: i < this.state.attempts ? "#00C1C6" : "#EFEFEF" })),
+      pipsLabel: this.state.attempts === MAX_INTENTOS
+        ? "Tenés 3 intentos"
+        : "Te quedan " + this.state.attempts + " intento" + (this.state.attempts === 1 ? "" : "s"),
+      valNames: VAL_NAMES.map(n => ({ label:n, sel:this.state.valName === n, onClick: () => this.setState({ valName:n, valErr:null }) })),
+      valAddrs: VAL_ADDRS.map(a => ({ label:a, sel:this.state.valAddr === a, onClick: () => this.setState({ valAddr:a, valErr:null }) })),
+      valError: !!this.state.valErr,
+      valErrorMsg: this.state.valErr || "",
+      valCanSubmit: !!(this.state.valName && this.state.valAddr),
+      valCannotSubmit: !(this.state.valName && this.state.valAddr),
+      intentarValidar: this.intentarValidar,
+      reiniciarValidacion: this.reiniciarValidacion,
+
+      validatedName: this.state.valOk ? this.state.valName : "—",
+      validatedAddress: st === "pago" ? this.finalAddress : CORRECT_ADDR,
+      addrYes: this.state.addrChoice === "si",
+      addrNo: this.state.addrChoice === "no",
+      yesColor: this.state.addrChoice === "si" ? "#FFFFFF" : "#303030",
+      noColor: this.state.addrChoice === "no" ? "#FFFFFF" : "#303030",
+      pickYes: () => this.setState({ addrChoice:"si" }),
+      pickNo: () => this.setState({ addrChoice:"no" }),
+      mCalle: this.state.calle, mPiso: this.state.piso, mCp: this.state.cp,
+      onCalle: (e) => this.setState({ calle:e.target.value }),
+      onPiso: (e) => this.setState({ piso:e.target.value }),
+      onCp: (e) => this.setState({ cp:e.target.value }),
+      canGoPago: this.state.addrChoice === "si" || (this.state.addrChoice === "no" && this.state.calle.trim().length > 0),
+      cannotGoPago: !(this.state.addrChoice === "si" || (this.state.addrChoice === "no" && this.state.calle.trim().length > 0)),
+      goPago: () => this.setState({ step:"pago" }),
+
+      cardNum: this.state.cardNum, cardName: this.state.cardName, cardExp: this.state.cardExp, cardCvv: this.state.cardCvv,
+      onCardNum: (e) => this.setState({ cardNum: formatCardNumber(e.target.value) }),
+      onCardName: (e) => this.setState({ cardName: e.target.value.slice(0,26) }),
+      onCardExp: (e) => this.setState({ cardExp: formatExp(e.target.value) }),
+      onCardCvv: (e) => this.setState({ cardCvv: e.target.value.replace(/\D/g, "").slice(0,4) }),
+      ccBrandLabel: brand,
+      ccNumberMask: maskCard(this.state.cardNum),
+      ccNameLabel: cardHolder ? cardHolder.toUpperCase() : "NOMBRE APELLIDO",
+      ccExpLabel: this.state.cardExp || "MM/AA",
+
+      legals: [
+        { strong:"", txt:"Acepto que me contacten por WhatsApp", checked:this.state.legalWa, onChange:() => this.setState(s => ({ legalWa: !s.legalWa })) },
+        { strong:"Declaro que: ", txt:"Acepto Términos, Condiciones y Políticas de Privacidad y Cláusulas y Condiciones de la Póliza.", checked:this.state.legalTerms, onChange:() => this.setState(s => ({ legalTerms: !s.legalTerms })) },
+        { strong:"Persona Expuesta Políticamente (PEP): ", txt:"Declaro bajo juramento que los datos consignados son correctos, completos y fiel expresión de la verdad, y que me encuentro alcanzado por la Nómina de Funciones de Personas Expuestas Políticamente.", checked:this.state.legalPep, onChange:() => this.setState(s => ({ legalPep: !s.legalPep })) },
+        { strong:"Sujeto obligado: ", txt:"Manifiesto con carácter de declaración jurada que me encuentro incluido/a en la categoría de sujeto obligado, conforme el art. 20 de la Ley N° 25.246 y el art. 33 inc. b de la Res. UIF 126/2023.", checked:this.state.legalSo, onChange:() => this.setState(s => ({ legalSo: !s.legalSo })) }
+      ],
+      contratar: () => this.setState({ step:"listo" }),
+
+      covGroups: this.covGroupsFor(level),
+      covLines: (() => {
+        const out = [];
+        this.covGroupsFor(level).forEach(g => {
+          const k = "sum-" + g.key;
+          const open = this.state.covOne === k;
+          out.push({
+            isHeader:true, isRow:false, img:g.img, label:g.short,
+            value: g.single ? g.value : (open ? "⌃" : "⌄"),
+            pad:"11px 0", border:"#EFEFEF", cursor: g.single ? "default" : "pointer",
+            onClick: g.single ? undefined : () => this.setState(s => ({ covOne: s.covOne === k ? null : k }))
+          });
+          if(!g.single && open){
+            g.rows.forEach(r => out.push({ isHeader:false, isRow:true, img:"", label:r.label, value:r.value, pad:"5px 0", border:"transparent", cursor:"default" }));
+          }
+        });
+        return out;
+      })(),
+      progress: [1,2,3,4].map(n => {
+        const done = st === "listo" ? true : n < stepN;
+        const now = st !== "listo" && n === stepN;
+        return {
+          label: n === 1 ? "Datos" : (n === 2 ? "Validación" : (n === 3 ? "Pago" : "Póliza emitida")),
+          color: done || now ? "#303030" : "#8A8A8A",
+          dotBorder: done || now ? "#00C1C6" : "#EFEFEF",
+          dotBg: done ? "#00C1C6" : "#FFFFFF"
+        };
+      }),
+
+      planSwitchOpen: this.state.planSwitchOpen,
+      summaryOpen: !!this.state.summaryOpen,
+      openSummary: () => this.setState({ summaryOpen:true }),
+      closeSummary: () => this.setState({ summaryOpen:false }),
+      openPlanSwitch: () => this.setState({ planSwitchOpen:true }),
+      closePlanSwitch: () => this.setState({ planSwitchOpen:false }),
+      switchOptions: [1,2,3].map(n => {
+        const p = LEVELS[n];
+        return {
+          alias:p.alias, price:p.price, vivienda:p.cats[0].amtLabel,
+          current: n === level,
+          open: !!this.state.pswOpen[n],
+          arrow: this.state.pswOpen[n] ? "⌄" : "›",
+          rows: this.covGroupsFor(n).map(g => ({ label:g.short, value:g.value })),
+          onSelect: () => this.setState({ plan:n, planSwitchOpen:false }),
+          onToggle: (e) => { e.stopPropagation(); this.setState(s => ({ pswOpen: Object.assign({}, s.pswOpen, { [n]: !s.pswOpen[n] }) })); }
+        };
+      }),
+
+      isStepListo: st === "listo",
+      printReceipt: () => window.print(),
+      receiptRows: [
+        { k:"Nombre completo", v:this.state.valOk ? this.state.valName : this.state.nombre },
+        { k:"Dirección asegurada", v:this.finalAddress },
+        { k:"Email", v:this.state.mail },
+        { k:"Medio de pago", v:brand + " terminada en " + ((this.state.cardNum || "").replace(/\s/g, "").slice(-4) || "----") },
+        { k:"Fecha", v:"02/09/2026" },
+        { k:"N° de póliza", v:"QH-2026-004821" }
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>
